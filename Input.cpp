@@ -1,6 +1,9 @@
 #include "Input.h"
+#include<iostream>
 
 #include "Output.h"
+
+using namespace std;
 
 //======================================================================================//
 //								General Functions									    //
@@ -16,6 +19,7 @@ Input::Input(window* pW)
 void Input::GetPointClicked(int &x, int &y) const
 {
 	pWind->WaitMouseClick(x, y); // Note: x and y of WaitMouseClick are sent by reference
+	cout << x << "   " << y << endl;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////// 
@@ -48,13 +52,21 @@ int Input::GetInteger(Output *pO) const
 	///TODO: implement the GetInteger function as described in Input.h file 
 	//       using function GetString() defined above and function stoi()
 
-	
+	// BY ME ME
 
-
+	string input = GetSrting(pO);
+	try {
+		int integer = stoi(input);
+		return integer;
+	}
+	catch(...){
+		cout << input <<"that's not an integer " << endl;
+		return -1;
+	}
 
 	// Note: stoi(s) converts string s into its equivalent integer (for example, "55" is converted to 55)
 
-	return 0; // this line should be changed with your implementation
+	// return integer; // this line should be changed with your implementation
 }
 
 //======================================================================================//
