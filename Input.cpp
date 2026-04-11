@@ -9,9 +9,10 @@ using namespace std;
 //								General Functions									    //
 //======================================================================================//
 
-Input::Input(window* pW) 
-{
+Input::Input(window* pW)
+{	
 	pWind = pW; // point to the passed window
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////// 
@@ -142,6 +143,30 @@ CellPosition Input::GetCellClicked() const
 
 	CellPosition cellPos;
 
+
+
+	int cell_width = UI.width / 11;
+	int cell_height = (UI.height - (UI.CommandsBarHeight + UI.StatusBarHeight)) / 5;
+
+
+	int H_cell = x / cell_width;
+	int V_cell = y / cell_height;
+
+	if (H_cell > 10) {
+		cellPos.SetHCell(-1);
+
+	}
+	else
+		cellPos.SetHCell(H_cell);
+
+	if (V_cell > 5) {
+		cellPos.SetVCell(-1);
+	}
+	else
+		cellPos.SetVCell(V_cell);
+	// eyad will check if it is acceptable or not using the setter
+	cout << "grids is " << "C " << H_cell << " " << V_cell << endl;
+
 	if ( UI.InterfaceMode == MODE_DESIGN )	
 	{
 		if ( y >= UI.ToolBarHeight && y <= (UI.height - UI.StatusBarHeight))
@@ -150,8 +175,32 @@ CellPosition Input::GetCellClicked() const
 			//       using the coordinates x, y and the appropriate variables of the UI_Info Object (UI)
 			
 
+			int cell_width = UI.width / 11;
+			int cell_height = (UI.height - (UI.CommandsBarHeight+UI.StatusBarHeight))/5;
+
+
+			int H_cell = x / cell_width;
+			int V_cell = y / cell_height;
+
+			if (H_cell > 10) {
+				cellPos.SetHCell(-1);
+
+			}
+			else
+				cellPos.SetHCell(H_cell);
+
+			if (V_cell > 5) {
+				cellPos.SetVCell(-1);
+			}
+			else 
+				cellPos.SetVCell(V_cell);
+			// eyad will check if it is acceptable or not using the setter
+			cout << "grids is " << "C " << H_cell << " " << V_cell << endl;
+
 
 		}
+
+		
 	}
 
 	return cellPos;

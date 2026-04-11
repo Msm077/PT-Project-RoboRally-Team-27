@@ -8,9 +8,16 @@ int main()
 	// msm
 	int x,y;
 
+
+
 	//Create Input and Output objects to test
 	Output * pOut = new Output();
 	Input * pIn = pOut->CreateInput();
+
+
+
+
+
 
 	//Starting the test
 	pOut->PrintMessage("This demo is to test classes of phase 1, Click anywhere to start the test");
@@ -111,7 +118,12 @@ int main()
 	pOut->PrintMessage("FINISHED - Drawing (DangerZone) Test,  Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
 
-	
+
+
+
+
+
+
 	// 2.3- Drawing Players Test //
 	// =========================
 	pOut->PrintMessage("2.3- Drawing (Players) Test,  Click to continue");

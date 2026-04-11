@@ -14,7 +14,7 @@ class Input		// The application manager & grid (phase 2) should have a pointer t
 private:
 
 	window *pWind;	// Pointer to the Graphics Windo
-
+	Output* pOut; // added
 public:
 
 	// ========== General Functions ==========
