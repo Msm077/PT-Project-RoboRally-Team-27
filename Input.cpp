@@ -143,7 +143,7 @@ CellPosition Input::GetCellClicked() const
 
 	CellPosition cellPos;
 
-	/*
+	/* uncomment to check in any mode
 
 	int cell_width = UI.width / 11;
 	int cell_height = (UI.height - (UI.CommandsBarHeight + UI.StatusBarHeight+UI.ToolBarHeight)) / 5;
