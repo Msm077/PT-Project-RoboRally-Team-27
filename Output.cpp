@@ -155,7 +155,7 @@ void Output::ClearToolBar() const
 
 void Output::DrawTriangle(int triangleCenterX, int triangleCenterY, int triangleHeight, int triangleWidth, Direction direction, color triangleColor, drawstyle style, int penWidth) const
 {
-	int x1, y1, x2, y2, x3, y3;
+	int x1=0, y1=0, x2=0, y2=0, x3=0, y3=0;
 
 	if (direction == UP)  //Locating the Veriticies depending on the triangle direction
 	{
@@ -517,40 +517,44 @@ void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playe
 void Output::DrawBelt(const CellPosition& fromCellPos, const CellPosition& toCellPos) const
 {
 	// TODO: Validate the fromCell and toCell (Must be Horizontal or Vertical, and we can't have the first cell as a starting cell for a belt)
+	if ((fromCellPos.HCell() != toCellPos.HCell() && fromCellPos.VCell() == toCellPos.VCell() ||
+		fromCellPos.HCell() == toCellPos.HCell() && fromCellPos.VCell() != toCellPos.VCell()) &&
+		fromCellPos.GetCellNum() != 0) {
+		Direction direction;
+		// Get the start X and Y coordinates of the upper left corner of the fromCell and toCell
+		int fromCellStartX = GetCellStartX(fromCellPos);
+		int fromCellStartY = GetCellStartY(fromCellPos);
+		int toCellStartX = GetCellStartX(toCellPos);
+		int toCellStartY = GetCellStartY(toCellPos);
 
-	// Get the start X and Y coordinates of the upper left corner of the fromCell and toCell
-	int fromCellStartX = GetCellStartX(fromCellPos);
-	int fromCellStartY = GetCellStartY(fromCellPos);
-	int toCellStartX = GetCellStartX(toCellPos);
-	int toCellStartY = GetCellStartY(toCellPos);
-	
-	int beltFromCellX = fromCellStartX + (UI.CellWidth / 2) + UI.BeltXOffset;
-	int beltToCellX = toCellStartX + UI.BeltXOffset;
+		int beltFromCellX = fromCellStartX + (UI.CellWidth / 2) + UI.BeltXOffset;
+		int beltToCellX = toCellStartX + UI.BeltXOffset;
 
-	int beltFromCellY = fromCellStartY + UI.BeltYOffset;
-	int beltToCellY = toCellStartY + UI.BeltYOffset;
+		int beltFromCellY = fromCellStartY + UI.BeltYOffset;
+		int beltToCellY = toCellStartY + UI.BeltYOffset;
 
 
-	int triangleWidth = UI.CellWidth / 4;
-	int triangleHeight = UI.CellHeight / 4;
-	Direction directionB;
-	if (beltFromCellX < beltToCellX) {
-		directionB = RIGHT;
+		int triangleWidth = UI.CellWidth / 4;
+		int triangleHeight = UI.CellHeight / 4;
+
+		if (beltFromCellX < beltToCellX) {
+			direction = RIGHT;
+		}
+		else if (beltFromCellX > beltToCellX) {
+			direction = LEFT;
+		}
+		else if (beltFromCellY > beltToCellY) {
+			direction = UP;
+		}
+		else if (beltFromCellY < beltToCellY) {
+			direction = DOWN;
+		}
+
+		pWind->DrawLine(beltFromCellX, beltFromCellY, beltToCellX, beltToCellY);
+		DrawTriangle((beltFromCellX + beltToCellX) / 2, (beltFromCellY + beltToCellY) / 2, triangleWidth, triangleHeight, direction, UI.BeltColor);
+		pWind->SetPen(UI.BeltColor, UI.BeltLineWidth);
+
 	}
-	else if (beltFromCellX > beltToCellX) {
-		directionB = LEFT;
-	}
-	else if (beltFromCellY > beltToCellY) {
-		directionB = UP;
-	}
-	else if (beltFromCellY < beltToCellY) {
-		directionB = DOWN;
-	}
-
-	pWind->DrawLine(beltFromCellX,beltFromCellY,beltToCellX,beltToCellY);
-	DrawTriangle((beltFromCellX+beltToCellX)/2, (beltFromCellY + beltToCellY) / 2,triangleWidth, triangleHeight,directionB,UI.BeltColor);
-	pWind->SetPen(UI.BeltColor, UI.BeltLineWidth);
-	
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
