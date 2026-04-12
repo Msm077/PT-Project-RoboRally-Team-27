@@ -310,7 +310,7 @@ void Output::CreatePlayModeToolBar() const
 	MenuItemImages[ITM_EXECUTE_COMMANDS] = "images\\EXE_DO.jpg";
 	MenuItemImages[ITM_SELECT_COMMAND] = "images\\TAP.jpg";
 	MenuItemImages[ITM_NEW_GAME] = "images\\Game.jpg";
-	MenuItemImages[ITM_EXIT] = "images\\Exit.jpg";
+	MenuItemImages[ITM_EXIT2] = "images\\Exit.jpg";
 	///TODO: Prepare images for each menu item and add it to the list
 
 

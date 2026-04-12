@@ -54,7 +54,7 @@ enum PLAY_MODE_ITEMS // The items of the Play Mode (you should add more items)
 	ITM_SWITCH_TO_DESIGN_MODE,
 	ITM_NEW_GAME,
 	ITM_REBOOT,
-	
+	ITM_EXIT2,
 
 	///TODO: Add more items names here
 
