@@ -198,14 +198,13 @@ void Output::DrawTriangle(int triangleCenterX, int triangleCenterY, int triangle
 
 void Output::DrawImageInCell(const CellPosition& cellPos, string image, int width, int height) const
 {
-	// TODO: Validate the cell position
 	if (!cellPos.IsValidCell())
 		return;
 
 	int x = GetCellStartX(cellPos) + UI.CellWidth / 4;
 	int y = GetCellStartY(cellPos) + UI.CellHeight / 4;
 
-	// TODO: Complete the implementation of this function
+	pWind->DrawImage(image, x, y, width, height);
 
 }
 
@@ -311,7 +310,6 @@ void Output::CreatePlayModeToolBar() const
 	MenuItemImages[ITM_SELECT_COMMAND] = "images\\TAP.jpg";
 	MenuItemImages[ITM_NEW_GAME] = "images\\Game.jpg";
 	MenuItemImages[ITM_EXIT2] = "images\\Exit.jpg";
-	///TODO: Prepare images for each menu item and add it to the list
 
 
 
@@ -418,26 +416,17 @@ void Output::PrintMessage(string msg) const	//Prints a message on status bar
 void Output::PrintPlayersInfo(string info)
 {
 	ClearToolBar();
-	// One of the correct ways to implement the above TODO is to call CreatePlayModeToolBar(); 
-	// to clear what was written in the player info (there are other ways too � You are free to use any)
-
 	// Set the pen and font before drawing the string on the window
 	pWind->SetPen(UI.PlayerInfoColor); 
 	pWind->SetFont(20, BOLD , BY_NAME, "Verdana");   
 
 	int w=0, h=0;
 	pWind->GetStringSize(w,h,info);
-
-	
-
-
 	// Set the start X & Y coordinate of drawing the string
 	int x = UI.width - w - 20; // space 20 before the right-side of the window
 	                           // ( - w ) because x is the coordinate of the start point of the string (upper left)
 	int y = (UI.ToolBarHeight - h) / 2; // in the Middle of the toolbar height
 	pWind->DrawString(x,y,info);
-
-
 }
 
 //======================================================================================//
@@ -493,7 +482,9 @@ void Output::DrawCell(const CellPosition & cellPos, color cellColor) const
 void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playerColor, Direction direction) const
 {
 	// TODO: Validate the cell position and the playerNum, if not valid return
-	
+	if (!cellPos.IsValidCell() ){ //??Player??
+		return;
+	}
 
 	// Get the X & Y coordinates of the start point of the cell (its upper left corner)
 	int cellStartX = GetCellStartX(cellPos);

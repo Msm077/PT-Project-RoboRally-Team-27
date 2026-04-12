@@ -62,7 +62,6 @@ public:
 
 	// ========== Game Drawing Functions ==========
 
-	///TODO: COMPLETE THE IMPLEMENTATIN OF THE FOLLOWING FUNCTION	
 	// Draws "Cell Rectangle" with "Cell Number"
 	// the cell rectangle's color is cellColor
 	void DrawCell(const CellPosition & cellpos, color cellColor = UI.CellColor) const;	
