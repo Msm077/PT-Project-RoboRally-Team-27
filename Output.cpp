@@ -64,6 +64,7 @@ Output::Output()
 
 	// Commands X and Y Coordinates
 	UI.SpaceBetweenCommandsSlots = 10;
+	UI.SpaceBetweenToolbarSlots = 10;
 	UI.AvailableCommandsXOffset = ( UI.CommandItemWidth + UI.SpaceBetweenCommandsSlots ) * 6;
 
 
@@ -154,7 +155,7 @@ void Output::ClearToolBar() const
 
 void Output::DrawTriangle(int triangleCenterX, int triangleCenterY, int triangleHeight, int triangleWidth, Direction direction, color triangleColor, drawstyle style, int penWidth) const
 {
-	int x1, y1, x2, y2, x3, y3;
+	int x1=0, y1=0, x2=0, y2=0, x3=0, y3=0;
 
 	if (direction == UP)  //Locating the Veriticies depending on the triangle direction
 	{
@@ -192,20 +193,20 @@ void Output::DrawTriangle(int triangleCenterX, int triangleCenterY, int triangle
 		x3 = triangleCenterX - triangleHeight / 2;
 		y3 = triangleCenterY;
 	}
+	pWind->DrawTriangle(x1,y1,x2,y2,x3,y3);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
 void Output::DrawImageInCell(const CellPosition& cellPos, string image, int width, int height) const
 {
-	// TODO: Validate the cell position
 	if (!cellPos.IsValidCell())
 		return;
 
 	int x = GetCellStartX(cellPos) + UI.CellWidth / 4;
 	int y = GetCellStartY(cellPos) + UI.CellHeight / 4;
 
-	// TODO: Complete the implementation of this function
+	pWind->DrawImage(image, x, y, width, height);
 
 }
 
@@ -277,14 +278,10 @@ void Output::CreateDesignModeToolBar() const
 	MenuItemImages[ITM_SWITCH_TO_PLAY_MODE] = "images\\Switch_Mode.jpg";
 	MenuItemImages[ITM_SET_FLAG_CELL] = "images\\Flag.jpg";
 	
-	
-	///TODO: Prepare images for each menu item and add it to the list
-
-
 
 	// Draw menu item one image at a time
 	for(int i=0; i < DESIGN_ITM_COUNT; i++)
-		pWind->DrawImage(MenuItemImages[i], i*UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
+		pWind->DrawImage(MenuItemImages[i], i*UI.MenuItemWidth + UI.SpaceBetweenToolbarSlots, 0, UI.MenuItemWidth, UI.ToolBarHeight);
 
 
 }
@@ -311,13 +308,12 @@ void Output::CreatePlayModeToolBar() const
 	MenuItemImages[ITM_SELECT_COMMAND] = "images\\TAP.jpg";
 	MenuItemImages[ITM_NEW_GAME] = "images\\Game.jpg";
 	MenuItemImages[ITM_EXIT2] = "images\\Exit.jpg";
-	///TODO: Prepare images for each menu item and add it to the list
 
 
 
 	// Draw menu item one image at a time
 	for(int i=0; i < PLAY_ITM_COUNT; i++)
-		pWind->DrawImage(MenuItemImages[i], i*UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
+		pWind->DrawImage(MenuItemImages[i], i*UI.MenuItemWidth + UI.SpaceBetweenToolbarSlots, 0, UI.MenuItemWidth, UI.ToolBarHeight);
 
 }
 
@@ -417,31 +413,18 @@ void Output::PrintMessage(string msg) const	//Prints a message on status bar
 
 void Output::PrintPlayersInfo(string info)
 {
-	///TODO: Clear what was written on the toolbar
-
-	// One of the correct ways to implement the above TODO is to call CreatePlayModeToolBar(); 
-	// to clear what was written in the player info (there are other ways too � You are free to use any)
-
+	ClearToolBar();
 	// Set the pen and font before drawing the string on the window
 	pWind->SetPen(UI.PlayerInfoColor); 
 	pWind->SetFont(20, BOLD , BY_NAME, "Verdana");   
 
 	int w=0, h=0;
-
-	///TODO: Calculate the Width and Height of the string if drawn using the current font 
-	//       (Use GetStringSize() window function) and set the "w" and "h" variables with its width and height
-
-
-
+	pWind->GetStringSize(w,h,info);
 	// Set the start X & Y coordinate of drawing the string
 	int x = UI.width - w - 20; // space 20 before the right-side of the window
 	                           // ( - w ) because x is the coordinate of the start point of the string (upper left)
 	int y = (UI.ToolBarHeight - h) / 2; // in the Middle of the toolbar height
-
-	///TODO: Draw the string "info" in the specified location (x, y)
-
-
-
+	pWind->DrawString(x,y,info);
 }
 
 //======================================================================================//
@@ -497,7 +480,9 @@ void Output::DrawCell(const CellPosition & cellPos, color cellColor) const
 void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playerColor, Direction direction) const
 {
 	// TODO: Validate the cell position and the playerNum, if not valid return
-	
+	if (!cellPos.IsValidCell() || playerNum > -1){ 
+		return;
+	}
 
 	// Get the X & Y coordinates of the start point of the cell (its upper left corner)
 	int cellStartX = GetCellStartX(cellPos);
@@ -524,7 +509,7 @@ void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playe
 														// for not overlapping with belts
 
 	// TODO: Draw the player triangle in center(x,y) and filled with the playerColor passed to the function
-	
+	DrawTriangle(x, y, 3, 4, direction, playerColor);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -532,40 +517,44 @@ void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playe
 void Output::DrawBelt(const CellPosition& fromCellPos, const CellPosition& toCellPos) const
 {
 	// TODO: Validate the fromCell and toCell (Must be Horizontal or Vertical, and we can't have the first cell as a starting cell for a belt)
+	if ((fromCellPos.HCell() != toCellPos.HCell() && fromCellPos.VCell() == toCellPos.VCell() ||
+		fromCellPos.HCell() == toCellPos.HCell() && fromCellPos.VCell() != toCellPos.VCell()) &&
+		fromCellPos.GetCellNum() != 0) {
+		Direction direction;
+		// Get the start X and Y coordinates of the upper left corner of the fromCell and toCell
+		int fromCellStartX = GetCellStartX(fromCellPos);
+		int fromCellStartY = GetCellStartY(fromCellPos);
+		int toCellStartX = GetCellStartX(toCellPos);
+		int toCellStartY = GetCellStartY(toCellPos);
 
-	// Get the start X and Y coordinates of the upper left corner of the fromCell and toCell
-	int fromCellStartX = GetCellStartX(fromCellPos);
-	int fromCellStartY = GetCellStartY(fromCellPos);
-	int toCellStartX = GetCellStartX(toCellPos);
-	int toCellStartY = GetCellStartY(toCellPos);
-	
-	int beltFromCellX = fromCellStartX + (UI.CellWidth / 2) + UI.BeltXOffset;
-	int beltToCellX = toCellStartX + UI.BeltXOffset;
+		int beltFromCellX = fromCellStartX + (UI.CellWidth / 2) + UI.BeltXOffset;
+		int beltToCellX = toCellStartX + UI.BeltXOffset;
 
-	int beltFromCellY = fromCellStartY + UI.BeltYOffset;
-	int beltToCellY = toCellStartY + UI.BeltYOffset;
-
-
-	// TODO: Draw the belt line and the triangle at the center of the line pointing to the direction of the belt
-
-	// TODO: 1. Set pen color and width using the appropriate parameters of UI_Info object (UI)
-	//       2. Draw the line of the belt using the appropriate coordinates
-
-	
-	// TODO: Draw the triangle at the center of the belt line pointing to the direction of the belt
-	
+		int beltFromCellY = fromCellStartY + UI.BeltYOffset;
+		int beltToCellY = toCellStartY + UI.BeltYOffset;
 
 
+		int triangleWidth = UI.CellWidth / 4;
+		int triangleHeight = UI.CellHeight / 4;
 
-	
-	
-	int triangleWidth = UI.CellWidth / 4;
-	int triangleHeight = UI.CellHeight / 4;
+		if (beltFromCellX < beltToCellX) {
+			direction = RIGHT;
+		}
+		else if (beltFromCellX > beltToCellX) {
+			direction = LEFT;
+		}
+		else if (beltFromCellY > beltToCellY) {
+			direction = UP;
+		}
+		else if (beltFromCellY < beltToCellY) {
+			direction = DOWN;
+		}
 
+		pWind->DrawLine(beltFromCellX, beltFromCellY, beltToCellX, beltToCellY);
+		DrawTriangle((beltFromCellX + beltToCellX) / 2, (beltFromCellY + beltToCellY) / 2, triangleWidth, triangleHeight, direction, UI.BeltColor);
+		pWind->SetPen(UI.BeltColor, UI.BeltLineWidth);
 
-
-
-
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
