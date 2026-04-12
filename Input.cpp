@@ -1,14 +1,18 @@
 #include "Input.h"
+#include<iostream>
 
 #include "Output.h"
+
+using namespace std;
 
 //======================================================================================//
 //								General Functions									    //
 //======================================================================================//
 
-Input::Input(window* pW) 
-{
+Input::Input(window* pW)
+{	
 	pWind = pW; // point to the passed window
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////// 
@@ -16,6 +20,7 @@ Input::Input(window* pW)
 void Input::GetPointClicked(int &x, int &y) const
 {
 	pWind->WaitMouseClick(x, y); // Note: x and y of WaitMouseClick are sent by reference
+	cout << x << "   " << y << endl;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////// 
@@ -41,20 +46,28 @@ string Input::GetSrting(Output *pO) const
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////// 
-
+// FINISHED
 int Input::GetInteger(Output *pO) const 
 {
 
 	///TODO: implement the GetInteger function as described in Input.h file 
 	//       using function GetString() defined above and function stoi()
 
-	
+	// BY ME ME
 
-
+	string input = GetSrting(pO);
+	try {
+		int integer = stoi(input);
+		return integer;
+	}
+	catch(...){
+		cout << input <<"that's not an integer " << endl;
+		return -1;
+	}
 
 	// Note: stoi(s) converts string s into its equivalent integer (for example, "55" is converted to 55)
 
-	return 0; // this line should be changed with your implementation
+	// return integer; // this line should be changed with your implementation
 }
 
 //======================================================================================//
@@ -130,6 +143,30 @@ CellPosition Input::GetCellClicked() const
 
 	CellPosition cellPos;
 
+	/* uncomment to check in any mode
+
+	int cell_width = UI.width / 11;
+	int cell_height = (UI.height - (UI.CommandsBarHeight + UI.StatusBarHeight+UI.ToolBarHeight)) / 5;
+
+
+	int H_cell = x / cell_width;
+	int V_cell = y / cell_height;
+
+	if (H_cell > 10) {
+		cellPos.SetHCell(-1);
+
+	}
+	else
+		cellPos.SetHCell(H_cell);
+
+	if (V_cell > 5) {
+		cellPos.SetVCell(-1);
+	}
+	else
+		cellPos.SetVCell(V_cell);
+	// eyad will check if it is acceptable or not using the setter
+	cout << "grids is " << "C " << H_cell << " " << V_cell << endl;
+	*/
 	if ( UI.InterfaceMode == MODE_DESIGN )	
 	{
 		if ( y >= UI.ToolBarHeight && y <= (UI.height - UI.StatusBarHeight))
@@ -138,8 +175,32 @@ CellPosition Input::GetCellClicked() const
 			//       using the coordinates x, y and the appropriate variables of the UI_Info Object (UI)
 			
 
+			int cell_width = UI.width / 11;
+			int cell_height = (UI.height - (UI.CommandsBarHeight+UI.StatusBarHeight))/5;
+
+
+			int H_cell = x / cell_width;
+			int V_cell = y / cell_height;
+
+			if (H_cell > 10) {
+				cellPos.SetHCell(-1);
+
+			}
+			else
+				cellPos.SetHCell(H_cell);
+
+			if (V_cell > 5) {
+				cellPos.SetVCell(-1);
+			}
+			else 
+				cellPos.SetVCell(V_cell);
+			// eyad will check if it is acceptable or not using the setter
+			cout << "grids is " << "C " << H_cell << " " << V_cell << endl;
+
 
 		}
+
+		
 	}
 
 	return cellPos;
