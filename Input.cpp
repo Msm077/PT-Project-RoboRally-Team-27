@@ -146,7 +146,7 @@ CellPosition Input::GetCellClicked() const
 
 
 	int cell_width = UI.width / 11;
-	int cell_height = (UI.height - (UI.CommandsBarHeight + UI.StatusBarHeight)) / 5;
+	int cell_height = (UI.height - (UI.CommandsBarHeight + UI.StatusBarHeight+UI.ToolBarHeight)) / 5;
 
 
 	int H_cell = x / cell_width;
