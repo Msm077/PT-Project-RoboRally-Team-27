@@ -72,7 +72,6 @@ public:
 	//	Player_1
 	void DrawPlayer(const CellPosition & cellpos, int playerNum, color playerColor, Direction direction) const;  
 	
-	// TODO: Complete the implementation of the following function
 	// Draws a belt from start cell to end cell (start < end)
 	// Belt is drawn as a line from the start cell to the end cell
 	//		with a triangle at the middle of the line pointing to the end cell and showing the direction
@@ -80,14 +79,12 @@ public:
 	void DrawBelt(const CellPosition& fromCellPos, const CellPosition& toCellPos) const;
 
 
-	// TODO: Complete the implementation of the following function
 	// Draws a Flag at the passed cell position
 	// Flag is drawn as a triangle pointing to the right
 	// and its post is a vertical line
 	void DrawFlag(const CellPosition& cellPos) const;
 
 
-	// TODO: Complete the implementation of the following function
 	// Draws an image indicating a rotating gear at the passed cell position
 	// make sure to draw the gear with the correct rotation
 	void DrawRotatingGear(const CellPosition& cellPos, bool clockwise) const;
