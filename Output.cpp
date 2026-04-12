@@ -261,11 +261,21 @@ void Output::CreateDesignModeToolBar() const
 	// reoder them in UI_Info.h ==> enum DESIGN_MODE_ITEMS
 	// ** MAKE SURE THAT THE IMAGES ARE .JPG FILES **
 	string MenuItemImages[DESIGN_ITM_COUNT];
-	MenuItemImages[ITM_EXIT] = "images\\Menu_Exit.jpg";
-	MenuItemImages[ITM_SWITCH_TO_PLAY_MODE] = "images\\Menu_SwitchToGame.jpg";
-	
-	///TODO: Change the path of the images as needed
-	MenuItemImages[ITM_SET_FLAG_CELL] = "images\\Menu_Dice.jpg";
+	MenuItemImages[ITM_EXIT] = "images\\Exit.jpg";
+	MenuItemImages[ITM_COPY] = "images\\Copy.jpg";
+	MenuItemImages[ITM_CUT] = "images\\Cut.jpg";
+	MenuItemImages[ITM_PASTE] = "images\\Paste.jpg";
+	MenuItemImages[ITM_DELETE] = "images\\Delete.jpg";
+	MenuItemImages[ITM_LOAD] = "images\\Load.jpg";
+	MenuItemImages[ITM_SAVE] = "images\\Save.jpg";
+	MenuItemImages[ITM_SET_ANTENNA] = "images\\Antenna.jpg";
+	MenuItemImages[ITM_SET_BELT] = "images\\Belt.jpg";
+	MenuItemImages[ITM_SET_DANGER] = "images\\Hazard.jpg";
+	MenuItemImages[ITM_SET_ROTATING_GEAR] = "images\\R_Gear.jpg";
+	MenuItemImages[ITM_SET_WATER] = "images\\Water_Pit.jpg";
+	MenuItemImages[ITM_SET_WORKSHOP] = "images\\WS.jpg";
+	MenuItemImages[ITM_SWITCH_TO_PLAY_MODE] = "images\\Switch_Mode.jpg";
+	MenuItemImages[ITM_SET_FLAG_CELL] = "images\\Flag.jpg";
 	
 	
 	///TODO: Prepare images for each menu item and add it to the list
