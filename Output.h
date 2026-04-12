@@ -54,18 +54,10 @@ public:
 	void ClearStatusBar() const;	// Clears the status bar by drawing a filled rectangle
 	void ClearCommandsBar() const;	// Clears the Commands bar by drawing a filled rectangle
 	void ClearGridArea() const;	    // Draws an empty grid (horizontal and vertical lines with empty cells)
-
-	///TODO: COMPLETE THE IMPLEMENTATIN OF THE FOLLOWING FUNCTION
 	void CreateDesignModeToolBar() const;	// Creates the Design mode toolbar with all its menu icons
-
-	///TODO: COMPLETE THE IMPLEMENTATIN OF THE FOLLOWING FUNCTION
 	void CreatePlayModeToolBar() const;		// Creates the Play mode toolbar with all its menu icons
-
 	void CreateCommandsBar(Command savedCommands[], int savedCommandsCount, Command availableCommands[], int availableCommandsCount) const;
-	
 	void PrintMessage(string msg) const;	// Prints a message on Status bar
-
-	///TODO: COMPLETE THE IMPLEMENTATIN OF THE FOLLOWING FUNCTION
 	void PrintPlayersInfo(string info);		// Prints players' info on the right-side of the toolbar
 
 	// ========== Game Drawing Functions ==========
