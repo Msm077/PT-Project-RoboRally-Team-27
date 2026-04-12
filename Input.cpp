@@ -143,7 +143,7 @@ CellPosition Input::GetCellClicked() const
 
 	CellPosition cellPos;
 
-
+	/*
 
 	int cell_width = UI.width / 11;
 	int cell_height = (UI.height - (UI.CommandsBarHeight + UI.StatusBarHeight+UI.ToolBarHeight)) / 5;
@@ -166,7 +166,7 @@ CellPosition Input::GetCellClicked() const
 		cellPos.SetVCell(V_cell);
 	// eyad will check if it is acceptable or not using the setter
 	cout << "grids is " << "C " << H_cell << " " << V_cell << endl;
-
+	*/
 	if ( UI.InterfaceMode == MODE_DESIGN )	
 	{
 		if ( y >= UI.ToolBarHeight && y <= (UI.height - UI.StatusBarHeight))
