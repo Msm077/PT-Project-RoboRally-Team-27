@@ -156,9 +156,7 @@ void Output::DrawTriangle(int triangleCenterX, int triangleCenterY, int triangle
 {
 	int x1, y1, x2, y2, x3, y3;
 
-	///TODO: Calculate the coordiantes of the 3 vertices of the triangle based on the passed parameters
-
-	if (direction == UP)
+	if (direction == UP)  //Locating the Veriticies depending on the triangle direction
 	{
 		x1 = triangleCenterX - triangleWidth / 2;
 		y1 = triangleCenterY + triangleHeight / 2;
@@ -167,8 +165,33 @@ void Output::DrawTriangle(int triangleCenterX, int triangleCenterY, int triangle
 		x3 = triangleCenterX;
 		y3 = triangleCenterY - triangleHeight / 2;
 	}
-	///TODO: Continue the implementation
-	
+	else if (direction == DOWN)
+	{
+		x1 = triangleCenterX - triangleWidth / 2;
+		y1 = triangleCenterY - triangleHeight / 2;
+		x2 = triangleCenterX + triangleWidth / 2;
+		y2 = triangleCenterY - triangleHeight / 2;
+		x3 = triangleCenterX;
+		y3 = triangleCenterY + triangleHeight / 2;
+	}
+	else if (direction == RIGHT)
+	{
+		x1 = triangleCenterX - triangleHeight / 2;
+		y1 = triangleCenterY - triangleWidth / 2;
+		x2 = triangleCenterX - triangleHeight / 2;
+		y2 = triangleCenterY + triangleWidth / 2;
+		x3 = triangleCenterX + triangleHeight / 2;
+		y3 = triangleCenterY;
+	}
+	else if (direction == LEFT)
+	{
+		x1 = triangleCenterX + triangleHeight / 2;
+		y1 = triangleCenterY - triangleWidth / 2;
+		x2 = triangleCenterX + triangleHeight / 2;
+		y2 = triangleCenterY + triangleWidth / 2;
+		x3 = triangleCenterX - triangleHeight / 2;
+		y3 = triangleCenterY;
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -238,11 +261,21 @@ void Output::CreateDesignModeToolBar() const
 	// reoder them in UI_Info.h ==> enum DESIGN_MODE_ITEMS
 	// ** MAKE SURE THAT THE IMAGES ARE .JPG FILES **
 	string MenuItemImages[DESIGN_ITM_COUNT];
-	MenuItemImages[ITM_EXIT] = "images\\Menu_Exit.jpg";
-	MenuItemImages[ITM_SWITCH_TO_PLAY_MODE] = "images\\Menu_SwitchToGame.jpg";
-	
-	///TODO: Change the path of the images as needed
-	MenuItemImages[ITM_SET_FLAG_CELL] = "images\\Menu_Dice.jpg";
+	MenuItemImages[ITM_EXIT] = "images\\Exit.jpg";
+	MenuItemImages[ITM_COPY] = "images\\Copy.jpg";
+	MenuItemImages[ITM_CUT] = "images\\Cut.jpg";
+	MenuItemImages[ITM_PASTE] = "images\\Paste.jpg";
+	MenuItemImages[ITM_DELETE] = "images\\Delete.jpg";
+	MenuItemImages[ITM_LOAD] = "images\\Load.jpg";
+	MenuItemImages[ITM_SAVE] = "images\\Save.jpg";
+	MenuItemImages[ITM_SET_ANTENNA] = "images\\Antenna.jpg";
+	MenuItemImages[ITM_SET_BELT] = "images\\Belt.jpg";
+	MenuItemImages[ITM_SET_DANGER] = "images\\Hazard.jpg";
+	MenuItemImages[ITM_SET_ROTATING_GEAR] = "images\\R_Gear.jpg";
+	MenuItemImages[ITM_SET_WATER] = "images\\Water_Pit.jpg";
+	MenuItemImages[ITM_SET_WORKSHOP] = "images\\WS.jpg";
+	MenuItemImages[ITM_SWITCH_TO_PLAY_MODE] = "images\\Switch_Mode.jpg";
+	MenuItemImages[ITM_SET_FLAG_CELL] = "images\\Flag.jpg";
 	
 	
 	///TODO: Prepare images for each menu item and add it to the list
@@ -272,12 +305,12 @@ void Output::CreatePlayModeToolBar() const
 	// reoder them in UI_Info.h ==> enum DESIGN_MODE_ITEMS
 	// ** MAKE SURE THAT THE IMAGES ARE .JPG FILES **
 	string MenuItemImages[PLAY_ITM_COUNT];
-	MenuItemImages[ITM_SWITCH_TO_DESIGN_MODE] = "images\\Menu_SwitchToGrid.jpg";
-
-	///TODO: Change the path of the images as needed
-	MenuItemImages[ITM_EXECUTE_COMMANDS] = "images\\Menu_Dice.jpg";
-	MenuItemImages[ITM_SELECT_COMMAND] = "images\\Menu_Dice.jpg";
-
+	MenuItemImages[ITM_SWITCH_TO_DESIGN_MODE] = "images\\Switch_Mode.jpg";
+	MenuItemImages[ITM_REBOOT] = "images\\Reboot.jpg";
+	MenuItemImages[ITM_EXECUTE_COMMANDS] = "images\\EXE_DO.jpg";
+	MenuItemImages[ITM_SELECT_COMMAND] = "images\\TAP.jpg";
+	MenuItemImages[ITM_NEW_GAME] = "images\\Game.jpg";
+	MenuItemImages[ITM_EXIT2] = "images\\Exit.jpg";
 	///TODO: Prepare images for each menu item and add it to the list
 
 
