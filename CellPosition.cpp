@@ -57,6 +57,12 @@ bool CellPosition::IsValidCell() const
 	return false; // this line sould be changed with your implementation
 }
 
+bool CellPosition::IsFreeCell() const {
+	return free_Cell;
+}
+void CellPosition::Occ_Cell() {
+	free_Cell=0;
+}
 int CellPosition::GetCellNum() const
 {
 	return GetCellNumFromPosition(*this); // (*this) is the calling object of GetCellNum

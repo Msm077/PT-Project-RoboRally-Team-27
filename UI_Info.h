@@ -104,7 +104,6 @@ struct UI_Info	// User Interface Info.
 
 
 	int SpaceBetweenCommandsSlots; // Space between the slots of the saved commands in the commands bar
-	int SpaceBetweenToolbarSlots;  // Space between the slots of the Tools in the Tool bar
 	int AvailableCommandsXOffset;	// Size of the horizontal space before drawing the available commands
 	int AvailableCommandsYOffset;	// Size of the vertical space between the start of the command bar and the cards of available commands
 									// will be used in detecting selected command from the user click

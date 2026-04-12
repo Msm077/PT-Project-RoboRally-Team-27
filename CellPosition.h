@@ -5,7 +5,7 @@ class CellPosition
 {
 	int vCell; // the vertical cell number: starts from 0 to NumVerticalCells - 1
 	int hCell; // the horizontal cell number: starts from 0 to NumHorizontalCells - 1
-
+	bool free_Cell = 1;
 public:
 	CellPosition (); // Initializes the cell to (-1,-1) indicating not initialized with valid values
 	CellPosition (int v, int h); // Sets vCell and hCell if valid
@@ -42,9 +42,9 @@ public:
 	int HCell() const; // The getter of hCell
 
 	///TODO: IMPLEMENT THE FOLLOWING FUNCTION
-	bool IsValidCell() const; // Checks if the current cell position (vCell and hCell) both are valid then return true
-	                          // Otherwise, return false
-
+	bool IsValidCell() const; // Checks if the current cell position (vCell and hCell) both are valid then return true                         // Otherwise, return false
+	bool IsFreeCell() const;
+	void Occ_Cell();
 	int GetCellNum() const;   // Gets the cellNum from the vCell and hCell of the cell position
 
 	///TODO: IMPLEMENT THE FOLLOWING FUNCTION
