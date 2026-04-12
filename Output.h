@@ -65,8 +65,7 @@ public:
 	// Draws "Cell Rectangle" with "Cell Number"
 	// the cell rectangle's color is cellColor
 	void DrawCell(const CellPosition & cellpos, color cellColor = UI.CellColor) const;	
-
-	///TODO: COMPLETE THE IMPLEMENTATIN OF THE FOLLOWING FUNCTION	
+	
 	// Draws "Player Triangle" filled with the passed color
 	//	"playerNum" parameter is used for locating the triangle
 	//	** Players' Triangle Locations depending on "playerNum" is as follows: **

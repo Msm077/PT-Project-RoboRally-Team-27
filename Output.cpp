@@ -64,6 +64,7 @@ Output::Output()
 
 	// Commands X and Y Coordinates
 	UI.SpaceBetweenCommandsSlots = 10;
+	UI.SpaceBetweenToolbarSlots = 10;
 	UI.AvailableCommandsXOffset = ( UI.CommandItemWidth + UI.SpaceBetweenCommandsSlots ) * 6;
 
 
@@ -192,6 +193,7 @@ void Output::DrawTriangle(int triangleCenterX, int triangleCenterY, int triangle
 		x3 = triangleCenterX - triangleHeight / 2;
 		y3 = triangleCenterY;
 	}
+	pWind->DrawTriangle(x1,y1,x2,y2,x3,y3);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -276,14 +278,10 @@ void Output::CreateDesignModeToolBar() const
 	MenuItemImages[ITM_SWITCH_TO_PLAY_MODE] = "images\\Switch_Mode.jpg";
 	MenuItemImages[ITM_SET_FLAG_CELL] = "images\\Flag.jpg";
 	
-	
-	///TODO: Prepare images for each menu item and add it to the list
-
-
 
 	// Draw menu item one image at a time
 	for(int i=0; i < DESIGN_ITM_COUNT; i++)
-		pWind->DrawImage(MenuItemImages[i], i*UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
+		pWind->DrawImage(MenuItemImages[i], i*UI.MenuItemWidth + UI.SpaceBetweenToolbarSlots, 0, UI.MenuItemWidth, UI.ToolBarHeight);
 
 
 }
@@ -315,7 +313,7 @@ void Output::CreatePlayModeToolBar() const
 
 	// Draw menu item one image at a time
 	for(int i=0; i < PLAY_ITM_COUNT; i++)
-		pWind->DrawImage(MenuItemImages[i], i*UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
+		pWind->DrawImage(MenuItemImages[i], i*UI.MenuItemWidth + UI.SpaceBetweenToolbarSlots, 0, UI.MenuItemWidth, UI.ToolBarHeight);
 
 }
 
@@ -482,7 +480,7 @@ void Output::DrawCell(const CellPosition & cellPos, color cellColor) const
 void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playerColor, Direction direction) const
 {
 	// TODO: Validate the cell position and the playerNum, if not valid return
-	if (!cellPos.IsValidCell() ){ //??Player??
+	if (!cellPos.IsValidCell() || playerNum > -1){ 
 		return;
 	}
 
@@ -511,7 +509,7 @@ void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playe
 														// for not overlapping with belts
 
 	// TODO: Draw the player triangle in center(x,y) and filled with the playerColor passed to the function
-	
+	DrawTriangle(x, y, 3, 4, direction, playerColor);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -533,26 +531,26 @@ void Output::DrawBelt(const CellPosition& fromCellPos, const CellPosition& toCel
 	int beltToCellY = toCellStartY + UI.BeltYOffset;
 
 
-	// TODO: Draw the belt line and the triangle at the center of the line pointing to the direction of the belt
-
-	// TODO: 1. Set pen color and width using the appropriate parameters of UI_Info object (UI)
-	//       2. Draw the line of the belt using the appropriate coordinates
-
-	
-	// TODO: Draw the triangle at the center of the belt line pointing to the direction of the belt
-	
-
-
-
-	
-	
 	int triangleWidth = UI.CellWidth / 4;
 	int triangleHeight = UI.CellHeight / 4;
+	Direction directionB;
+	if (beltFromCellX < beltToCellX) {
+		directionB = RIGHT;
+	}
+	else if (beltFromCellX > beltToCellX) {
+		directionB = LEFT;
+	}
+	else if (beltFromCellY > beltToCellY) {
+		directionB = UP;
+	}
+	else if (beltFromCellY < beltToCellY) {
+		directionB = DOWN;
+	}
 
-
-
-
-
+	pWind->DrawLine(beltFromCellX,beltFromCellY,beltToCellX,beltToCellY);
+	DrawTriangle((beltFromCellX+beltToCellX)/2, (beltFromCellY + beltToCellY) / 2,triangleWidth, triangleHeight,directionB,UI.BeltColor);
+	pWind->SetPen(UI.BeltColor, UI.BeltLineWidth);
+	
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
