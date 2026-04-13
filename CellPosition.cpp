@@ -66,10 +66,10 @@ bool CellPosition::IsValidCell() const
 }
 
 bool CellPosition::IsFreeCell() const {
-	return free_Cell;
+	return free_Cell; //msm
 }
 void CellPosition::Occ_Cell() {
-	free_Cell=0;
+	free_Cell=0; // msm
 }
 int CellPosition::GetCellNum() const
 {
@@ -105,8 +105,19 @@ CellPosition CellPosition::GetCellPositionFromNum(int cellNum)
 	// this is a static function (do NOT need a calling object so CANNOT use the data members of the calling object, vCell&hCell)
 
 	CellPosition position;
-
-	/// TODO: Implement this function as described in the .h file
+	if (cellNum < 1 || cellNum > NumVerticalCells * NumHorizontalCells) {
+		
+		position.SetVCell(- 1);
+		position.SetHCell(-1);
+	}
+	else {
+		int starterfromzero = cellNum-1;
+		int h = starterfromzero % NumHorizontalCells;
+		position.SetHCell(h);
+		int invertedrow = starterfromzero / NumHorizontalCells;
+		int v = NumVerticalCells - 1 - invertedrow;
+		position.SetVCell(v);
+	}/// TODO: Implement this function as described in the .h file
 
 	// Note: use the passed cellNum to set the vCell and hCell of the "position" variable declared inside the function
 	//       I mean: position.SetVCell(...) and position.SetHCell(...) then return it
