@@ -38,9 +38,12 @@ bool CellPosition::SetVCell(int v)
 
 bool CellPosition::SetHCell(int h) 
 {
-	///TODO: Implement this function as described in the .h file (don't forget the validation)
+	if (h >= 0 && h < NumHorizontalCells) {
 
-	return false; // this line sould be changed with your implementation
+		hCell = h;
+		return true;
+	}
+	return false;
 }
 
 int CellPosition::VCell() const 
