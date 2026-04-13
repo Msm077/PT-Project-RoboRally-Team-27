@@ -53,9 +53,18 @@ int main()
 	pIn->GetPointClicked(x, y);	//Wait for any click
 
 	///TODO: Draw the command bar with only 4 available commands and 4 empty slots for saved commands
+	//AA
+	Command savedCommands2[4];
+	for (int i = 0; i < 4; i++)
+		savedCommands2[i] = NO_COMMAND;
+	Command availableCommands2[4];
+	for (int i = 0; i < 4; i++)
+		availableCommands2[i] = MOVE_FORWARD_ONE_STEP;
+	pOut->CreateCommandsBar(savedCommands2, 4, availableCommands2, 4);
 	
 
 	pOut->PrintMessage("1.1.2- Finished Testing the Command bar in the Game mode, Click to continue");
+	pIn->GetPointClicked(x, y);
 
 	pOut->PrintMessage("1.1.3- Testing the Command bar in the Game mode, Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
@@ -63,9 +72,20 @@ int main()
 	///TODO: Draw the command bar with 5 saved commands and 7 available commands, 
 	/// 	but the first saved command will be MOVE_FORWARD_ONE_STEP
 	///		and the first available command will be NO_COMMAND
+	//AA
+	Command savedCommands3[5];
+	savedCommands3[0] = MOVE_FORWARD_ONE_STEP;
+	for (int i = 1; i < 5; i++)
+		savedCommands3[i] = NO_COMMAND;
+	Command availableCommands3[7];
+	availableCommands3[0] = NO_COMMAND;
+	for (int i = 1; i < 7; i++)
+		availableCommands3[i] = MOVE_FORWARD_ONE_STEP;
+	pOut->CreateCommandsBar(savedCommands3, 5, availableCommands3, 7);
 
 	
 	pOut->PrintMessage("1.1.3- Finished Testing the Command bar in the Game mode, Click to continue");
+	pIn->GetPointClicked(x, y);
 
 	pOut->PrintMessage("1.1.4- Testing the Command bar in the Game mode, Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
@@ -73,6 +93,16 @@ int main()
 	///TODO: Draw the command bar with 5 saved commands and 6 available commands,
 	/// 	but the first saved command will be MOVE_FORWARD_TWO_STEPS
 	///		and the first available command will be NO_COMMAND as previous test
+	//AA
+	Command savedCommands4[5];
+	savedCommands4[0] = MOVE_FORWARD_TWO_STEPS;
+	for (int i = 1; i < 5; i++)
+		savedCommands4[i] = NO_COMMAND;
+	Command availableCommands4[6];
+	availableCommands4[0] = NO_COMMAND;
+	for (int i = 1; i < 6; i++)
+		availableCommands4[i] = MOVE_FORWARD_ONE_STEP;
+	pOut->CreateCommandsBar(savedCommands4, 5, availableCommands4, 6);
 	
 
 	pOut->PrintMessage("1.1.4- Finished Testing the Command bar in the Game mode, Click to continue");
@@ -98,6 +128,10 @@ int main()
 	CellPosition cell_1(1);		// cell num 1
 
 	// TODO: Draw Water Pits in cell_10 and cell_53 and cell_1 (Invalid)
+	//AA
+	pOut->DrawWaterPit(cell_10);
+	pOut->DrawWaterPit(cell_53);
+	pOut->DrawWaterPit(cell_1);
 	
 
 	pOut->PrintMessage("FINISHED - Drawing (Water Pits) Test,  Click to continue");
@@ -113,6 +147,10 @@ int main()
 	CellPosition cell_60(60);	// cell num 60
 
 	// TODO: Draw DangerZone in cell_20, [cell_60 and cell_1] (Invalid)
+	//AA
+	pOut->DrawDangerZone(cell_20);
+	pOut->DrawDangerZone(cell_60);
+	pOut->DrawDangerZone(cell_1); 
 	
 
 	pOut->PrintMessage("FINISHED - Drawing (DangerZone) Test,  Click to continue");
@@ -153,6 +191,16 @@ int main()
 	///			in cell position (player_99 declared above) pointing down--> Invalid
 	///       playerNum (-1) with color (PlayerColors[1] defined in UI object) 
 	///			in cell position (player_99 declared above) pointing left--> Invalid
+	//AA
+	pOut->DrawPlayer(player_1, 0, UI.PlayerColors[0], RIGHT);
+	pOut->DrawPlayer(player_1, 1, UI.PlayerColors[1], UP);
+	pOut->DrawPlayer(player_1, 2, UI.PlayerColors[0], DOWN);  
+	pOut->DrawPlayer(player_1, 3, UI.PlayerColors[1], LEFT);  
+	pOut->DrawPlayer(player_15, 0, UI.PlayerColors[0], LEFT); 
+	pOut->DrawPlayer(player_99, 1, UI.PlayerColors[1], UP);    
+	pOut->DrawPlayer(player_99, 5, UI.PlayerColors[1], DOWN);  
+	pOut->DrawPlayer(player_99, -1, UI.PlayerColors[1], LEFT);
+	
 
 	
 	pOut->PrintMessage("FINISHED - Drawing (Players) Test,  Click to continue");
@@ -169,6 +217,9 @@ int main()
 	CellPosition flag_99(99);
 
 	// TODO: Draw Flags in cell positions (flag_1, flag_60, flag_99)
+	pOut->DrawFlag(flag_1);
+	pOut->DrawFlag(flag_60);
+	pOut->DrawFlag(flag_99);
 
 
 	pOut->PrintMessage("FINISHED - Drawing (Flags) Test,  Click to continue");
@@ -194,6 +245,12 @@ int main()
 	//		3- from belt_start_3 to belt_end_3
 	//		4- from belt_start_3 to belt_end_4 --> Invalid
 	//		5- from belt_end_1 to belt_end_2 --> Invalid
+	//AA
+	pOut->DrawBelt(belt_start_1, belt_end_1);
+	pOut->DrawBelt(belt_start_2, belt_end_2);
+	pOut->DrawBelt(belt_start_3, belt_end_3);
+	pOut->DrawBelt(belt_start_3, belt_end_4); 
+	pOut->DrawBelt(belt_end_1, belt_end_2);
 
 
 
@@ -215,6 +272,9 @@ int main()
 	// TODO: Draw Rotating Gears in cell positions (cell_13, cell_19)
 	//        1. At cell_13 with rotation left (anticlockwise)
 	//        2. At cell_19 with rotation right (clockwise)
+	//AA
+	pOut->DrawRotatingGear(cell_13, false);  
+	pOut->DrawRotatingGear(cell_19, true); 
 
 	pOut->PrintMessage("FINISHED - Drawing (Rotating Gears) Test,  Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
@@ -227,6 +287,8 @@ int main()
 	CellPosition cell_25(25);
 	
 	// TODO: Draw Antenna in cell position (cell_25)
+	//AA
+	pOut->DrawAntenna(cell_25);
 
 	pOut->PrintMessage("FINISHED - Drawing (Antenna) Test,  Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
@@ -240,6 +302,8 @@ int main()
 	CellPosition cell_30(30);
 
 	// TODO: Draw Workshop in cell position (cell_30)
+	//AA
+	pOut->DrawWorkshop(cell_30);
 	
 	pOut->PrintMessage("FINISHED - Drawing (Workshop) Test,  Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
