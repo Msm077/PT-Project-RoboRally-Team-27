@@ -28,8 +28,11 @@ CellPosition::CellPosition (int cellNum)
 
 bool CellPosition::SetVCell(int v) 
 {
-	///TODO: Implement this function as described in the .h file (don't forget the validation)
+	if (v >= 0 && v < NumVerticalCells) {
 
+		vCell = v;
+		return true;
+	}
 	return false; // this line sould be changed with your implementation
 }
 
