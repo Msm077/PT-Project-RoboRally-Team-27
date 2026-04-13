@@ -28,16 +28,22 @@ CellPosition::CellPosition (int cellNum)
 
 bool CellPosition::SetVCell(int v) 
 {
-	///TODO: Implement this function as described in the .h file (don't forget the validation)
+	if (v >= 0 && v < NumVerticalCells) {
 
+		vCell = v;
+		return true;
+	}
 	return false; // this line sould be changed with your implementation
 }
 
 bool CellPosition::SetHCell(int h) 
 {
-	///TODO: Implement this function as described in the .h file (don't forget the validation)
+	if (h >= 0 && h < NumHorizontalCells) {
 
-	return false; // this line sould be changed with your implementation
+		hCell = h;
+		return true;
+	}
+	return false;
 }
 
 int CellPosition::VCell() const 
@@ -50,18 +56,20 @@ int CellPosition::HCell() const
 	return hCell;
 }
 
-bool CellPosition::IsValidCell() const 
+bool CellPosition::IsValidCell() const
 {
-	///TODO: Implement this function as described in the .h file
+	if (vCell >= 0 && vCell < NumVerticalCells && hCell >= 0 && hCell < NumHorizontalCells) {
+		return true;
+	}
 
 	return false; // this line sould be changed with your implementation
 }
 
 bool CellPosition::IsFreeCell() const {
-	return free_Cell;
+	return free_Cell; //msm
 }
 void CellPosition::Occ_Cell() {
-	free_Cell=0;
+	free_Cell=0; // msm
 }
 int CellPosition::GetCellNum() const
 {
@@ -69,24 +77,47 @@ int CellPosition::GetCellNum() const
 										  // which means the object of the current data members (vCell and hCell)
 }
 
-int CellPosition::GetCellNumFromPosition(const CellPosition & cellPosition)
+int CellPosition::GetCellNumFromPosition(const CellPosition& cellPosition)
 {
-	// Note:
-	// this is a static function (do NOT need a calling object so CANNOT use the data members of the calling object, vCell&hCell)
-	// just define an integer that represents cell number and calculate it using the passed cellPosition then return it
+	if (!cellPosition.IsValidCell()) {
+		return -1; // check the validity 
+	}
+	int v = cellPosition.VCell();  // use getter
+	int h = cellPosition.HCell();  // use getter
+	return (NumVerticalCells - 1 - v) * NumHorizontalCells + h + 1;  
+	/* Key idea: - Grid is stored top → bottom (vCell = 0 at top)
+	- BUT numbering is bottom → top (cellNum starts from bottom row)
+ So we:
+	1) Flip the row index:
+	   row_from_bottom = NumVerticalCells - 1 - vCell
+	2) Treat grid like a 1D array:
+	   index = row_from_bottom * NumHorizontalCells + hCell
+	3) Convert to 1-based numbering:
+	   cellNum = index + 1
+	Final formula:
+	   cellNum = (NumVerticalCells - 1 - vCell) * NumHorizontalCells + hCell + 1*/
 
-	///TODO: Implement this function as described in the .h file
-
-	return 0; // this line should be changed with your implementation
 }
+	
 
 CellPosition CellPosition::GetCellPositionFromNum(int cellNum)
 {
 	// this is a static function (do NOT need a calling object so CANNOT use the data members of the calling object, vCell&hCell)
 
 	CellPosition position;
-
-	/// TODO: Implement this function as described in the .h file
+	if (cellNum < 1 || cellNum > NumVerticalCells * NumHorizontalCells) {
+		
+		position.SetVCell(- 1);
+		position.SetHCell(-1);
+	}
+	else {
+		int starterfromzero = cellNum-1;
+		int h = starterfromzero % NumHorizontalCells;
+		position.SetHCell(h);
+		int invertedrow = starterfromzero / NumHorizontalCells;
+		int v = NumVerticalCells - 1 - invertedrow;
+		position.SetVCell(v);
+	}/// TODO: Implement this function as described in the .h file
 
 	// Note: use the passed cellNum to set the vCell and hCell of the "position" variable declared inside the function
 	//       I mean: position.SetVCell(...) and position.SetHCell(...) then return it
@@ -97,7 +128,38 @@ CellPosition CellPosition::GetCellPositionFromNum(int cellNum)
 
 void CellPosition::AddCellNum(int addedNum, Direction direction)
 {
-	
+	int initialCellNum = GetCellNum();
+
+	int finalCellNum = initialCellNum;
+
+	switch (direction)
+	{
+	case UP:
+		finalCellNum += addedNum * NumHorizontalCells;
+		break;
+
+	case DOWN:
+		finalCellNum -= addedNum * NumHorizontalCells;
+		break;
+
+	case RIGHT:
+		finalCellNum += addedNum;
+		break;
+
+	case LEFT:
+		finalCellNum -= addedNum;
+		break;
+
+	}
+	if (finalCellNum < 1 || finalCellNum > NumVerticalCells * NumHorizontalCells) {
+		return;
+	}
+	CellPosition Positionholder = GetCellPositionFromNum(finalCellNum); // ED Added a position holder because the static  function can't use this->
+
+
+	vCell = Positionholder.VCell();
+	hCell = Positionholder.HCell();
+
 	/// TODO: Implement this function as described in the .h file
 
 
