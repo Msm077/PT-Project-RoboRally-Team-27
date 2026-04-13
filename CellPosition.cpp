@@ -128,7 +128,38 @@ CellPosition CellPosition::GetCellPositionFromNum(int cellNum)
 
 void CellPosition::AddCellNum(int addedNum, Direction direction)
 {
-	
+	int initialCellNum = GetCellNum();
+
+	int finalCellNum = initialCellNum;
+
+	switch (direction)
+	{
+	case UP:
+		finalCellNum += addedNum * NumHorizontalCells;
+		break;
+
+	case DOWN:
+		finalCellNum -= addedNum * NumHorizontalCells;
+		break;
+
+	case RIGHT:
+		finalCellNum += addedNum;
+		break;
+
+	case LEFT:
+		finalCellNum -= addedNum;
+		break;
+
+	}
+	if (finalCellNum < 1 || finalCellNum > NumVerticalCells * NumHorizontalCells) {
+		return;
+	}
+	CellPosition Positionholder = GetCellPositionFromNum(finalCellNum); // ED Added a position holder because the static  function can't use this->
+
+
+	vCell = Positionholder.VCell();
+	hCell = Positionholder.HCell();
+
 	/// TODO: Implement this function as described in the .h file
 
 
