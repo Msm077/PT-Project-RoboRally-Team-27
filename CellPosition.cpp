@@ -56,9 +56,11 @@ int CellPosition::HCell() const
 	return hCell;
 }
 
-bool CellPosition::IsValidCell() const 
+bool CellPosition::IsValidCell() const
 {
-	///TODO: Implement this function as described in the .h file
+	if (vCell >= 0 && vCell < NumVerticalCells && hCell >= 0 && hCell < NumHorizontalCells) {
+		return true;
+	}
 
 	return false; // this line sould be changed with your implementation
 }
