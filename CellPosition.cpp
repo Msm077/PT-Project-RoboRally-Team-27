@@ -77,16 +77,28 @@ int CellPosition::GetCellNum() const
 										  // which means the object of the current data members (vCell and hCell)
 }
 
-int CellPosition::GetCellNumFromPosition(const CellPosition & cellPosition)
+int CellPosition::GetCellNumFromPosition(const CellPosition& cellPosition)
 {
-	// Note:
-	// this is a static function (do NOT need a calling object so CANNOT use the data members of the calling object, vCell&hCell)
-	// just define an integer that represents cell number and calculate it using the passed cellPosition then return it
+	if (!cellPosition.IsValidCell()) {
+		return -1; // check the validity 
+	}
+	int v = cellPosition.VCell();  // use getter
+	int h = cellPosition.HCell();  // use getter
+	return (NumVerticalCells - 1 - v) * NumHorizontalCells + h + 1;  
+	/* Key idea: - Grid is stored top → bottom (vCell = 0 at top)
+	- BUT numbering is bottom → top (cellNum starts from bottom row)
+ So we:
+	1) Flip the row index:
+	   row_from_bottom = NumVerticalCells - 1 - vCell
+	2) Treat grid like a 1D array:
+	   index = row_from_bottom * NumHorizontalCells + hCell
+	3) Convert to 1-based numbering:
+	   cellNum = index + 1
+	Final formula:
+	   cellNum = (NumVerticalCells - 1 - vCell) * NumHorizontalCells + hCell + 1*/
 
-	///TODO: Implement this function as described in the .h file
-
-	return 0; // this line should be changed with your implementation
 }
+	
 
 CellPosition CellPosition::GetCellPositionFromNum(int cellNum)
 {
