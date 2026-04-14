@@ -61,7 +61,11 @@ int Input::GetInteger(Output *pO) const
 		return integer;
 	}
 	catch(...){
+<<<<<<< Updated upstream
 		cout << input <<"that's not an integer " << endl;
+=======
+		pO->PrintMessage("This is not an Integer");
+>>>>>>> Stashed changes
 		return -1;
 	}
 
