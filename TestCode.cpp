@@ -8,16 +8,9 @@ int main()
 	// msm
 	int x,y;
 
-
-
 	//Create Input and Output objects to test
 	Output * pOut = new Output();
 	Input * pIn = pOut->CreateInput();
-
-
-
-
-
 
 	//Starting the test
 	pOut->PrintMessage("This demo is to test classes of phase 1, Click anywhere to start the test");
@@ -61,11 +54,8 @@ int main()
 	for (int i = 0; i < 4; i++)
 		availableCommands2[i] = MOVE_FORWARD_ONE_STEP;
 	pOut->CreateCommandsBar(savedCommands2, 4, availableCommands2, 4);
-	
-
 	pOut->PrintMessage("1.1.2- Finished Testing the Command bar in the Game mode, Click to continue");
 	pIn->GetPointClicked(x, y);
-
 	pOut->PrintMessage("1.1.3- Testing the Command bar in the Game mode, Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
 
@@ -82,8 +72,6 @@ int main()
 	for (int i = 1; i < 7; i++)
 		availableCommands3[i] = MOVE_FORWARD_ONE_STEP;
 	pOut->CreateCommandsBar(savedCommands3, 5, availableCommands3, 7);
-
-	
 	pOut->PrintMessage("1.1.3- Finished Testing the Command bar in the Game mode, Click to continue");
 	pIn->GetPointClicked(x, y);
 
@@ -155,12 +143,6 @@ int main()
 
 	pOut->PrintMessage("FINISHED - Drawing (DangerZone) Test,  Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
-
-
-
-
-
-
 
 	// 2.3- Drawing Players Test //
 	// =========================
@@ -331,8 +313,9 @@ int main()
 	//    (assuming the entered number is 116)
 	// 3- Call GetPointClicked() function
 
-
-
+	int n2 = pIn->GetInteger(pOut);
+	pOut->PrintMessage("You Entered: "+ n2);
+	pIn->GetPointClicked(x, y);	//Wait for any click
 	pOut->PrintMessage("FINISHED - (GetInteger) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 
