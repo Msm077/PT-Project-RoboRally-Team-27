@@ -561,7 +561,7 @@ void Output::DrawBelt(const CellPosition& fromCellPos, const CellPosition& toCel
 
 void Output::DrawFlag(const CellPosition& cellPos) const
 {
-	if (!cellPos.IsValidCell() || cellPos.GetCellNum() == 0 || !cellPos.IsFreeCell() || flag) {
+	if (!cellPos.IsValidCell() || cellPos.GetCellNum() == 0 || !cellPos.IsFreeCell()) {
 		return;
 	}
 	// Get the X and Y coordinates of the start point of the cell (its upper left corner)
