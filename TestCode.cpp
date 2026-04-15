@@ -453,6 +453,7 @@ int main()
 	// 3- Use the function AddCellNum() to add the addedNum to the cellNum
 	// 4- Print the vCell and hCell of the new Cell Position on the status bar
 	// 5- Repeat the above steps Four TIMES with each time a different direction
+	//this is the first i cannot solve
 	
 
 	pOut->PrintMessage("FINISHED - (AddCellNum) Test, Click to continue");
@@ -521,6 +522,7 @@ int main()
 				break;
 
 				///TODO:  ADD Cases similarly for ALL the remaining actions of PLAY Mode
+			//this is the second i cannot solve
 
 		}
 	}while(ActType != EXIT);
