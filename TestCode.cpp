@@ -453,8 +453,31 @@ int main()
 	// 3- Use the function AddCellNum() to add the addedNum to the cellNum
 	// 4- Print the vCell and hCell of the new Cell Position on the status bar
 	// 5- Repeat the above steps Four TIMES with each time a different direction
-	//this is the first i cannot solve
-	
+	for (int i = 0; i < 4; i++)
+	{
+		pOut->PrintMessage("Enter Cell Number:");
+		int cellNum = pIn->GetInteger(pOut);
+		pOut->PrintMessage("Enter Added Number:");
+		int addedNum = pIn->GetInteger(pOut);
+		CellPosition testPos(cellNum);
+		switch (i) {
+			case 0:
+				testPos.AddCellNum(addedNum, UP);
+				break;
+			case 1:
+				testPos.AddCellNum(addedNum, DOWN);
+				break;
+			case 2:
+				testPos.AddCellNum(addedNum, LEFT);
+				break;
+			case 3:
+				testPos.AddCellNum(addedNum, RIGHT);
+				break;
+		}
+		pOut->PrintMessage("VCell = " + to_string(testPos.VCell()) + ", HCell = " + to_string(testPos.HCell()));
+
+	}
+
 
 	pOut->PrintMessage("FINISHED - (AddCellNum) Test, Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
@@ -490,7 +513,7 @@ int main()
 
 				pOut->PrintMessage("Action: TO_PLAY_MODE , Click anywhere");
 				pOut->CreatePlayModeToolBar();
-
+				pOut->PrintPlayersInfo("P1(" + to_string(player_1.GetCellNum())+", , ), P2("+to_string(player_2.GetCellNum())+ ", , ) | Curr =" );
 				///TODO:  Call Function (PrintPlayersInfo) of Class Output with a string similar to 
 				//        the one given in the screenshot of project document 
 
@@ -521,8 +544,7 @@ int main()
 				pOut->CreateDesignModeToolBar();
 				break;
 
-				///TODO:  ADD Cases similarly for ALL the remaining actions of PLAY Mode
-			//this is the second i cannot solve
+				
 
 		}
 	}while(ActType != EXIT);
