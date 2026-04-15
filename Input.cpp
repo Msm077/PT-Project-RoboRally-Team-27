@@ -181,6 +181,7 @@ CellPosition Input::GetCellClicked() const
 
 			int H_cell = x / cell_width;
 			int V_cell = y / cell_height;
+			int V_cell = y / cell_height -1;
 
 			if (H_cell > 10) {
 				cellPos.SetHCell(-1);
