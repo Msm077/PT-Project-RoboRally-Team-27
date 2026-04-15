@@ -346,6 +346,12 @@ int main()
 	// 2- After reading the string clear the status bar
 	// 3- print on the status bar "You Entered" then print the string
 	// NOTE: GetString() is already implemented. It is just required from you to call it
+	//AA
+	pOut->PrintMessage("Enter a string and press ENTER:");
+	string enteredString = pIn->GetSrting(pOut);
+	pOut->ClearStatusBar();
+	pOut->PrintMessage("You Entered: " + enteredString);
+	pIn->GetPointClicked(x, y);
 
 
 
@@ -372,6 +378,22 @@ int main()
 	// 4- Call GetPointClicked()
 	// 5- Repeat the above steps FIVE TIMES
 	// 6- Repeat all the above steps to test SetHCell() function instead with the needed modifications
+	//AA
+	for (int i = 0; i < 5; i++) {
+		pOut->PrintMessage("Enter a value for VCell:");
+		int vvalue = pIn->GetInteger(pOut);
+		cellpos_1.SetVCell(vval);
+		pOut->PrintMessage("Now the vCell = " + cellpos_1.VCell());
+		pIn->GetPointClicked(x, y);
+	}
+	for (int i = 0; i < 5; i++) {
+		pOut->PrintMessage("Enter a value for HCell:");
+		int hval = pIn->GetInteger(pOut);
+		cellpos_1.SetHCell(hval);
+		pOut->PrintMessage("Now the hCell = " + cellpos_1.HCell());
+		pIn->GetPointClicked(x, y);
+	}
+
 
 	pOut->PrintMessage("FINISHED - (Setters with Validation) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
@@ -385,6 +407,17 @@ int main()
 	// 3- Use the function GetCellNum() to get the corresponding Cell Number (it used function : GetCellNumFromPosition() inside it)
 	// 4- Print the Cell Number on the status bar
 	// 5- Repeat the above steps Five TIMES
+	//AA
+	for (int i = 0; i < 5; i++) {
+			pOut->PrintMessage("Enter VCell:");
+		int v = pIn->GetInteger(pOut);
+		pOut->PrintMessage("Enter HCell:");
+		int h = pIn->GetInteger(pOut);
+		CellPosition testPos(v, h);
+		pOut->PrintMessage("Cell Number: " + testPos.GetCellNum());
+		pIn->GetPointClicked(x, y);
+	}
+	
 
 	pOut->PrintMessage("FINISHED - (GetCellNumFromPosition) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
@@ -399,6 +432,14 @@ int main()
 	//			--> it uses the function : GetCellPositionFromNum () inside it
 	// 4- Print the Cell vCell and hCell on the status bar
 	// 5- Repeat the above steps Five TIMES
+	//AA
+	for (int i = 0; i < 5; i++) {
+		pOut->PrintMessage("Enter Cell Number:");
+		int cellNum = pIn->GetInteger(pOut);
+		CellPosition testPos(cellNum);
+		pOut->PrintMessage("VCell = " + testPos.VCell() + ", HCell = " + testPos.HCell());
+		pIn->GetPointClicked(x, y);
+	}
 
 	pOut->PrintMessage("FINISHED - (GetCellPositionFromNum) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
@@ -412,6 +453,8 @@ int main()
 	// 3- Use the function AddCellNum() to add the addedNum to the cellNum
 	// 4- Print the vCell and hCell of the new Cell Position on the status bar
 	// 5- Repeat the above steps Four TIMES with each time a different direction
+	//this is the first i cannot solve
+	
 
 	pOut->PrintMessage("FINISHED - (AddCellNum) Test, Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
@@ -479,6 +522,7 @@ int main()
 				break;
 
 				///TODO:  ADD Cases similarly for ALL the remaining actions of PLAY Mode
+			//this is the second i cannot solve
 
 		}
 	}while(ActType != EXIT);
