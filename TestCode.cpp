@@ -314,7 +314,7 @@ int main()
 	// 3- Call GetPointClicked() function
 
 	int n2 = pIn->GetInteger(pOut);
-	pOut->PrintMessage("You Entered: "+ n2);
+	pOut->PrintMessage("You Entered: "+ to_string(n2));
 	pIn->GetPointClicked(x, y);	//Wait for any click
 	pOut->PrintMessage("FINISHED - (GetInteger) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
@@ -383,14 +383,14 @@ int main()
 		pOut->PrintMessage("Enter a value for VCell:");
 		int vvalue = pIn->GetInteger(pOut);
 		cellpos_1.SetVCell(vvalue);
-		pOut->PrintMessage("Now the vCell = " + cellpos_1.VCell());
+		pOut->PrintMessage("Now the vCell = " + to_string(cellpos_1.VCell()));
 		pIn->GetPointClicked(x, y);
 	}
 	for (int i = 0; i < 5; i++) {
 		pOut->PrintMessage("Enter a value for HCell:");
 		int hval = pIn->GetInteger(pOut);
 		cellpos_1.SetHCell(hval);
-		pOut->PrintMessage("Now the hCell = " + cellpos_1.HCell());
+		pOut->PrintMessage("Now the hCell = " + to_string(cellpos_1.HCell()));
 		pIn->GetPointClicked(x, y);
 	}
 
@@ -414,7 +414,7 @@ int main()
 		pOut->PrintMessage("Enter HCell:");
 		int h = pIn->GetInteger(pOut);
 		CellPosition testPos(v, h);
-		pOut->PrintMessage("Cell Number: " + testPos.GetCellNum());
+		pOut->PrintMessage("Cell Number: " + to_string(testPos.GetCellNum()));
 		pIn->GetPointClicked(x, y);
 	}
 	
