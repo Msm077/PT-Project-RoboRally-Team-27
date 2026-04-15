@@ -55,16 +55,35 @@ int Input::GetInteger(Output* pO) const
 
 	// BY ME ME
 
+	/*
+	to test
+
+	pIn->GetCellClicked();
+
+	pOut->PrintMessage("Please type an integer and press ENTER:");
+
+	// 1. Store the returned value in a variable
+	int enteredInt = pIn->GetInteger(pOut);
+
+	
+	*/
+
+
 	string input = GetSrting(pO);
 	try {
 		int integer = stoi(input);
+		cout << "seco integer" << integer << endl;
 		return integer;
 	}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 	catch(...){
 <<<<<<< Updated upstream
 		cout << input <<"that's not an integer " << endl;
 =======
+=======
+	catch (...) {
+>>>>>>> Stashed changes
 =======
 	catch (...) {
 >>>>>>> Stashed changes
@@ -226,11 +245,17 @@ CellPosition Input::GetCellClicked() const
 
 
 			int cell_width = UI.width / 11;
+<<<<<<< Updated upstream
 			int cell_height = (UI.height - (UI.CommandsBarHeight + UI.StatusBarHeight + UI.ToolBarHeight)) / 5;
 
+=======
+			int cell_height = (UI.height - (UI.CommandsBarHeight + UI.StatusBarHeight + UI.ToolBarHeight )) / 5 ;
+				
+>>>>>>> Stashed changes
 
 			int H_cell = x / cell_width;
 			int V_cell = y / cell_height;
+			int V_cell = y / cell_height-1;
 
 			if (H_cell > 10) {
 				cellPos.SetHCell(-1);
@@ -252,6 +277,8 @@ CellPosition Input::GetCellClicked() const
 
 
 	}
+	cout << "sayed cell clicked" << cellPos.VCell()<<"  h cell" << cellPos.HCell() << endl;
+
 
 	return cellPos;
 }

@@ -6,6 +6,7 @@
 int main()
 {
 	// msm
+/**/	// msm
 	int x,y;
 
 
@@ -23,7 +24,17 @@ int main()
 	pOut->PrintMessage("This demo is to test classes of phase 1, Click anywhere to start the test");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 
+	pIn->GetCellClicked();
 
+	pOut->PrintMessage("Please type an integer and press ENTER:");
+
+	// 1. Store the returned value in a variable
+	int enteredInt = pIn->GetInteger(pOut);
+
+	// 2. Print it to the console to verify
+
+	// 3. Or print it back to the game's status bar (requires converting int to string)
+	pOut->PrintMessage("You entered: " + to_string(enteredInt) + ". Click anywhere to exit.");
 	///////////////////////////////////////////////////////////////////////////////////
 	// TEST 1:	
 	//			- Create The FULL Tool bar of Design Mode, the grid area, the status bar
