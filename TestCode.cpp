@@ -382,7 +382,7 @@ int main()
 	for (int i = 0; i < 5; i++) {
 		pOut->PrintMessage("Enter a value for VCell:");
 		int vvalue = pIn->GetInteger(pOut);
-		cellpos_1.SetVCell(vval);
+		cellpos_1.SetVCell(vvalue);
 		pOut->PrintMessage("Now the vCell = " + cellpos_1.VCell());
 		pIn->GetPointClicked(x, y);
 	}
@@ -437,7 +437,7 @@ int main()
 		pOut->PrintMessage("Enter Cell Number:");
 		int cellNum = pIn->GetInteger(pOut);
 		CellPosition testPos(cellNum);
-		pOut->PrintMessage("VCell = " + testPos.VCell() + ", HCell = " + testPos.HCell());
+		pOut->PrintMessage("VCell = " + to_string(testPos.VCell()) + ", HCell = " + to_string(testPos.HCell()));
 		pIn->GetPointClicked(x, y);
 	}
 
