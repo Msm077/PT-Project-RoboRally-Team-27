@@ -506,7 +506,8 @@ int main()
 				break;
 		
 
-			case EXIT:				
+			case EXIT:	
+				pOut->PrintMessage("Action: EXIT , Click anywhere");
 				break;
 
 			case TO_PLAY_MODE:
@@ -518,8 +519,42 @@ int main()
 				//        the one given in the screenshot of project document 
 
 				break;
-
-
+			case SAVE:
+				pOut->PrintMessage("Action: Save , Click anywhere");
+				break;
+			case LOAD:
+				pOut->PrintMessage("Action: Load , Click anywhere");
+				break;
+			case SET_ANTENNA:
+				pOut->PrintMessage("Action: Set Antenna , Click anywhere");
+				break;
+			case SET_BELT:
+				pOut->PrintMessage("Action: Set Belt , Click anywhere");
+				break;
+			case SET_DANGER:
+				pOut->PrintMessage("Action: Set Danger , Click anywhere");
+				break;
+			case SET_ROTATING_GEAR:
+				pOut->PrintMessage("Action: Set Rotating Gear , Click anywhere");
+				break;
+			case SET_WATER:
+				pOut->PrintMessage("Action: Set Water , Click anywhere");
+				break;
+			case SET_WORKSHOP:
+				pOut->PrintMessage("Action: Set Workshop , Click anywhere");
+				break;
+			case COPY:
+				pOut->PrintMessage("Action: Copy , Click anywhere");
+				break;
+			case CUT:
+				pOut->PrintMessage("Action: Cut , Click anywhere");
+				break;
+			case PASTE:
+				pOut->PrintMessage("Action: Paste , Click anywhere");
+				break;
+			case DELETE_:
+				pOut->PrintMessage("Action: Delete , Click anywhere");
+				break;
 				///TODO:  ADD Cases similarly for ALL the remaining actions of DESIGN Mode
 
 			case EXECUTE_COMMANDS:
@@ -542,6 +577,15 @@ int main()
 			case TO_DESIGN_MODE:
 				pOut->PrintMessage("Action: TO_DESIGN_MODE , Click anywhere");
 				pOut->CreateDesignModeToolBar();
+				break;
+			case EMPTY:
+				pOut->PrintMessage("Action: Empty area , Click anywhere");
+				break;
+			case REBOOT:
+				pOut->PrintMessage("Action: Reboot and Repair , Click anywhere");
+				break;
+			case NEW_GAME:
+				pOut->PrintMessage("Action: New Game , Click anywhere");
 				break;
 
 				
