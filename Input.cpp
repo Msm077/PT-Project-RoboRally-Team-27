@@ -54,6 +54,20 @@ int Input::GetInteger(Output* pO) const
 	//       using function GetString() defined above and function stoi()
 
 	// BY ME ME
+	/*
+	to test
+
+	pIn->GetCellClicked();
+
+	pOut->PrintMessage("Please type an integer and press ENTER:");
+
+	// 1. Store the returned value in a variable
+	int enteredInt = pIn->GetInteger(pOut);
+
+
+	*/
+
+
 
 	/*
 	to test
@@ -254,8 +268,12 @@ CellPosition Input::GetCellClicked() const
 >>>>>>> Stashed changes
 
 			int H_cell = x / cell_width;
+<<<<<<< Updated upstream
 			int V_cell = y / cell_height;
 			int V_cell = y / cell_height-1;
+=======
+			int V_cell = y / cell_height -1;
+>>>>>>> Stashed changes
 
 			if (H_cell > 10) {
 				cellPos.SetHCell(-1);
