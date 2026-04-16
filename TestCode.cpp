@@ -305,7 +305,7 @@ int main()
 	/// ===========================
 	pOut->PrintMessage("3.1- (GetInteger) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
-
+	pOut->PrintMessage("Enter an Integer and press ENTER:");
 
 	///TODO: Add code here to 
 	// 1- Call GetInteger Function and receive its returned integer
@@ -329,7 +329,15 @@ int main()
 	// 1- Call function GetCellClicked
 	// 2- Print on the status bar the vCell and hCell of the clicked cell
 	// 3- Repeat Step 1 and 2 five times
-
+	for (int i=0;i < 5; i++)
+	{
+		pOut->PrintMessage("Click On a Cell");
+		CellPosition cn = pIn->GetCellClicked();
+		int h = cn.HCell();
+		int v = cn.VCell();
+		pOut->PrintMessage("HCell=" + to_string(h) + " , VCell=" + to_string(v));
+		pIn->GetPointClicked(x, y);
+	}
 
 	pOut->PrintMessage("FINISHED - (GetCellClicked) Test, Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
@@ -464,18 +472,22 @@ int main()
 			case 0:
 				testPos.AddCellNum(addedNum, UP);
 				pOut->PrintMessage("VCell = " + to_string(testPos.VCell()) + ", HCell = " + to_string(testPos.HCell()));
+				pIn->GetPointClicked(x, y);
 				break;
 			case 1:
 				testPos.AddCellNum(addedNum, DOWN);
 				pOut->PrintMessage("VCell = " + to_string(testPos.VCell()) + ", HCell = " + to_string(testPos.HCell()));
+				pIn->GetPointClicked(x, y);
 				break;
 			case 2:
 				testPos.AddCellNum(addedNum, LEFT);
 				pOut->PrintMessage("VCell = " + to_string(testPos.VCell()) + ", HCell = " + to_string(testPos.HCell()));
+				pIn->GetPointClicked(x, y);
 				break;
 			case 3:
 				testPos.AddCellNum(addedNum, RIGHT);
 				pOut->PrintMessage("VCell = " + to_string(testPos.VCell()) + ", HCell = " + to_string(testPos.HCell()));
+				pIn->GetPointClicked(x, y);
 				break;
 		}
 		
@@ -507,11 +519,6 @@ int main()
 		{
 			case SET_FLAG_CELL:
 				pOut->PrintMessage("Action: SET_FLAG_CELL , Click anywhere");
-				break;
-		
-
-			case EXIT:	
-				pOut->PrintMessage("Action: EXIT , Click anywhere");
 				break;
 
 			case TO_PLAY_MODE:
@@ -577,7 +584,9 @@ int main()
 			case STATUS:
 				pOut->PrintMessage("Action: STATUS , Click anywhere");
 				break;
-
+			case COMMAND_BAR:
+				pOut->PrintMessage("Action: Command Bar , Click anywhere");
+				break;
 			case TO_DESIGN_MODE:
 				pOut->PrintMessage("Action: TO_DESIGN_MODE , Click anywhere");
 				pOut->CreateDesignModeToolBar();

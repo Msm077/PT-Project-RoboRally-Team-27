@@ -419,7 +419,7 @@ void Output::PrintMessage(string msg) const	//Prints a message on status bar
 
 void Output::PrintPlayersInfo(string info)
 {
-	ClearToolBar();
+	
 	// Set the pen and font before drawing the string on the window
 	pWind->SetPen(UI.PlayerInfoColor); 
 	pWind->SetFont(20, BOLD , BY_NAME, "Verdana");   

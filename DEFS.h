@@ -39,7 +39,8 @@ enum ActionType // The actions supported (add more as needed)
 
 	EMPTY,							// Empty Area in ToolBar (NOT inside any action icon)
 	GRID_AREA,						// Inside Grid Area
-	STATUS 							// Inside StatusBar Area
+	STATUS,
+	COMMAND_BAR,// Inside StatusBar Area
 };
 
 enum Direction // Directions of the game

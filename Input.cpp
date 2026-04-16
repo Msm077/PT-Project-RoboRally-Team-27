@@ -137,15 +137,19 @@ ActionType Input::GetUserAction() const
 		}
 
 		// [2] User clicks on the grid area
-		if ((y >= UI.ToolBarHeight) && (y < UI.height - UI.StatusBarHeight))
+		if ((y >= UI.ToolBarHeight) && (y < UI.ToolBarHeight+(UI.CellHeight* NumVerticalCells)))
 		{
 			return GRID_AREA;
 		}
+		if ((y >= UI.ToolBarHeight + (UI.CellHeight * NumVerticalCells)) && (y < UI.height - UI.StatusBarHeight)) {
+			return COMMAND_BAR;
+		}
 
 		// [3] User clicks on the status bar
-		return STATUS;
-	}
+		//return STATUS;
 
+		return STATUS;	// just for now ==> This should be updated
+	}
 	// ============ GUI in the Play mode ============
 	else
 	{
@@ -172,18 +176,20 @@ ActionType Input::GetUserAction() const
 		// and return the corresponding ActionType
 
 				// [2] User clicks on the grid area
-		if ((y >= UI.ToolBarHeight) && (y < UI.height - UI.StatusBarHeight))
+		if ((y >= UI.ToolBarHeight) && (y < UI.ToolBarHeight + (UI.CellHeight * NumVerticalCells)))
 		{
 			return GRID_AREA;
 		}
-
+		if ((y >= UI.ToolBarHeight + (UI.CellHeight * NumVerticalCells)) && (y < UI.height - UI.StatusBarHeight)) {
+			return COMMAND_BAR;
+		}
 
 
 		//// IDK TO MAKE IT STATUS OR TO DESIGN MODE
 		// [3] User clicks on the status bar
 		//return STATUS;
 
-		return TO_DESIGN_MODE;	// just for now ==> This should be updated
+		return STATUS;	// just for now ==> This should be updated
 
 
 
@@ -225,8 +231,8 @@ CellPosition Input::GetCellClicked() const
 	// eyad will check if it is acceptable or not using the setter
 	cout << "grids is " << "C " << H_cell << " " << V_cell << endl;
 	*/
-	if (UI.InterfaceMode == MODE_DESIGN)
-	{
+	/*if (UI.InterfaceMode == MODE_DESIGN)
+	{*/
 		if (y >= UI.ToolBarHeight && y <= (UI.height - UI.StatusBarHeight))
 		{
 			///TODO: SetHCell and SetVCell of the object cellPost appropriately
@@ -259,7 +265,7 @@ CellPosition Input::GetCellClicked() const
 		}
 
 
-	}
+	
 
 	return cellPos;
 }
