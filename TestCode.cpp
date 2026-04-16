@@ -381,8 +381,8 @@ int main()
 	//AA
 	for (int i = 0; i < 5; i++) {
 		pOut->PrintMessage("Enter a value for VCell:");
-		int vvalue = pIn->GetInteger(pOut);
-		cellpos_1.SetVCell(vvalue);
+		int vval = pIn->GetInteger(pOut);
+		cellpos_1.SetVCell(vval);
 		pOut->PrintMessage("Now the vCell = " + to_string(cellpos_1.VCell()));
 		pIn->GetPointClicked(x, y);
 	}
@@ -463,18 +463,22 @@ int main()
 		switch (i) {
 			case 0:
 				testPos.AddCellNum(addedNum, UP);
+				pOut->PrintMessage("VCell = " + to_string(testPos.VCell()) + ", HCell = " + to_string(testPos.HCell()));
 				break;
 			case 1:
 				testPos.AddCellNum(addedNum, DOWN);
+				pOut->PrintMessage("VCell = " + to_string(testPos.VCell()) + ", HCell = " + to_string(testPos.HCell()));
 				break;
 			case 2:
 				testPos.AddCellNum(addedNum, LEFT);
+				pOut->PrintMessage("VCell = " + to_string(testPos.VCell()) + ", HCell = " + to_string(testPos.HCell()));
 				break;
 			case 3:
 				testPos.AddCellNum(addedNum, RIGHT);
+				pOut->PrintMessage("VCell = " + to_string(testPos.VCell()) + ", HCell = " + to_string(testPos.HCell()));
 				break;
 		}
-		pOut->PrintMessage("VCell = " + to_string(testPos.VCell()) + ", HCell = " + to_string(testPos.HCell()));
+		
 
 	}
 
