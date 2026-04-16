@@ -156,42 +156,42 @@ void Output::DrawTriangle(int triangleCenterX, int triangleCenterY, int triangle
 {
 	int x1=0, y1=0, x2=0, y2=0, x3=0, y3=0;
 
-	if (direction == UP)  //Locating the Veriticies depending on the triangle direction
-	{
-		x1 = triangleCenterX - triangleWidth / 2;
-		y1 = triangleCenterY + triangleHeight / 2;
-		x2 = triangleCenterX + triangleWidth / 2;
-		y2 = triangleCenterY + triangleHeight / 2;
-		x3 = triangleCenterX;
-		y3 = triangleCenterY - triangleHeight / 2;
+	switch (direction){  //Locating the Veriticies depending on the triangle direction
+		case UP:
+			x1 = triangleCenterX - triangleWidth / 2;
+			y1 = triangleCenterY + triangleHeight / 2;
+			x2 = triangleCenterX + triangleWidth / 2;
+			y2 = triangleCenterY + triangleHeight / 2;
+			x3 = triangleCenterX;
+			y3 = triangleCenterY - triangleHeight / 2;
+			break;
+		case DOWN:
+			x1 = triangleCenterX - triangleWidth / 2;
+			y1 = triangleCenterY - triangleHeight / 2;
+			x2 = triangleCenterX + triangleWidth / 2;
+			y2 = triangleCenterY - triangleHeight / 2;
+			x3 = triangleCenterX;
+			y3 = triangleCenterY + triangleHeight / 2;
+			break;
+		case RIGHT:
+			x1 = triangleCenterX - triangleHeight / 2;
+			y1 = triangleCenterY - triangleWidth / 2;
+			x2 = triangleCenterX - triangleHeight / 2;
+			y2 = triangleCenterY + triangleWidth / 2;
+			x3 = triangleCenterX + triangleHeight / 2;
+			y3 = triangleCenterY;
+			break;
+		case LEFT:
+			x1 = triangleCenterX + triangleHeight / 2;
+			y1 = triangleCenterY - triangleWidth / 2;
+			x2 = triangleCenterX + triangleHeight / 2;
+			y2 = triangleCenterY + triangleWidth / 2;
+			x3 = triangleCenterX - triangleHeight / 2;
+			y3 = triangleCenterY;
+			break;
 	}
-	else if (direction == DOWN)
-	{
-		x1 = triangleCenterX - triangleWidth / 2;
-		y1 = triangleCenterY - triangleHeight / 2;
-		x2 = triangleCenterX + triangleWidth / 2;
-		y2 = triangleCenterY - triangleHeight / 2;
-		x3 = triangleCenterX;
-		y3 = triangleCenterY + triangleHeight / 2;
-	}
-	else if (direction == RIGHT)
-	{
-		x1 = triangleCenterX - triangleHeight / 2;
-		y1 = triangleCenterY - triangleWidth / 2;
-		x2 = triangleCenterX - triangleHeight / 2;
-		y2 = triangleCenterY + triangleWidth / 2;
-		x3 = triangleCenterX + triangleHeight / 2;
-		y3 = triangleCenterY;
-	}
-	else if (direction == LEFT)
-	{
-		x1 = triangleCenterX + triangleHeight / 2;
-		y1 = triangleCenterY - triangleWidth / 2;
-		x2 = triangleCenterX + triangleHeight / 2;
-		y2 = triangleCenterY + triangleWidth / 2;
-		x3 = triangleCenterX - triangleHeight / 2;
-		y3 = triangleCenterY;
-	}
+	pWind->SetPen(triangleColor);
+	pWind->SetBrush(triangleColor);
 	pWind->DrawTriangle(x1,y1,x2,y2,x3,y3);
 }
 
@@ -489,6 +489,7 @@ void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playe
 	if (!cellPos.IsValidCell() || (playerNum > -1 && playerNum < 2)){ 
 		return;
 	}
+	
 
 	// Get the X & Y coordinates of the start point of the cell (its upper left corner)
 	int cellStartX = GetCellStartX(cellPos);
@@ -503,9 +504,10 @@ void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playe
 	// Note: Players' Triangles Locations depending on "playerNum" is as follows:
 	// Player_0
 	// Player_1
-
+	
 	// Calculate the Y coordinate of the center of the player's triangle (based on playerNum)
 	int y = cellStartY + ySpace + radius + 2;
+
 	if (playerNum == 1)
 		y += 2 * (radius + 2); // because playerNum 1 is drawn in the second row of triangles
 
@@ -515,7 +517,8 @@ void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playe
 														// for not overlapping with belts
 
 	// TODO: Draw the player triangle in center(x,y) and filled with the playerColor passed to the function
-	DrawTriangle(x, y, 3, 4, direction, playerColor);
+	
+	DrawTriangle(x, y, radius, ySpace, direction, playerColor);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////

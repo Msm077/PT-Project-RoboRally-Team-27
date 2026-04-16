@@ -33,69 +33,70 @@ int main()
 	pOut->PrintMessage("1.1- Drawing the Command bar in the Game mode, Click to continue");
 	pIn->GetPointClicked(x, y);	//Wait for any click
 
-	Command savedCommands[5];
-	for (int i = 0; i < 5; i++)
-		savedCommands[i] = NO_COMMAND;
-	Command availableCommands[10];
-	for (int i = 0; i < 10; i++)
-		availableCommands[i] = MOVE_FORWARD_ONE_STEP;
-	pOut->CreateCommandsBar(savedCommands, 5, availableCommands, 10);
-	pOut->PrintMessage("1.1.1- Finished Drawing the Command bar in the Game mode, Click to continue");
+	{
+		Command savedCommands[5];
+		for (int i = 0; i < 5; i++)
+			savedCommands[i] = NO_COMMAND;
+		Command availableCommands[10];
+		for (int i = 0; i < 10; i++)
+			availableCommands[i] = MOVE_FORWARD_ONE_STEP;
+		pOut->CreateCommandsBar(savedCommands, 5, availableCommands, 10);
+		pOut->PrintMessage("1.1.1- Finished Drawing the Command bar in the Game mode, Click to continue");
 
-	pOut->PrintMessage("1.1.2- Testing the Command bar in the Game mode, Click to continue");
-	pIn->GetPointClicked(x, y);	//Wait for any click
+		pOut->PrintMessage("1.1.2- Testing the Command bar in the Game mode, Click to continue");
+		pIn->GetPointClicked(x, y);	//Wait for any click
 
-	///TODO: Draw the command bar with only 4 available commands and 4 empty slots for saved commands
-	//AA
-	Command savedCommands2[4];
-	for (int i = 0; i < 4; i++)
-		savedCommands2[i] = NO_COMMAND;
-	Command availableCommands2[4];
-	for (int i = 0; i < 4; i++)
-		availableCommands2[i] = MOVE_FORWARD_ONE_STEP;
-	pOut->CreateCommandsBar(savedCommands2, 4, availableCommands2, 4);
-	pOut->PrintMessage("1.1.2- Finished Testing the Command bar in the Game mode, Click to continue");
-	pIn->GetPointClicked(x, y);
-	pOut->PrintMessage("1.1.3- Testing the Command bar in the Game mode, Click to continue");
-	pIn->GetPointClicked(x, y);	//Wait for any click
+		///TODO: Draw the command bar with only 4 available commands and 4 empty slots for saved commands
+		//AA
+		Command savedCommands2[4];
+		for (int i = 0; i < 4; i++)
+			savedCommands2[i] = NO_COMMAND;
+		Command availableCommands2[4];
+		for (int i = 0; i < 4; i++)
+			availableCommands2[i] = MOVE_FORWARD_ONE_STEP;
+		pOut->CreateCommandsBar(savedCommands2, 4, availableCommands2, 4);
+		pOut->PrintMessage("1.1.2- Finished Testing the Command bar in the Game mode, Click to continue");
+		pIn->GetPointClicked(x, y);
+		pOut->PrintMessage("1.1.3- Testing the Command bar in the Game mode, Click to continue");
+		pIn->GetPointClicked(x, y);	//Wait for any click
 
-	///TODO: Draw the command bar with 5 saved commands and 7 available commands, 
-	/// 	but the first saved command will be MOVE_FORWARD_ONE_STEP
-	///		and the first available command will be NO_COMMAND
-	//AA
-	Command savedCommands3[5];
-	savedCommands3[0] = MOVE_FORWARD_ONE_STEP;
-	for (int i = 1; i < 5; i++)
-		savedCommands3[i] = NO_COMMAND;
-	Command availableCommands3[7];
-	availableCommands3[0] = NO_COMMAND;
-	for (int i = 1; i < 7; i++)
-		availableCommands3[i] = MOVE_FORWARD_ONE_STEP;
-	pOut->CreateCommandsBar(savedCommands3, 5, availableCommands3, 7);
-	pOut->PrintMessage("1.1.3- Finished Testing the Command bar in the Game mode, Click to continue");
-	pIn->GetPointClicked(x, y);
+		///TODO: Draw the command bar with 5 saved commands and 7 available commands, 
+		/// 	but the first saved command will be MOVE_FORWARD_ONE_STEP
+		///		and the first available command will be NO_COMMAND
+		//AA
+		Command savedCommands3[5];
+		savedCommands3[0] = MOVE_FORWARD_ONE_STEP;
+		for (int i = 1; i < 5; i++)
+			savedCommands3[i] = NO_COMMAND;
+		Command availableCommands3[7];
+		availableCommands3[0] = NO_COMMAND;
+		for (int i = 1; i < 7; i++)
+			availableCommands3[i] = MOVE_FORWARD_ONE_STEP;
+		pOut->CreateCommandsBar(savedCommands3, 5, availableCommands3, 7);
+		pOut->PrintMessage("1.1.3- Finished Testing the Command bar in the Game mode, Click to continue");
+		pIn->GetPointClicked(x, y);
 
-	pOut->PrintMessage("1.1.4- Testing the Command bar in the Game mode, Click to continue");
-	pIn->GetPointClicked(x, y);	//Wait for any click
 
-	///TODO: Draw the command bar with 5 saved commands and 6 available commands,
-	/// 	but the first saved command will be MOVE_FORWARD_TWO_STEPS
-	///		and the first available command will be NO_COMMAND as previous test
-	//AA
-	Command savedCommands4[5];
-	savedCommands4[0] = MOVE_FORWARD_TWO_STEPS;
-	for (int i = 1; i < 5; i++)
-		savedCommands4[i] = NO_COMMAND;
-	Command availableCommands4[6];
-	availableCommands4[0] = NO_COMMAND;
-	for (int i = 1; i < 6; i++)
-		availableCommands4[i] = MOVE_FORWARD_ONE_STEP;
-	pOut->CreateCommandsBar(savedCommands4, 5, availableCommands4, 6);
-	
+		pOut->PrintMessage("1.1.4- Testing the Command bar in the Game mode, Click to continue");
+		pIn->GetPointClicked(x, y);	//Wait for any click
 
-	pOut->PrintMessage("1.1.4- Finished Testing the Command bar in the Game mode, Click to continue");
-	pIn->GetPointClicked(x, y);	//Wait for any click
+		///TODO: Draw the command bar with 5 saved commands and 6 available commands,
+		/// 	but the first saved command will be MOVE_FORWARD_TWO_STEPS
+		///		and the first available command will be NO_COMMAND as previous test
+		//AA
+		Command savedCommands4[5];
+		savedCommands4[0] = MOVE_FORWARD_TWO_STEPS;
+		for (int i = 1; i < 5; i++)
+			savedCommands4[i] = NO_COMMAND;
+		Command availableCommands4[6];
+		availableCommands4[0] = NO_COMMAND;
+		for (int i = 1; i < 6; i++)
+			availableCommands4[i] = MOVE_FORWARD_ONE_STEP;
+		pOut->CreateCommandsBar(savedCommands4, 5, availableCommands4, 6);
 
+	}
+		pOut->PrintMessage("1.1.4- Finished Testing the Command bar in the Game mode, Click to continue");
+		pIn->GetPointClicked(x, y);	//Wait for any click
 
 	///////////////////////////////////////////////////////////////////////////////////
 	// TEST 2:	
@@ -175,14 +176,21 @@ int main()
 	///			in cell position (player_99 declared above) pointing left--> Invalid
 	//AA
 	pOut->DrawPlayer(player_1, 0, UI.PlayerColors[0], RIGHT);
+	pIn->GetPointClicked(x, y);	//Wait for any click
 	pOut->DrawPlayer(player_1, 1, UI.PlayerColors[1], UP);
-	pOut->DrawPlayer(player_1, 2, UI.PlayerColors[0], DOWN);  
-	pOut->DrawPlayer(player_1, 3, UI.PlayerColors[1], LEFT);  
-	pOut->DrawPlayer(player_15, 0, UI.PlayerColors[0], LEFT); 
-	pOut->DrawPlayer(player_99, 1, UI.PlayerColors[1], UP);    
-	pOut->DrawPlayer(player_99, 5, UI.PlayerColors[1], DOWN);  
+	pIn->GetPointClicked(x, y);	//Wait for any click
+	pOut->DrawPlayer(player_1, 2, UI.PlayerColors[0], DOWN);
+	pIn->GetPointClicked(x, y);	//Wait for any click
+	pOut->DrawPlayer(player_1, 3, UI.PlayerColors[1], LEFT);
+	pIn->GetPointClicked(x, y);	//Wait for any click
+	pOut->DrawPlayer(player_15, 0, UI.PlayerColors[0], LEFT);
+	pIn->GetPointClicked(x, y);	//Wait for any click
+	pOut->DrawPlayer(player_99, 1, UI.PlayerColors[1], UP);
+	pIn->GetPointClicked(x, y);	//Wait for any click
+	pOut->DrawPlayer(player_99, 5, UI.PlayerColors[1], DOWN);
+	pIn->GetPointClicked(x, y);	//Wait for any click
 	pOut->DrawPlayer(player_99, -1, UI.PlayerColors[1], LEFT);
-	
+	pIn->GetPointClicked(x, y);	//Wait for any click
 
 	
 	pOut->PrintMessage("FINISHED - Drawing (Players) Test,  Click to continue");
@@ -522,7 +530,7 @@ int main()
 				break;
 
 			case TO_PLAY_MODE:
-
+				// HHHHHHHHHHHHHHHHEEEEEEEEEEEEEEEEEEEEERRRRRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEEEEe
 				pOut->PrintMessage("Action: TO_PLAY_MODE , Click anywhere");
 				pOut->CreatePlayModeToolBar();
 				pOut->PrintPlayersInfo("P1(" + to_string(player_1.GetCellNum())+", , ), P2("+to_string(player_2.GetCellNum())+ ", , ) | Curr =" );
@@ -567,7 +575,7 @@ int main()
 				pOut->PrintMessage("Action: Delete , Click anywhere");
 				break;
 				///TODO:  ADD Cases similarly for ALL the remaining actions of DESIGN Mode
-
+				//HEEEEEEEEEEEEERRRRRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEEEEEEEEEEEEE
 			case EXECUTE_COMMANDS:
 				pOut->PrintMessage("Action: EXECUTE_COMMAND , Click anywhere");
 				break;
