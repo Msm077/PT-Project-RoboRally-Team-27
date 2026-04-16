@@ -55,6 +55,21 @@ int Input::GetInteger(Output* pO) const
 
 	// BY ME ME
 
+
+	/*
+	to test
+
+	pIn->GetCellClicked();
+
+	pOut->PrintMessage("Please type an integer and press ENTER:");
+
+	// 1. Store the returned value in a variable
+	int enteredInt = pIn->GetInteger(pOut);
+
+	
+	*/
+
+
 	string input = GetSrting(pO);
 	try {
 		int integer = stoi(input);
@@ -223,7 +238,7 @@ CellPosition Input::GetCellClicked() const
 
 
 			int H_cell = x / cell_width;
-			int V_cell = y / cell_height;
+			int V_cell = y / cell_height -1;
 
 			if (H_cell > 10) {
 				cellPos.SetHCell(-1);
