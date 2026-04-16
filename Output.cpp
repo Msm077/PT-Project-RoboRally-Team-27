@@ -47,6 +47,7 @@ Output::Output()
 	// Belt Line Width and Color
 	UI.BeltLineWidth = 6;
 	UI.BeltColor = DARKSLATEBLUE;
+	UI.BeltDColor = BLACK;
 
 	// The X and Y Offsets of the Space BEFORE Drawing the Belt (offset from the start X and Y of the Cell)
 	UI.BeltXOffset = (UI.CellWidth - 2 * UI.BeltLineWidth) / 5;
@@ -61,7 +62,8 @@ Output::Output()
 	UI.FlagColor = RED;
 	UI.FlagPoleColor = GHOSTWHITE;
 
-
+	UI.WaterPitsCellColor = DARKBLUE;
+	UI.DangerZoneCellColor = RED;
 	// Commands X and Y Coordinates
 	UI.SpaceBetweenCommandsSlots = 10;
 	UI.AvailableCommandsXOffset = ( UI.CommandItemWidth + UI.SpaceBetweenCommandsSlots ) * 6;
@@ -536,11 +538,11 @@ void Output::DrawBelt(const CellPosition& fromCellPos, const CellPosition& toCel
 			int toCellStartX = GetCellStartX(toCellPos);
 			int toCellStartY = GetCellStartY(toCellPos);
 
-			int beltFromCellX = fromCellStartX + (UI.CellWidth / 2) + UI.BeltXOffset;
-			int beltToCellX = toCellStartX + UI.BeltXOffset;
+			int beltFromCellX = fromCellStartX + (UI.CellWidth / 4) + 3*UI.BeltXOffset/2;
+			int beltToCellX = toCellStartX + (UI.CellWidth / 4)+ 3*UI.BeltXOffset/2;
 
-			int beltFromCellY = fromCellStartY + UI.BeltYOffset;
-			int beltToCellY = toCellStartY + UI.BeltYOffset;
+			int beltFromCellY = fromCellStartY + 3*UI.BeltYOffset/4;
+			int beltToCellY = toCellStartY + 3*UI.BeltYOffset/4;
 
 
 			int triangleWidth = UI.CellWidth / 4;
@@ -560,8 +562,9 @@ void Output::DrawBelt(const CellPosition& fromCellPos, const CellPosition& toCel
 			}
 
 			pWind->SetPen(UI.BeltColor, UI.BeltLineWidth);
+			pWind->SetBrush(UI.BeltColor);
 			pWind->DrawLine(beltFromCellX, beltFromCellY, beltToCellX, beltToCellY);
-			DrawTriangle((beltFromCellX + beltToCellX) / 2, (beltFromCellY + beltToCellY) / 2, triangleWidth, triangleHeight, direction, UI.BeltColor);
+			DrawTriangle((beltFromCellX + beltToCellX) / 2, (beltFromCellY + beltToCellY) / 2, triangleWidth, triangleHeight, direction, UI.BeltDColor);
 		}
 	}
 }
@@ -579,9 +582,10 @@ void Output::DrawFlag(const CellPosition& cellPos) const
 	int cellStartY = GetCellStartY(cellPos);
 	int flagPoleStartX = cellStartX + UI.CellWidth / 2;
 	int flagPoleStartY = cellStartY + UI.CellHeight / 4;
+	int flagPoleEndY = flagPoleStartY + UI.FlagPoleHeight;
 	pWind->SetPen(UI.FlagPoleColor, UI.FlagPoleWidth);
-	pWind->DrawLine(flagPoleStartX, flagPoleStartY, flagPoleStartX, UI.FlagPoleHeight);
-	DrawTriangle(flagPoleStartX+UI.FlagHeight/2,flagPoleStartY,UI.FlagHeight,UI.FlagWidth,RIGHT,UI.FlagColor);
+	pWind->DrawLine(flagPoleStartX, flagPoleStartY, flagPoleStartX, flagPoleEndY);
+	DrawTriangle(flagPoleStartX+UI.FlagHeight/2,flagPoleStartY+UI.FlagWidth/2,UI.FlagHeight,UI.FlagWidth,RIGHT,UI.FlagColor);
 	
 }
 
@@ -640,6 +644,7 @@ void Output::DrawWaterPit(const CellPosition& cellPos) const
 		return;
 	}
 	DrawCell(cellPos, UI.WaterPitsCellColor);
+	
 }
 
 

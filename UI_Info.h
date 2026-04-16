@@ -97,6 +97,7 @@ struct UI_Info	// User Interface Info.
 
 
 	color BeltColor;			// Color of the belt
+	color BeltDColor;           // Color of the belt Direction
 	color FlagColor;			// Color of the flag
 	color FlagPoleColor;		// Color of the flag pole (the vertical part of the flag)
 	color DangerZoneCellColor;	// Color of the danger zone cells

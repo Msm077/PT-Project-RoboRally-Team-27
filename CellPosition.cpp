@@ -66,7 +66,10 @@ bool CellPosition::IsValidCell() const
 }
 
 bool CellPosition::IsFreeCell() const {
-	return free_Cell; //msm
+	if (this->GetCellNum() == 1) {
+		return false;
+	}
+	return free_Cell;//msm
 }
 void CellPosition::Occ_Cell() {
 	free_Cell=0; // msm
