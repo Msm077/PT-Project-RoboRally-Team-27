@@ -31,23 +31,23 @@ Output::Output()
 	UI.PlayerInfoColor = DARKSLATEBLUE;
 
 	// Background Colors of toolbar and statusbar 
-	UI.ToolBarColor = WHITE;
+	UI.ToolBarColor = BLACK;
 	UI.StatusBarColor = LIGHTGRAY; 
-	UI.CommandBarColor = BLACK;
+	UI.CommandBarColor = SEMIBLACK;
 
 	// Line Colors of the borders of each cell
-	UI.GridLineColor = WHITE;
+	UI.GridLineColor = DARKERGREY;
 
 	// Cell Color if Empty & Cell Number Font & Color
-	UI.CellColor = LIGHTSLATEBLUE;
+	UI.CellColor = DIMGRAY;
 	UI.CellNumFont = 13;
-	UI.CellNumColor = UI.GridLineColor;
+	UI.CellNumColor = WHITESMOKE;
 
 
 	// Belt Line Width and Color
 	UI.BeltLineWidth = 6;
-	UI.BeltColor = DARKSLATEBLUE;
-	UI.BeltDColor = GREEN;
+	UI.BeltColor = GOLDENROD;
+	UI.BeltDColor = KHAKI;
 
 	// The X and Y Offsets of the Space BEFORE Drawing the Belt (offset from the start X and Y of the Cell)
 	UI.BeltXOffset = (UI.CellWidth - 2 * UI.BeltLineWidth) / 5;
@@ -273,9 +273,9 @@ void Output::CreateDesignModeToolBar() const
 	MenuItemImages[ITM_SET_ANTENNA] = "images\\Antenna SET.jpg";
 	MenuItemImages[ITM_SET_BELT] = "images\\Belt.jpg";
 	MenuItemImages[ITM_SET_DANGER] = "images\\Hazard.jpg";
-	MenuItemImages[ITM_SET_ROTATING_GEAR] = "images\\R_Gear.jpg";
+	MenuItemImages[ITM_SET_ROTATING_GEAR] = "images\\RR_Gear.jpg";
 	MenuItemImages[ITM_SET_WATER] = "images\\Water.jpg";
-	MenuItemImages[ITM_SET_WORKSHOP] = "images\\WS.jpg";
+	MenuItemImages[ITM_SET_WORKSHOP] = "images\\WWS.jpg";
 	MenuItemImages[ITM_SWITCH_TO_PLAY_MODE] = "images\\Play.jpg";
 	MenuItemImages[ITM_SET_FLAG_CELL] = "images\\Flag.jpg";
 	

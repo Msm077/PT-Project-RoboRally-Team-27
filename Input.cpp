@@ -61,7 +61,7 @@ int Input::GetInteger(Output* pO) const
 		}
 
 		catch (...) {
-			pO->PrintMessage("This is not an Integer, Enter again");
+			pO->PrintMessage("This is not an Integer, Try again:");
 			GetPointClicked(x,y); // wait for click
 		}
 	} while (!(x == -1));
@@ -197,13 +197,9 @@ CellPosition Input::GetCellClicked() const
 			///TODO: SetHCell and SetVCell of the object cellPost appropriately
 			//       using the coordinates x, y and the appropriate variables of the UI_Info Object (UI)
 
-
-			int cell_width = UI.width / NumHorizontalCells;
-			int cell_height = (UI.height - (UI.CommandsBarHeight + UI.StatusBarHeight + UI.ToolBarHeight)) / NumVerticalCells;
-
-
-			int H_cell = x / cell_width;
-			int V_cell = (y / cell_height -1);
+		
+			int H_cell = x / UI.CellWidth;
+			int V_cell = (y / UI.CellHeight -1);
 
 			if (H_cell > 10) {
 				cellPos.SetHCell(-1);

@@ -543,7 +543,7 @@ int main()
 					savedCommands4[i + 1] = MOVE_FORWARD_THREE_STEPS;
 				}
 				Command availableCommands4[6];
-				availableCommands4[0] = MOVE_FORWARD_ONE_STEP;
+				availableCommands4[0] = ROTATE_COUNTERCLOCKWISE;
 				availableCommands4[5] = NO_COMMAND;
 				for (int i = 1; i < 4; i = i + 2) {
 					availableCommands4[i] = MOVE_BACKWARD_THREE_STEPS;
