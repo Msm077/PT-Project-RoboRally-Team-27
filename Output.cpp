@@ -597,10 +597,10 @@ void Output::DrawRotatingGear(const CellPosition& cellPos, bool clockwise) const
 	// TODO: Draw the rotating gear image in the cell based on the passed direction (clockwise or counter clockwise)
 	if (clockwise) {
 		
-		DrawImageInCell(cellPos,"images\\R_Gear.jpg",UI.CellWidth/2,UI.CellHeight/2);
+		DrawImageInCell(cellPos,"images\\L_Gear.jpg",UI.CellWidth/2,UI.CellHeight/2);
 	} else {
 		
-		DrawImageInCell(cellPos,"images\\L_Gear.jpg", UI.CellWidth / 2, UI.CellHeight / 2);
+		DrawImageInCell(cellPos,"images\\R_Gear.jpg", UI.CellWidth / 2, UI.CellHeight / 2);
 	}
 
 }
