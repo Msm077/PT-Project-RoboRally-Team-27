@@ -94,7 +94,7 @@ int main()
 			availableCommands4[i] = MOVE_FORWARD_ONE_STEP;
 		pOut->CreateCommandsBar(savedCommands4, 5, availableCommands4, 6);
 
-	}
+	}	UI.InterfaceMode = MODE_DESIGN;
 		pOut->PrintMessage("1.1.4- Finished Testing the Command bar in the Game mode, Click to continue");
 		pIn->GetPointClicked(x, y);	//Wait for any click
 
@@ -536,7 +536,20 @@ int main()
 				pOut->PrintMessage("Action: TO_PLAY_MODE , Click anywhere");
 				pOut->CreatePlayModeToolBar();
 				pOut->PrintPlayersInfo("P1(" + to_string(player_1.GetCellNum())+", RIGHT,10), P2("+to_string(player_2.GetCellNum())+ ",UP ,10) | Curr = P1" );
-
+				Command savedCommands4[5];
+				savedCommands4[0] = MOVE_FORWARD_TWO_STEPS;
+				for (int i = 1; i < 4; i = i + 2) {
+					savedCommands4[i] = MOVE_BACKWARD_TWO_STEPS;
+					savedCommands4[i + 1] = MOVE_FORWARD_THREE_STEPS;
+				}
+				Command availableCommands4[6];
+				availableCommands4[0] = MOVE_FORWARD_ONE_STEP;
+				availableCommands4[5] = NO_COMMAND;
+				for (int i = 1; i < 4; i = i + 2) {
+					availableCommands4[i] = MOVE_BACKWARD_THREE_STEPS;
+					availableCommands4[i + 1] = MOVE_BACKWARD_ONE_STEP;
+				}
+				pOut->CreateCommandsBar(savedCommands4, 5, availableCommands4, 6);
 				break;
 			case SAVE:
 				pOut->PrintMessage("Action: Save , Click anywhere");
@@ -605,8 +618,8 @@ int main()
 			case SET_WORKSHOP:
 				pOut->PrintMessage("Action: Set Workshop , Click on a Cell");
 				cb = pIn->GetCellClicked();
-				pOut->DrawAntenna(cb);
-				pOut->PrintMessage("Antenna Set at cell number: " + to_string(cb.GetCellNum()));
+				pOut->DrawWorkshop(cb);
+				pOut->PrintMessage("Workshop Set at cell number: " + to_string(cb.GetCellNum()));
 				break;
 
 

@@ -47,7 +47,7 @@ Output::Output()
 	// Belt Line Width and Color
 	UI.BeltLineWidth = 6;
 	UI.BeltColor = DARKSLATEBLUE;
-	UI.BeltDColor = BLACK;
+	UI.BeltDColor = GREEN;
 
 	// The X and Y Offsets of the Space BEFORE Drawing the Belt (offset from the start X and Y of the Cell)
 	UI.BeltXOffset = (UI.CellWidth - 2 * UI.BeltLineWidth) / 5;
@@ -254,7 +254,7 @@ void Output::CreateDesignModeToolBar() const
 	UI.InterfaceMode = MODE_DESIGN;
 
 	ClearToolBar(); // in order not to draw above the icons of the other mode when you switch
-
+	ClearCommandsBar();
 	// You can draw the tool bar icons in any way you want.
 	// Below is one possible way
 
@@ -270,13 +270,13 @@ void Output::CreateDesignModeToolBar() const
 	MenuItemImages[ITM_DELETE] = "images\\Delete.jpg";
 	MenuItemImages[ITM_LOAD] = "images\\Load.jpg";
 	MenuItemImages[ITM_SAVE] = "images\\Save.jpg";
-	MenuItemImages[ITM_SET_ANTENNA] = "images\\Antenna.jpg";
+	MenuItemImages[ITM_SET_ANTENNA] = "images\\Antenna SET.jpg";
 	MenuItemImages[ITM_SET_BELT] = "images\\Belt.jpg";
 	MenuItemImages[ITM_SET_DANGER] = "images\\Hazard.jpg";
 	MenuItemImages[ITM_SET_ROTATING_GEAR] = "images\\R_Gear.jpg";
-	MenuItemImages[ITM_SET_WATER] = "images\\Water_Pit.jpg";
+	MenuItemImages[ITM_SET_WATER] = "images\\Water.jpg";
 	MenuItemImages[ITM_SET_WORKSHOP] = "images\\WS.jpg";
-	MenuItemImages[ITM_SWITCH_TO_PLAY_MODE] = "images\\Switch_Mode.jpg";
+	MenuItemImages[ITM_SWITCH_TO_PLAY_MODE] = "images\\Play.jpg";
 	MenuItemImages[ITM_SET_FLAG_CELL] = "images\\Flag.jpg";
 	
 
@@ -303,11 +303,11 @@ void Output::CreatePlayModeToolBar() const
 	// reoder them in UI_Info.h ==> enum DESIGN_MODE_ITEMS
 	// ** MAKE SURE THAT THE IMAGES ARE .JPG FILES **
 	string MenuItemImages[PLAY_ITM_COUNT];
-	MenuItemImages[ITM_SWITCH_TO_DESIGN_MODE] = "images\\Switch_Mode.jpg";
+	MenuItemImages[ITM_SWITCH_TO_DESIGN_MODE] = "images\\Design.jpg";
 	MenuItemImages[ITM_REBOOT] = "images\\Reboot.jpg";
 	MenuItemImages[ITM_EXECUTE_COMMANDS] = "images\\EXE_DO.jpg";
-	MenuItemImages[ITM_SELECT_COMMAND] = "images\\TAP.jpg";
-	MenuItemImages[ITM_NEW_GAME] = "images\\Game.jpg";
+	MenuItemImages[ITM_SELECT_COMMAND] = "images\\Select.jpg";
+	MenuItemImages[ITM_NEW_GAME] = "images\\New.jpg";
 	MenuItemImages[ITM_EXIT2] = "images\\Exit.jpg";
 
 
@@ -323,7 +323,7 @@ void Output::CreateCommandsBar(Command savedCommands[], int savedCommandsCount, 
     ClearCommandsBar();
 	UI.InterfaceMode = MODE_PLAY;
 	string CommandItemImages[COMMANDS_COUNT];
-	CommandItemImages[NO_COMMAND] = "images\\CommandSlot-grey.jpg";
+	CommandItemImages[NO_COMMAND] = "images\\empty.jpg";
 	CommandItemImages[MOVE_FORWARD_ONE_STEP] = "images\\up-one.jpg";
 	CommandItemImages[MOVE_BACKWARD_ONE_STEP] = "images\\Back-one.jpg";
 	CommandItemImages[MOVE_FORWARD_TWO_STEPS] = "images\\Up.jpg";

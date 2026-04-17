@@ -53,23 +53,6 @@ int Input::GetInteger(Output* pO) const
 	///TODO: implement the GetInteger function as described in Input.h file 
 	//       using function GetString() defined above and function stoi()
 
-	// BY ME ME
-
-
-	/*
-	to test
-
-	pIn->GetCellClicked();
-
-	pOut->PrintMessage("Please type an integer and press ENTER:");
-
-	// 1. Store the returned value in a variable
-	int enteredInt = pIn->GetInteger(pOut);
-
-	
-	*/
-
-
 	string input = GetSrting(pO);
 	try {
 		int integer = stoi(input);
@@ -207,48 +190,21 @@ CellPosition Input::GetCellClicked() const
 
 	CellPosition cellPos;
 
-	/* uncomment to check in any mode
-
-	int cell_width = UI.width / 11;
-	int cell_height = (UI.height - (UI.CommandsBarHeight + UI.StatusBarHeight+UI.ToolBarHeight)) / 5;
-
-
-	int H_cell = x / cell_width;
-	int V_cell = y / cell_height;
-
-	if (H_cell > 10) {
-		cellPos.SetHCell(-1);
-
-	}
-	else
-		cellPos.SetHCell(H_cell);
-
-	if (V_cell > 5) {
-		cellPos.SetVCell(-1);
-	}
-	else
-		cellPos.SetVCell(V_cell);
-	// eyad will check if it is acceptable or not using the setter
-	cout << "grids is " << "C " << H_cell << " " << V_cell << endl;
-	*/
-	/*if (UI.InterfaceMode == MODE_DESIGN)
-	{*/
-		if (y >= UI.ToolBarHeight && y <= (UI.height - UI.StatusBarHeight))
+		if ((y >= UI.ToolBarHeight) && (y < UI.ToolBarHeight + (UI.CellHeight * NumVerticalCells)))
 		{
 			///TODO: SetHCell and SetVCell of the object cellPost appropriately
 			//       using the coordinates x, y and the appropriate variables of the UI_Info Object (UI)
 
 
-			int cell_width = UI.width / 11;
-			int cell_height = (UI.height - (UI.CommandsBarHeight + UI.StatusBarHeight + UI.ToolBarHeight)) / 5;
+			int cell_width = UI.width / NumHorizontalCells;
+			int cell_height = (UI.height - (UI.CommandsBarHeight + UI.StatusBarHeight + UI.ToolBarHeight)) / NumVerticalCells;
 
 
 			int H_cell = x / cell_width;
-			int V_cell = y / cell_height -1;
+			int V_cell = (y / cell_height -1);
 
 			if (H_cell > 10) {
 				cellPos.SetHCell(-1);
-
 			}
 			else
 				cellPos.SetHCell(H_cell);
@@ -258,9 +214,6 @@ CellPosition Input::GetCellClicked() const
 			}
 			else
 				cellPos.SetVCell(V_cell);
-			// eyad will check if it is acceptable or not using the setter
-			//cout << "grids is " << "C " << H_cell << " " << V_cell << endl;
-
 
 		}
 
