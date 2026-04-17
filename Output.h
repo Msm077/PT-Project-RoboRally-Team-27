@@ -13,7 +13,6 @@ class Output	// The application manager & grid (phase 2) should have a pointer t
 {
 private:	
 	window* pWind;	// Pointer to the Graphics Window
-	
 	// ========== Some Utility Functions (Private Functions) ==========
 
 	///TODO: IMPLEMENT THE FOLLOWING FUNCTION
@@ -83,7 +82,7 @@ public:
 	// Flag is drawn as a triangle pointing to the right
 	// and its post is a vertical line
 	void DrawFlag(const CellPosition& cellPos) const;
-
+	
 
 	// Draws an image indicating a rotating gear at the passed cell position
 	// make sure to draw the gear with the correct rotation

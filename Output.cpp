@@ -488,7 +488,7 @@ void Output::DrawCell(const CellPosition & cellPos, color cellColor) const
 void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playerColor, Direction direction) const
 {
 	//Validate the cell position and the playerNum
-	if (!cellPos.IsValidCell() || (playerNum > -1 && playerNum < 2)){ 
+	if (!cellPos.IsValidCell() || playerNum <= -1 || playerNum >= 2){ 
 		return;
 	}
 	
@@ -574,7 +574,7 @@ void Output::DrawBelt(const CellPosition& fromCellPos, const CellPosition& toCel
 
 void Output::DrawFlag(const CellPosition& cellPos) const
 {
-	if (!cellPos.IsValidCell() || cellPos.GetCellNum() == 0 || !cellPos.IsFreeCell()) {
+	if (!cellPos.IsValidCell() || !cellPos.IsFreeCell()) {
 		return;
 	}
 	// Get the X and Y coordinates of the start point of the cell (its upper left corner)
@@ -586,12 +586,11 @@ void Output::DrawFlag(const CellPosition& cellPos) const
 	pWind->SetPen(UI.FlagPoleColor, UI.FlagPoleWidth);
 	pWind->DrawLine(flagPoleStartX, flagPoleStartY, flagPoleStartX, flagPoleEndY);
 	DrawTriangle(flagPoleStartX+UI.FlagHeight/2,flagPoleStartY+UI.FlagWidth/2,UI.FlagHeight,UI.FlagWidth,RIGHT,UI.FlagColor);
-	
 }
 
 void Output::DrawRotatingGear(const CellPosition& cellPos, bool clockwise) const
 {
-	if (!cellPos.IsValidCell() || cellPos.GetCellNum() == 0 || !cellPos.IsFreeCell()) {
+	if (!cellPos.IsValidCell() || !cellPos.IsFreeCell()) {
 		return;
 	}
 	
@@ -608,7 +607,7 @@ void Output::DrawRotatingGear(const CellPosition& cellPos, bool clockwise) const
 
 void Output::DrawAntenna(const CellPosition& cellPos) const
 {
-	if (!cellPos.IsValidCell() || cellPos.GetCellNum() == 0 || !cellPos.IsFreeCell()) {
+	if (!cellPos.IsValidCell() || !cellPos.IsFreeCell()) {
 		return;
 	}
 	
@@ -619,7 +618,7 @@ void Output::DrawAntenna(const CellPosition& cellPos) const
 
 void Output::DrawWorkshop(const CellPosition& cellPos) const
 {
-	if (!cellPos.IsValidCell() || cellPos.GetCellNum() == 0 || !cellPos.IsFreeCell()) {
+	if (!cellPos.IsValidCell() || !cellPos.IsFreeCell()) {
 		return;
 	}
 
@@ -632,7 +631,7 @@ void Output::DrawWorkshop(const CellPosition& cellPos) const
 
 void Output::DrawDangerZone(const CellPosition& cellPos) const
 {
-	if (!cellPos.IsValidCell() || cellPos.GetCellNum() == 0 || !cellPos.IsFreeCell()) {
+	if (!cellPos.IsValidCell() || !cellPos.IsFreeCell()) {
 		return;
 	}
 	DrawCell(cellPos, UI.DangerZoneCellColor);
@@ -640,7 +639,7 @@ void Output::DrawDangerZone(const CellPosition& cellPos) const
 
 void Output::DrawWaterPit(const CellPosition& cellPos) const
 {
-	if (!cellPos.IsValidCell() || cellPos.GetCellNum() == 0 || !cellPos.IsFreeCell()) {
+	if (!cellPos.IsValidCell() || !cellPos.IsFreeCell()) {
 		return;
 	}
 	DrawCell(cellPos, UI.WaterPitsCellColor);

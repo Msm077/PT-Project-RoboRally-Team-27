@@ -521,92 +521,149 @@ int main()
 	do
 	{
 		ActType = pIn->GetUserAction();
-
+		CellPosition cb, cb2;
+		string cw;
 		int clickedCommandItemIndex; // if the action is SELECT_COMMAND, this will have the icon index
 		switch (ActType)
 		{
-			case SET_FLAG_CELL:
-				pOut->PrintMessage("Action: SET_FLAG_CELL , Click anywhere");
+
+			case TO_DESIGN_MODE:
+				pOut->PrintMessage("Action: TO_DESIGN_MODE , Click anywhere");
+				pOut->CreateDesignModeToolBar();
 				break;
 
 			case TO_PLAY_MODE:
-				// HHHHHHHHHHHHHHHHEEEEEEEEEEEEEEEEEEEEERRRRRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEEEEe
 				pOut->PrintMessage("Action: TO_PLAY_MODE , Click anywhere");
 				pOut->CreatePlayModeToolBar();
-				pOut->PrintPlayersInfo("P1(" + to_string(player_1.GetCellNum())+", , ), P2("+to_string(player_2.GetCellNum())+ ", , ) | Curr =" );
-				///TODO:  Call Function (PrintPlayersInfo) of Class Output with a string similar to 
-				//        the one given in the screenshot of project document 
+				pOut->PrintPlayersInfo("P1(" + to_string(player_1.GetCellNum())+", RIGHT,10), P2("+to_string(player_2.GetCellNum())+ ",UP ,10) | Curr = P1" );
 
 				break;
 			case SAVE:
 				pOut->PrintMessage("Action: Save , Click anywhere");
 				break;
+
 			case LOAD:
+				pOut->ClearGridArea();
 				pOut->PrintMessage("Action: Load , Click anywhere");
 				break;
+
+
+			case SET_FLAG_CELL:
+				pOut->PrintMessage("Action: SET_FLAG_CELL , Click on a cell");
+				cb = pIn->GetCellClicked();
+				pOut->DrawFlag(cb);
+				pOut->PrintMessage("Flag Set at cell number: " + to_string(cb.GetCellNum()));
+				break;
+
 			case SET_ANTENNA:
-				pOut->PrintMessage("Action: Set Antenna , Click anywhere");
+				pOut->PrintMessage("Action: Set Antenna , Click on a Cell");
+				cb = pIn->GetCellClicked();
+				pOut->DrawAntenna(cb);
+				pOut->PrintMessage("Antenna Set at cell number: " + to_string(cb.GetCellNum()));
 				break;
+
 			case SET_BELT:
-				pOut->PrintMessage("Action: Set Belt , Click anywhere");
+				pOut->PrintMessage("Action: Set Belt , Click on a Cell");
+				cb = pIn->GetCellClicked();
+				pOut->PrintMessage("Click on another Cell");
+				cb2 = pIn->GetCellClicked();
+				pOut->DrawBelt(cb,cb2);
+				pOut->PrintMessage("Belt Set From cell number: " + to_string(cb.GetCellNum()) + " To cell number: " + to_string(cb2.GetCellNum()));
 				break;
+
 			case SET_DANGER:
-				pOut->PrintMessage("Action: Set Danger , Click anywhere");
+				pOut->PrintMessage("Action: Set Danger , Click on a Cell");
+				cb = pIn->GetCellClicked();
+				pOut->DrawDangerZone(cb);
+				pOut->PrintMessage("Danger Zone Set at cell number: " + to_string(cb.GetCellNum()));
 				break;
+
 			case SET_ROTATING_GEAR:
-				pOut->PrintMessage("Action: Set Rotating Gear , Click anywhere");
+				pOut->PrintMessage("Action: Set Rotating Gear , Click on a Cell");
+				cb = pIn->GetCellClicked();
+				pOut->PrintMessage("Enter Rotating Direction (Enter CCW or CW only)");
+				cw = pIn->GetSrting(pOut);
+				if (cw == "CW") {
+					pOut->DrawRotatingGear(cb, true);
+					pOut->PrintMessage("Rotating Gear Set at cell number: " + to_string(cb.GetCellNum()) + " and is Clockwise");
+				}
+				else if (cw == "CCW") {
+					pOut->DrawRotatingGear(cb, false);
+					pOut->PrintMessage("Rotating Gear Set at cell number: " + to_string(cb.GetCellNum()) + " and is Counter Clockwise");
+				}
+				else {
+					pOut->PrintMessage("Wrong");
+				}
 				break;
 			case SET_WATER:
-				pOut->PrintMessage("Action: Set Water , Click anywhere");
+				pOut->PrintMessage("Action: Set Water , Click on a Cell");
+				cb = pIn->GetCellClicked();
+				pOut->DrawWaterPit(cb);
+				pOut->PrintMessage("Water Set at cell number: " + to_string(cb.GetCellNum()));
 				break;
+
 			case SET_WORKSHOP:
-				pOut->PrintMessage("Action: Set Workshop , Click anywhere");
+				pOut->PrintMessage("Action: Set Workshop , Click on a Cell");
+				cb = pIn->GetCellClicked();
+				pOut->DrawAntenna(cb);
+				pOut->PrintMessage("Antenna Set at cell number: " + to_string(cb.GetCellNum()));
 				break;
+
+
 			case COPY:
-				pOut->PrintMessage("Action: Copy , Click anywhere");
+				pOut->PrintMessage("Action: Copy , Click on a Cell");
 				break;
 			case CUT:
-				pOut->PrintMessage("Action: Cut , Click anywhere");
+				pOut->PrintMessage("Action: Cut , Click on a Cell");
+				cb = pIn->GetCellClicked();
+				pOut->DrawCell(cb);
+				pOut->PrintMessage("Cutted cell number: " + to_string(cb.GetCellNum()));
 				break;
 			case PASTE:
-				pOut->PrintMessage("Action: Paste , Click anywhere");
+				pOut->PrintMessage("Action: Paste , Click on a Cell");
+				cb = pIn->GetCellClicked();
+				pOut->DrawCell(cb);
+				pOut->PrintMessage("Paste on cell number: " + to_string(cb.GetCellNum()));
 				break;
 			case DELETE_:
-				pOut->PrintMessage("Action: Delete , Click anywhere");
+				pOut->PrintMessage("Action: Delete , Click on a Cell");
+				cb = pIn->GetCellClicked();
+				pOut->DrawCell(cb);
+				pOut->PrintMessage("Deleted cell number: " + to_string(cb.GetCellNum()));
 				break;
-				///TODO:  ADD Cases similarly for ALL the remaining actions of DESIGN Mode
-				//HEEEEEEEEEEEEERRRRRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEEEEEEEEEEEEE
+				
+
 			case EXECUTE_COMMANDS:
 				pOut->PrintMessage("Action: EXECUTE_COMMAND , Click anywhere");
 				break;
+
 			case SELECT_COMMAND:
 				pOut->PrintMessage("Action: SELECT_COMMAND , Select a command");
 				clickedCommandItemIndex = pIn->GetSelectedCommandIndex();
 				pOut->PrintMessage("Action: SELECT_COMMAND " + to_string(clickedCommandItemIndex) + " , Click anywhere");
 				break;
 
+			case REBOOT:
+				pOut->PrintMessage("Action: Reboot and Repair , Click anywhere");
+				break;
+
+			case NEW_GAME:
+				pOut->ClearGridArea();
+				pOut->PrintMessage("Action: New Game , Click anywhere");
+				break;
+
+
 			case GRID_AREA:
 				pOut->PrintMessage("Action: GRID_AREA , Click anywhere");
 				break;
-
 			case STATUS:
 				pOut->PrintMessage("Action: STATUS , Click anywhere");
 				break;
 			case COMMAND_BAR:
 				pOut->PrintMessage("Action: Command Bar , Click anywhere");
 				break;
-			case TO_DESIGN_MODE:
-				pOut->PrintMessage("Action: TO_DESIGN_MODE , Click anywhere");
-				pOut->CreateDesignModeToolBar();
-				break;
 			case EMPTY:
 				pOut->PrintMessage("Action: Empty area , Click anywhere");
-				break;
-			case REBOOT:
-				pOut->PrintMessage("Action: Reboot and Repair , Click anywhere");
-				break;
-			case NEW_GAME:
-				pOut->PrintMessage("Action: New Game , Click anywhere");
 				break;
 
 				
