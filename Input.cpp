@@ -52,17 +52,19 @@ int Input::GetInteger(Output* pO) const
 
 	///TODO: implement the GetInteger function as described in Input.h file 
 	//       using function GetString() defined above and function stoi()
+		int x, y;
+	do {
+		string input = GetSrting(pO);
+		try {
+			int integer = stoi(input);
+			return integer;
+		}
 
-	string input = GetSrting(pO);
-	try {
-		int integer = stoi(input);
-		return integer;
-	}
-
-	catch (...) {
-		pO->PrintMessage("This is not an Integer");
-		return -1;
-	}
+		catch (...) {
+			pO->PrintMessage("This is not an Integer, Enter again");
+			GetPointClicked(x,y); // wait for click
+		}
+	} while (!(x == -1));
 
 	// Note: stoi(s) converts string s into its equivalent integer (for example, "55" is converted to 55)
 
