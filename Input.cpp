@@ -187,19 +187,20 @@ ActionType Input::GetUserAction() const
 
 CellPosition Input::GetCellClicked() const
 {
-	int x, y;
-	pWind->WaitMouseClick(x, y);	// Get the coordinates of the user click
+	if (UI.InterfaceMode == MODE_DESIGN) {
+		int x, y;
+		pWind->WaitMouseClick(x, y);	// Get the coordinates of the user click
 
-	CellPosition cellPos;
+		CellPosition cellPos;
 
 		if ((y >= UI.ToolBarHeight) && (y < UI.ToolBarHeight + (UI.CellHeight * NumVerticalCells)))
 		{
 			///TODO: SetHCell and SetVCell of the object cellPost appropriately
 			//       using the coordinates x, y and the appropriate variables of the UI_Info Object (UI)
 
-		
+
 			int H_cell = x / UI.CellWidth;
-			int V_cell = (y / (UI.CellHeight) -1);
+			int V_cell = (y / (UI.CellHeight) - 1);
 
 			if (H_cell > 10) {
 				cellPos.SetHCell(-1);
@@ -216,9 +217,10 @@ CellPosition Input::GetCellClicked() const
 		}
 
 
-	
 
-	return cellPos;
+
+		return cellPos;
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
