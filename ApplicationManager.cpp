@@ -72,15 +72,15 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	// According to Action Type, create the corresponding action object
 	switch (ActType)
 	{
-	case ADD_BELT:
+	case SET_BELT:
 		pAct = new AddBeltAction(this);
 		break;
 
-	case ADD_ROTATINGGEAR:
+	case SET_ROTATING_GEAR:
 		pAct = new AddRotatingGearAction(this);
 		break;
 
-	case ADD_FLAG:
+	case SET_FLAG_CELL:
 		pAct = new AddFlagAction(this);
 		break;
 
