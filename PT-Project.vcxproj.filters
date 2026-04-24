@@ -193,6 +193,9 @@
     <ClCompile Include="AddRotatingGearAction.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="SwitchToDesignModeAction.cpp" />
+    <ClCompile Include="SwitchToPlayModeAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -316,5 +319,8 @@
     <ClInclude Include="AddRotatingGearAction.h">
       <Filter>Actions</Filter>
     </ClInclude>
+    <ClInclude Include="GameState.h" />
+    <ClInclude Include="SwitchToDesignModeAction.h" />
+    <ClInclude Include="SwitchToPlayModeAction.h" />
   </ItemGroup>
 </Project>
