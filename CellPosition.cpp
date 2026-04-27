@@ -65,15 +65,7 @@ bool CellPosition::IsValidCell() const
 	return false; // this line sould be changed with your implementation
 }
 
-bool CellPosition::IsFreeCell() const {
-	if (this->GetCellNum() == 1) {
-		return false;
-	}
-	return free_Cell;//msm
-}
-void CellPosition::Occ_Cell() {
-	free_Cell=0; // msm
-}
+
 int CellPosition::GetCellNum() const
 {
 	return GetCellNumFromPosition(*this); // (*this) is the calling object of GetCellNum

@@ -530,7 +530,7 @@ void Output::DrawBelt(const CellPosition& fromCellPos, const CellPosition& toCel
 	if (fromCellPos.IsValidCell() && toCellPos.IsValidCell()) {
 		if ((fromCellPos.HCell() != toCellPos.HCell() && fromCellPos.VCell() == toCellPos.VCell() ||
 			fromCellPos.HCell() == toCellPos.HCell() && fromCellPos.VCell() != toCellPos.VCell()) &&
-			fromCellPos.GetCellNum() != 0 && fromCellPos.IsFreeCell()) {
+			fromCellPos.GetCellNum() != 0) {
 			Direction direction;
 			// Get the start X and Y coordinates of the upper left corner of the fromCell and toCell
 			int fromCellStartX = GetCellStartX(fromCellPos);
@@ -574,7 +574,7 @@ void Output::DrawBelt(const CellPosition& fromCellPos, const CellPosition& toCel
 
 void Output::DrawFlag(const CellPosition& cellPos) const
 {
-	if (!cellPos.IsValidCell() || !cellPos.IsFreeCell()) {
+	if (!cellPos.IsValidCell()) {
 		return;
 	}
 	// Get the X and Y coordinates of the start point of the cell (its upper left corner)
@@ -590,7 +590,7 @@ void Output::DrawFlag(const CellPosition& cellPos) const
 
 void Output::DrawRotatingGear(const CellPosition& cellPos, bool clockwise) const
 {
-	if (!cellPos.IsValidCell() || !cellPos.IsFreeCell()) {
+	if (!cellPos.IsValidCell()) {
 		return;
 	}
 	
@@ -607,7 +607,7 @@ void Output::DrawRotatingGear(const CellPosition& cellPos, bool clockwise) const
 
 void Output::DrawAntenna(const CellPosition& cellPos) const
 {
-	if (!cellPos.IsValidCell() || !cellPos.IsFreeCell()) {
+	if (!cellPos.IsValidCell()) {
 		return;
 	}
 	
@@ -618,7 +618,7 @@ void Output::DrawAntenna(const CellPosition& cellPos) const
 
 void Output::DrawWorkshop(const CellPosition& cellPos) const
 {
-	if (!cellPos.IsValidCell() || !cellPos.IsFreeCell()) {
+	if (!cellPos.IsValidCell()) {
 		return;
 	}
 
@@ -631,7 +631,7 @@ void Output::DrawWorkshop(const CellPosition& cellPos) const
 
 void Output::DrawDangerZone(const CellPosition& cellPos) const
 {
-	if (!cellPos.IsValidCell() || !cellPos.IsFreeCell()) {
+	if (!cellPos.IsValidCell()) {
 		return;
 	}
 	DrawCell(cellPos, UI.DangerZoneCellColor);
@@ -639,7 +639,7 @@ void Output::DrawDangerZone(const CellPosition& cellPos) const
 
 void Output::DrawWaterPit(const CellPosition& cellPos) const
 {
-	if (!cellPos.IsValidCell() || !cellPos.IsFreeCell()) {
+	if (!cellPos.IsValidCell()) {
 		return;
 	}
 	DrawCell(cellPos, UI.WaterPitsCellColor);

@@ -45,11 +45,6 @@ public:
 
 	///TODO: IMPLEMENT THE FOLLOWING FUNCTION
 	bool IsValidCell() const; // Checks if the current cell position (vCell and hCell) both are valid then return true                         // Otherwise, return false
-	
-	
-	bool IsFreeCell() const;
-	void Occ_Cell();
-
 
 	int GetCellNum() const;   // Gets the cellNum from the vCell and hCell of the cell position
 
