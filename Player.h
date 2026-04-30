@@ -20,6 +20,7 @@ class Player
 	// SelectCommandAction fills this array; Move() executes it; ClearSavedCommands() resets it.
 	Command savedCommands[MaxSavedCommands];
 	int savedCommandCount; // how many commands have been saved so far (0..MaxSavedCommands)
+	void ExecuteCommand(Command cmd, CellPosition& pos);
 
 	// ---- [OPTIONAL BONUS] Shooting Phase data members ----
 	// Uncomment when adding the shooting phase (see DEFS.h PhaseType):
