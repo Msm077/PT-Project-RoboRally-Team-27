@@ -194,8 +194,12 @@
       <Filter>Actions</Filter>
     </ClCompile>
     <ClCompile Include="GameState.cpp" />
-    <ClCompile Include="SwitchToDesignModeAction.cpp" />
-    <ClCompile Include="SwitchToPlayModeAction.cpp" />
+    <ClCompile Include="SwitchToDesignModeAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="SwitchToPlayModeAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -320,7 +324,11 @@
       <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="GameState.h" />
-    <ClInclude Include="SwitchToDesignModeAction.h" />
-    <ClInclude Include="SwitchToPlayModeAction.h" />
+    <ClInclude Include="SwitchToDesignModeAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="SwitchToPlayModeAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
