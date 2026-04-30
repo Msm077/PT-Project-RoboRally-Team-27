@@ -83,6 +83,8 @@ void SelectCommandsAction::ReadActionParameters()
 		string cmdName = GetCommandName(selectedCmd);
 
 		pOut->PrintMessage(" slot " + to_string(i + 1) + ": " + cmdName + " selected.");
+		
+		numSelected ++;
 
 	}
 
