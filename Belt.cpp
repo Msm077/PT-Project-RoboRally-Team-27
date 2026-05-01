@@ -34,16 +34,19 @@ CellPosition Belt::GetEndPosition() const
 
 void Belt::Save(ofstream& OutFile, Type t) {
 	if (t == Belts) {
-		if (OutFile.is_open()) {
-			//		OutFile << Count of Belts << endl << locations << endl;
-		}
-
+		OutFile << position.GetCellNum() << " " << endCellPos.GetCellNum() << endl;
 	}
 	else {
 		return;
 	}
 }
 
+bool Belt::IsObject(Type t) {
+	if (t == Belts) {
+		return 1;
+	}
+	return 0;
+}
 Belt::~Belt()
 {
 }

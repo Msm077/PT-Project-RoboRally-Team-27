@@ -8,7 +8,8 @@ public:
 
 	virtual void Apply(Grid* pGrid, GameState* pState, Player* pPlayer); // Applies the effect of the water pit
 
-
+	void Save(ofstream& OutFile, Type t);
+	bool IsObject(Type t);
 	virtual ~WaterPit();
 };
 

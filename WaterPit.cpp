@@ -25,6 +25,20 @@ void WaterPit::Apply(Grid* pGrid, GameState* pState, Player* pPlayer)
 	// 3- Update the players info which is displayed (check Grid class and decide which function to use)
 }
 
+void WaterPit::Save(ofstream& OutFile, Type t) {
+	if (t == WaterPits) {
+		OutFile << position.GetCellNum() << endl;
+	}
+	else {
+		return;
+	}
+}
+bool WaterPit::IsObject(Type t) {
+	if (t == WaterPits) {
+		return 1;
+	}
+	return 0;
+}
 
 WaterPit::~WaterPit()
 {
