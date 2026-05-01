@@ -55,6 +55,8 @@ public:
 	// Returns the first Belt found at or after 'position' (used when adding connected belts).
 	Belt* GetNextBelt(const CellPosition& position);
 
+
+	void SaveAll(Type);
 	// ========== Setters / Getters ==========
 
 	Input*  GetInput()  const;

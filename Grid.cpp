@@ -66,7 +66,11 @@ Belt* Grid::GetNextBelt(const CellPosition& position)
 	return NULL; // not found
 }
 
-
+void Grid::SaveAll(Type) {
+	for (int i = NumVerticalCells - 1; i >= 0; i--)
+		for (int j = 0; j < NumHorizontalCells; j++)
+		{ }
+}
 // ========== Setters / Getters ==========
 
 

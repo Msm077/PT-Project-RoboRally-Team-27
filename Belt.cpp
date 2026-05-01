@@ -32,6 +32,17 @@ CellPosition Belt::GetEndPosition() const
 	return endCellPos;
 }
 
+void Belt::Save(ofstream& OutFile, Type t) {
+	if (t == Belts) {
+		if (OutFile.is_open()) {
+			//		OutFile << Count of Belts << endl << locations << endl;
+		}
+
+	}
+	else {
+		return;
+	}
+}
 
 Belt::~Belt()
 {

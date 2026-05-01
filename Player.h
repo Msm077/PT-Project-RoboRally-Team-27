@@ -46,6 +46,8 @@ public:
 	Direction GetDirection() const;
 	void      SetDirection(Direction d);
 
+	int GetPlayerNumber();
+
 	///TODO: Add more setters/getters here as needed
 
 	// ====== Saved Commands ======
