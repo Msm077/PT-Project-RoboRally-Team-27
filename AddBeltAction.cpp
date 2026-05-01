@@ -82,7 +82,7 @@ void AddBeltAction::ReadActionParameters()
 		pOut->ClearStatusBar();
 		return;
 	}
-	
+
 
 	
 	if (pGrid->IsStartCellOfBelt(endPos))
