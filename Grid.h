@@ -54,7 +54,9 @@ public:
 
 	// Returns the first Belt found at or after 'position' (used when adding connected belts).
 	Belt* GetNextBelt(const CellPosition& position);
+	bool IsStartCellOfBelt(const CellPosition& cellpos);
 
+	void SaveAll(Type);
 	// ========== Setters / Getters ==========
 
 	Input*  GetInput()  const;
@@ -66,6 +68,8 @@ public:
 	// Returns the Cell where all players start (bottom-left corner of the board).
 	// Called by GameState's constructor to initialise player positions.
 	Cell* GetStartCell() const;
+
+	GameObject* GetGameObjectFromCell(const CellPosition& cellpos) const;
 
 	///TODO: Add any additional board-query getters here (e.g. GetCell(CellPosition))
 
