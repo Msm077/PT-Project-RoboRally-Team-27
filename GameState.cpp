@@ -4,7 +4,6 @@
 #include "Player.h"
 #include "Cell.h"
 #include "Output.h"
-
 #include <iostream>
 #include <cstdlib> // Needed for rand() and srand()
 #include <ctime>   // Needed for time()
