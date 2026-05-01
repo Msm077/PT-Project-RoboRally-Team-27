@@ -25,7 +25,20 @@ void DangerZone::Apply(Grid* pGrid, GameState* pState, Player* pPlayer)
 	
 }
 
-
+void DangerZone::Save(ofstream& OutFile, Type t) {
+	if (t == DangerZones) {
+		OutFile << position.GetCellNum() << endl;
+	}
+	else {
+		return;
+	}
+}
+bool DangerZone::IsObject(Type t) {
+	if (t == DangerZones) {
+		return 1;
+	}
+	return 0;
+}
 DangerZone::~DangerZone()
 {
 }

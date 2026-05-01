@@ -56,7 +56,7 @@ public:
 	Belt* GetNextBelt(const CellPosition& position);
 	bool IsStartCellOfBelt(const CellPosition& cellpos);
 
-	void SaveAll(Type);
+	void SaveAll(ofstream& Outfile, Type type);
 	// ========== Setters / Getters ==========
 
 	Input*  GetInput()  const;
@@ -73,6 +73,7 @@ public:
 
 	///TODO: Add any additional board-query getters here (e.g. GetCell(CellPosition))
 
+	int GetNumberofObject(Type type);
 	// ========== User Interface ==========
 
 	// It Updates the Grid according to the last state of the game

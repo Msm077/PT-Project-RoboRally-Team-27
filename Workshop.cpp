@@ -19,6 +19,20 @@ void Workshop::Apply(Grid* pGrid, GameState* pState, Player* pPlayer)
 	// Apply the workshop's effect on the player
 	// [OPTIONAL BONUS] Consumables can be given to the player here
 }
+void Workshop::Save(ofstream& OutFile, Type t) {
+	if (t == WorkShops) {
+		OutFile << position.GetCellNum() << endl;
+	}
+	else {
+		return;
+	}
+}
+bool Workshop::IsObject(Type t) {
+	if (t == WorkShops) {
+		return 1;
+	}
+	return 0;
+}
 
 Workshop::~Workshop()
 {

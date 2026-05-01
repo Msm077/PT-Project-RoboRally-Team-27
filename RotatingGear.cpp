@@ -27,6 +27,21 @@ bool RotatingGear::GetisClockWise() const
 	return isClockWise;
 }
 
+void RotatingGear::Save(ofstream& OutFile, Type t) {
+	if (t == RotatingGears) {
+		OutFile << position.GetCellNum() << " " << this->GetisClockWise() << endl;
+	}
+	else {
+		return;
+	}
+}
+
+bool RotatingGear::IsObject(Type t) {
+	if (t == RotatingGears) {
+		return 1;
+	}
+	return 0;
+}
 RotatingGear::~RotatingGear()
 {
 }
