@@ -73,7 +73,7 @@ void AddBeltAction::ReadActionParameters()
 	}
 
 	
-/*	GameObject* pEndObject = pGrid->GetGameObjectFromCell(endPos);
+	GameObject* pEndObject = pGrid->GetGameObjectFromCell(endPos);
 	if (pEndObject != nullptr && dynamic_cast<Flag*>(pEndObject) != nullptr)
 	{
 		pGrid->PrintErrorMessage("Error: End cell cannot contain a flag! Click to continue...");
@@ -82,7 +82,7 @@ void AddBeltAction::ReadActionParameters()
 		pOut->ClearStatusBar();
 		return;
 	}
-	*/
+	
 
 	
 	if (pGrid->IsStartCellOfBelt(endPos))
