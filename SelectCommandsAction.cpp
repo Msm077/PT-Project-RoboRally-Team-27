@@ -41,11 +41,16 @@ void SelectCommandsAction::ReadActionParameters()
 	Grid* pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
+	GameState* pGS = pManager->GetGameState();
 
 	// 2nd part determine the current player & his health  to update his data
 	Player* pCurrentPlayer = pManager->GetGameState()->GetCurrentPlayer();
 	int health = pManager->GetGameState()->GetCurrentPlayer()->GetHealth();
 
+	// Generate the random pool from which the use can choose items
+	pGS->GenerateRandomCommands();
+	Command* pool = pGS->GetRandomCommandsPool();
+	int poolSize = MaxAvailableCommands;
 
 	// 3rd part get min(5, health)
 	int min = 5;
@@ -61,31 +66,32 @@ void SelectCommandsAction::ReadActionParameters()
 	// 6th part: loop to get the selected commands using the input:: GetSelectedCommandIndex()
 	for (int i = 0; i < min; i++) {
 
+		// Update UI by showing the pool and the slots being filled
+		pOut->CreateCommandsBar(pCurrentPlayer->GetSavedCommands(), i, pool, poolSize);
 
-		int commandIndex = -1;
-		// loop until a valid index is entered
+		int poolIndex = -1;
 
-		while (commandIndex >= COMMANDS_COUNT ||  commandIndex < 0 ){
-			commandIndex = pIn->GetSelectedCommandIndex();
+		// wait until a valid index within the 10-slot pool is clicked and to overcome any unexpected inpputs
+		while (poolIndex < 0 || poolIndex >= poolSize)
+		{
+			// Input::GetSelectedCommandIndex() returns the 0-9 index of the clicked icon in the pool
+			poolIndex = pIn->GetSelectedCommandIndex();
 
-			if (commandIndex == -1) {
-				pOut->PrintMessage("invalid click! Please select a command from the bar.");
+			if (poolIndex == -1) {
+				pOut->PrintMessage("invalid input! Please select a command from the AVAILABLE pool.");
 			}
 		}
+		// mapping according to the enum command
+		Command selectedCmd = pool[poolIndex];
 
-		// map the index returned from "pIn->GetSelectedCommandIndex()" with it appropriate command
-		// use "AddSavedCommand"  to add the command
-
-		Command selectedCmd = static_cast <Command>(commandIndex);
-
+		// updating the player object with t he selected commands
 		pCurrentPlayer->AddSavedCommand(selectedCmd);
 
 		string cmdName = GetCommandName(selectedCmd);
-
-		pOut->PrintMessage(" slot " + to_string(i + 1) + ": " + cmdName + " selected.");
-
+		pOut->PrintMessage("Slot " + to_string(i + 1) + ": " + cmdName + " saved.");
 	}
-
+	// show the complete set of selected commands
+	pOut->CreateCommandsBar(pCurrentPlayer->GetSavedCommands(), min, pool, poolSize);
 	
 }
 

@@ -1,13 +1,17 @@
 #include "ApplicationManager.h"
 
 #include "Grid.h"
-
+#include "ExecuteCommandsAction.h"
 #include "AddBeltAction.h"
 #include "AddRotatingGearAction.h"
 #include "AddFlagAction.h"
 #include "SwitchToPlayModeAction.h"
 #include "SwitchToDesignModeAction.h"
 ///TODO: Add #include for all action types
+#include "SelectCommandsAction.h"
+#include "ExecuteCommandsAction.h"
+#include "SwitchToPlayModeAction.h"
+#include "SwitchToDesignModeAction.h"
 
 #include "GameState.h"
 
@@ -72,6 +76,70 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	// According to Action Type, create the corresponding action object
 	switch (ActType)
 	{
+		// ========================== Design Mode Actions ==========================
+
+	case SET_BELT:
+		pAct = new AddBeltAction(this);
+		break;
+
+	case SET_ROTATING_GEAR:
+		pAct = new AddRotatingGearAction(this);
+		break;
+
+	case SET_FLAG_CELL:
+		pAct = new AddFlagAction(this);
+		break;
+
+	case TO_PLAY_MODE:
+		pAct = new SwitchToPlayModeAction(this);
+		break;
+
+		// ========================== Play Mode Actions ==========================
+
+	case SELECT_COMMAND:
+		// This triggers the logic you wrote to generate the random pool 
+		// and let the player pick their 5 commands.
+		pAct = new SelectCommandsAction(this);
+		break;
+
+	case EXECUTE_COMMANDS:
+		// This triggers the ExecuteCommandsAction which calls Player::Move()
+		// and processes the movement logic you implemented.
+		pAct = new ExecuteCommandsAction(this);
+		break;
+
+	case TO_DESIGN_MODE:
+		pAct = new SwitchToDesignModeAction(this);
+		break;
+
+		// ========================== Common Actions ==========================
+
+	case EXIT:
+		// You might want to create an ExitAction or handle cleanup here
+		break;
+
+	case STATUS:	// a click on the status bar ==> no action
+		return;
+	}
+
+	// Execute the created action
+	if (pAct != NULL)
+	{
+		pAct->Execute(); // Execute the action logic (ReadParameters then logic)
+		delete pAct;	 // Action is not needed any more after executing ==> delete it
+		pAct = NULL;
+	}
+}
+
+/* I COMMENTED FOR TESTING
+// Creates an action and executes it
+void ApplicationManager::ExecuteAction(ActionType ActType)
+{
+	Action* pAct = NULL;
+
+	// According to Action Type, create the corresponding action object
+	switch (ActType)
+	{
 	case SET_BELT:
 		pAct = new AddBeltAction(this);
 		break;
@@ -110,3 +178,4 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct = NULL;
 	}
 }
+*/

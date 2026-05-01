@@ -40,7 +40,6 @@ enum ActionType // The actions supported (add more as needed)
 	PASTE,
 	DELETE_,
 	
-	
 
 	//  [2] Actions of Play Mode
 

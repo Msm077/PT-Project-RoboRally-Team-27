@@ -199,6 +199,7 @@
     <ClCompile Include="SelectCommandsAction.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="ExecuteCommandsAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -328,5 +329,6 @@
     <ClInclude Include="SelectCommandsAction.h">
       <Filter>Actions</Filter>
     </ClInclude>
+    <ClInclude Include="ExecuteCommandsAction.h" />
   </ItemGroup>
 </Project>

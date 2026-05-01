@@ -156,6 +156,11 @@ Command Player::GetSavedCommand(int index) const
 	return NO_COMMAND;
 }
 
+Command* Player::GetSavedCommands()
+{
+    return savedCommands;
+}
+
 // ====== Drawing Functions ======
 
 void Player::Draw(Output* pOut) const
