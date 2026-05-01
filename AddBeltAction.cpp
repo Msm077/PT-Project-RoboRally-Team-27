@@ -43,7 +43,7 @@ void AddBeltAction::ReadActionParameters()
 		return;
 	}
 
-	if (startPos == endPos)
+	if (startPos.GetCellNum() == endPos.GetCellNum())
 	{
 		pGrid->PrintErrorMessage("Error: Belt start and end cells cannot be the same! Click to continue...");
 		startPos = CellPosition();
