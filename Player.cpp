@@ -109,13 +109,16 @@ void Player::ExecuteCommand(Command cmd, CellPosition& pos)
 }
 
 Player::Player(Cell* pCell, int playerNum)
-	: playerNum(playerNum), health(10), currDirection(RIGHT), savedCommandCount(0)
+	: playerNum(playerNum), health(10), currDirection(RIGHT), savedCommandCount(0), 
+    equippedDevice(NO_DEVICE), inventoryCount(0), isHacked(false)
 {
 	this->pCell = pCell;
 
 	// Initialise saved commands to NO_COMMAND
 	for (int i = 0; i < MaxSavedCommands; i++)
 		savedCommands[i] = NO_COMMAND;
+    for (int i = 0; i < MaxConsumables; i++)
+        inventory[i] = NO_CONSUMABLE;
 }
 
 // ====== Setters and Getters ======
@@ -252,4 +255,65 @@ void Player::AppendPlayerInfo(string& playersInfo) const
 void Player::incrementHealth()
 {
     health = health + 1;
+}
+
+int Player::GetMaxCommands() const
+{
+    if (equippedDevice == NO_DEVICE) {
+        return 5;
+    }
+    else if (equippedDevice == EXTENDED_MEMORY) {
+        return 6;
+    }
+}
+
+void Player::SetDevice(DeviceType d)
+{
+    equippedDevice = d;
+}
+
+DeviceType Player::GetDevice() const
+{
+    return equippedDevice;
+}
+
+void Player::AddConsumable(ConsumableType c)
+{
+    if (inventoryCount < MaxConsumables) {
+        inventory[inventoryCount] = c;
+        inventoryCount++;
+    }
+}
+
+bool Player::UseConsumable(ConsumableType c)
+{
+    for (int i = 0; i < inventoryCount; i++) {
+        if (inventory[i] == c) {
+            // Shift array left to remove it
+            for (int j = i; j < inventoryCount - 1; j++)
+                inventory[j] = inventory[j + 1];
+            inventory[--inventoryCount] = NO_CONSUMABLE;
+            return true;
+        }
+    }
+    return false; // didn't have it
+
+}
+
+bool Player::HasConsumable(ConsumableType c) const
+{
+    for (int i = 0; i < inventoryCount; i++)
+        if (inventory[i] == c) return true;
+    return false;
+}
+
+void Player::SetHacked(bool hacked)
+{
+    isHacked = hacked;
+
+}
+
+bool Player::IsHacked() const
+{
+    return isHacked;
 }

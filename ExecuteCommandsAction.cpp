@@ -35,6 +35,9 @@ void ExecuteCommandsAction::Execute()
 	pOut->PrintMessage("Executing Commands... Watch the player move!");
 	pCurrentPlayer->Move(pGrid, pGameState);
 
+	// Reset hacked state after turn ends
+	pCurrentPlayer->SetHacked(false);
+
 	// 5. Advance to the next player's turn (if applicable)
 	pGameState->AdvanceCurrentPlayer();
 

@@ -53,10 +53,9 @@ void SelectCommandsAction::ReadActionParameters()
 	int poolSize = MaxAvailableCommands;
 
 	// 3rd part get min(5, health)
-	int min = 5;
-	if (health < 5) {
-		min = health;
-	}
+	int min = pCurrentPlayer->GetMaxCommands(); // returns 6 if Extended Memory equipped
+	if (health < min) min = health;
+
 	// 4th part putting the user in the situation
 	pOut->PrintMessage(" choose " + to_string(min) + " commands ");
 
@@ -106,8 +105,47 @@ void SelectCommandsAction::Execute()
 	Grid* pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
+	GameState* pState = pManager->GetGameState();
+	Player* pCurrentPlayer = pState->GetCurrentPlayer();
 
-	pGrid->GetOutput()->PrintMessage("commands saved; ready to move.");
+	// hacking check
+	if (pCurrentPlayer->IsHacked()) {
+		pOut->PrintMessage("Your robot was hacked! Skipping your turn.");
+		pCurrentPlayer->SetHacked(false); // reset for next round
+		pState->AdvanceCurrentPlayer();   // skip to next player
+		return;
+	}
+
+	// offering toolkit if the user has one 
+	if (pCurrentPlayer->HasConsumable(TOOLKIT)) {
+		pOut->PrintMessage("You have a Toolkit! Use it to repair? (Left=YES / Right=NO)");
+		int x, y;
+		pIn->GetPointClicked(x, y);
+		if (x < UI.width / 2) {
+			pCurrentPlayer->UseConsumable(TOOLKIT);
+			pCurrentPlayer->SetHealth(10);
+			pOut->PrintMessage("Toolkit used! Robot fully repaired.");
+		}
+	}
+
+	// offer hacking in acase the player has one
+	if (pCurrentPlayer->HasConsumable(HACK_DEVICE)) {
+		pOut->PrintMessage("You have a Hack Device! Use it on opponent? (Left=YES / Right=NO)");
+		int x, y;
+		pIn->GetPointClicked(x, y);
+		if (x < UI.width / 2) {
+			pCurrentPlayer->UseConsumable(HACK_DEVICE);
+			// Hack the OTHER player
+			int currNum = (pCurrentPlayer == pState->GetPlayer(0)) ? 0 : 1;
+			int opponentNum = (currNum == 0) ? 1 : 0;
+			pState->GetPlayer(opponentNum)->SetHacked(true);
+			pOut->PrintMessage("Opponent hacked! They will skip their next turn.");
+		}
+	}
+
+	ReadActionParameters();
+	// notify the user
+	pOut->PrintMessage("Commands saved. Click Execute Commands to continue.");
 }
 
 SelectCommandsAction::~SelectCommandsAction()
