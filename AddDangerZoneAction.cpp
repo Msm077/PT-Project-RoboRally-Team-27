@@ -60,7 +60,16 @@ void AddDangerZoneAction::Execute()
 	// and hence initializes its data members
 	ReadActionParameters();
 
-	// Create a belt object with the parameters read from the user
+DangerZone* pDangerZone = new DangerZone(dangerZonePos);
+
+	Grid* pGrid = pManager->GetGrid();
+
+	bool added = pGrid->AddObjectToCell(pDangerZone);
+
+	if (!added)
+	{
+		pGrid->PrintErrorMessage("Error: Failed to add Danger Zone! Click to continue...");
+	}
 	
 
 }
