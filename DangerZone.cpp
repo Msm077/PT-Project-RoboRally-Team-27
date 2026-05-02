@@ -33,6 +33,12 @@ void DangerZone::Save(ofstream& OutFile, Type t) {
 		return;
 	}
 }
+void DangerZone::Read(ifstream& Infile) {
+	int x1;
+		Infile >> x1;
+		position = x1;
+	
+}
 bool DangerZone::IsObject(Type t) {
 	if (t == DangerZones) {
 		return 1;

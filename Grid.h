@@ -57,6 +57,7 @@ public:
 	bool IsStartCellOfBelt(const CellPosition& cellpos);
 
 	void SaveAll(ofstream& Outfile, Type type);
+	
 	// ========== Setters / Getters ==========
 
 	Input*  GetInput()  const;

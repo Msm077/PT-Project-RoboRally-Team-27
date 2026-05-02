@@ -33,6 +33,15 @@ void WaterPit::Save(ofstream& OutFile, Type t) {
 		return;
 	}
 }
+
+void WaterPit::Read(ifstream& Infile) {
+	int x1;
+	Infile >> x1;
+	position = x1;
+	
+	
+}
+
 bool WaterPit::IsObject(Type t) {
 	if (t == WaterPits) {
 		return 1;

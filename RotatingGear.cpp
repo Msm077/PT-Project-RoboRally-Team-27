@@ -36,6 +36,16 @@ void RotatingGear::Save(ofstream& OutFile, Type t) {
 	}
 }
 
+void RotatingGear::Read(ifstream& Infile) {
+	int x1;
+	bool b1;
+	
+		Infile >> x1 >> b1;
+		position = x1;
+		isClockWise = b1;
+	
+}
+
 bool RotatingGear::IsObject(Type t) {
 	if (t == RotatingGears) {
 		return 1;
