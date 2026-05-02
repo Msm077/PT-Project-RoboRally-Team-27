@@ -1,7 +1,10 @@
 #include "ApplicationManager.h"
 
 #include "Grid.h"
-
+#include "CopyAction.h"
+#include "CutAction.h"
+#include "PasteAction.h"
+#include "DeleteAction.h"
 #include "AddBeltAction.h"
 #include "AddRotatingGearAction.h"
 #include "AddFlagAction.h"
@@ -93,6 +96,21 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 
 	case EXIT:
+		break;
+	case COPY:
+		pAct = new CopyAction(this);
+		break;
+
+	case CUT:
+		pAct = new CutAction(this);
+		break;
+
+	case PASTE:
+		pAct = new PasteAction(this);
+		break;
+
+	case DELETE_:
+		pAct = new DeleteAction(this);
 		break;
 
 	///TODO: Add a case for EACH remaining Design Mode action type
