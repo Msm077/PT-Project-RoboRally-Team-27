@@ -59,8 +59,17 @@ void AddWaterPitAction::Execute()
 	// and hence initializes its data members
 	ReadActionParameters();
 
-	// Create a belt object with the parameters read from the user
+WaterPit* pWaterPit = new WaterPit(waterPitPos);
+
 	
+	Grid* pGrid = pManager->GetGrid();
+
+	bool added = pGrid->AddObjectToCell(pWaterPit);
+
+	if (!added)
+	{
+		pGrid->PrintErrorMessage("Error: Failed to add Water Pit! Click to continue...");
+	}	
 
 }
 
