@@ -237,7 +237,7 @@ void Player::Move(Grid* pGrid, GameState* pState)
 
     pOut->PrintMessage("movement round finished. ");
     ClearSavedCommands(); // prepare for the next round by clearing the commands
-		
+    pState->AdvanceCurrentPlayer();
 	}
 
 
@@ -247,4 +247,9 @@ void Player::AppendPlayerInfo(string& playersInfo) const
 	playersInfo += "P" + to_string(playerNum) + "(";
 	playersInfo += to_string(currDirection) + ", ";
 	playersInfo += to_string(health) + ")";
+}
+
+void Player::incrementHealth()
+{
+    health = health + 1;
 }

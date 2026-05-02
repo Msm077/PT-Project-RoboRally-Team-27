@@ -78,7 +78,7 @@ void SelectCommandsAction::ReadActionParameters()
 			poolIndex = pIn->GetSelectedCommandIndex();
 
 			if (poolIndex == -1) {
-				pOut->PrintMessage("invalid input! Please select a command from the AVAILABLE pool.");
+				pOut->PrintMessage("invalid input! Please select a command from the pool.");
 			}
 		}
 		// mapping according to the enum command
@@ -107,7 +107,7 @@ void SelectCommandsAction::Execute()
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
 
-	pGrid->GetOutput()->PrintMessage("Commands saved! Ready to move.");
+	pGrid->GetOutput()->PrintMessage("commands saved; ready to move.");
 }
 
 SelectCommandsAction::~SelectCommandsAction()

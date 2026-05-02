@@ -1,4 +1,5 @@
 #include "ApplicationManager.h"
+#include "RebotAndRepairAction.h"
 
 #include "Grid.h"
 #include "ExecuteCommandsAction.h"
@@ -106,6 +107,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		// This triggers the ExecuteCommandsAction which calls Player::Move()
 		// and processes the movement logic you implemented.
 		pAct = new ExecuteCommandsAction(this);
+		break;
+
+	case REBOOT:
+		pAct = new RebotAndRepairAction(this);
 		break;
 
 	case TO_DESIGN_MODE:

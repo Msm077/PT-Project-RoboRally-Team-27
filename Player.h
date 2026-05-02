@@ -67,4 +67,6 @@ public:
 	void Move(Grid* pGrid, GameState* pState);
 
 	void AppendPlayerInfo(string& playersInfo) const; // Appends "P0(direction, health)" to the string
+
+	void incrementHealth(); // fun to be used in repairing wether in the workshop or when the user choose to repair
 };

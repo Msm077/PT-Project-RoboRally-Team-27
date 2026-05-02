@@ -183,6 +183,7 @@
     <ClCompile Include="Output.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="RebotAndRepairAction.cpp" />
     <ClCompile Include="RotatingGear.cpp" />
     <ClCompile Include="SelectCommandsAction.cpp" />
     <ClCompile Include="SwitchToDesignModeAction.cpp" />
@@ -230,6 +231,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="Output.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="RebotAndRepairAction.h" />
     <ClInclude Include="RotatingGear.h" />
     <ClInclude Include="SelectCommandsAction.h" />
     <ClInclude Include="SwitchToDesignModeAction.h" />

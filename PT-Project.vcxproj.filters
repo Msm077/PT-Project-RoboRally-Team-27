@@ -200,6 +200,9 @@
       <Filter>Actions</Filter>
     </ClCompile>
     <ClCompile Include="ExecuteCommandsAction.cpp" />
+    <ClCompile Include="RebotAndRepairAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -330,5 +333,8 @@
       <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="ExecuteCommandsAction.h" />
+    <ClInclude Include="RebotAndRepairAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
