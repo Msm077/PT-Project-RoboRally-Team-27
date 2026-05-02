@@ -3,6 +3,7 @@
 #include "Input.h"
 #include "Output.h"
 #include "Belt.h"
+#include "DangerZone.h"
 class AddDangerZoneAction :public Action
 {
 	// Always add action parameters as private data members

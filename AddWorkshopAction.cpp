@@ -14,12 +14,10 @@ void AddWorkshopAction::ReadActionParameters()
 	Input* pIn = pGrid->GetInput();
 
 	// Read the startPos parameter
-	pOut->PrintMessage("New Belt: Click on its Start Cell ...");
-	startPos = pIn->GetCellClicked();
+	pOut->PrintMessage("New WorkShop: Click on its Cell ...");
+	workshopPos = pIn->GetCellClicked();
 
-	// Read the endPos parameter
-	pOut->PrintMessage("New Belt: Click on its End Cell ...");
-	endPos = pIn->GetCellClicked();
+	
 
 
 

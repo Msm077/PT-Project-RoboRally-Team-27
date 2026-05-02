@@ -71,7 +71,7 @@ bool Grid::IsStartCellOfBelt(const CellPosition& cellpos) {
 	int H = cellpos.HCell();
 	int V = cellpos.VCell();
 	if (dynamic_cast<Belt*>(CellList[H][V]->GetGameObject()) != nullptr) {
-		if (CellList[H][V]->GetGameObject()->GetPosition().GetCellNum() == cellpos.GetCellNum()) {
+		if (CellList[V][H]->GetGameObject()->GetPosition().GetCellNum() == cellpos.GetCellNum()) {
 		return true;
 		}
 	}
@@ -107,7 +107,7 @@ Cell* Grid::GetStartCell() const
 }
 
 GameObject* Grid::GetGameObjectFromCell(const CellPosition& cellpos) const {
-	return (CellList[cellpos.HCell()][cellpos.VCell()])->GetGameObject();
+	return (CellList[cellpos.VCell()][cellpos.HCell()])->GetGameObject();
 }
 
 int Grid::GetNumberofObject(Type type) {

@@ -14,12 +14,10 @@ void AddWaterPitAction::ReadActionParameters()
 	Input* pIn = pGrid->GetInput();
 
 	// Read the startPos parameter
-	pOut->PrintMessage("New Belt: Click on its Start Cell ...");
-	startPos = pIn->GetCellClicked();
+	pOut->PrintMessage("New WaterPit: Click on its Cell ...");
+	waterPitPos = pIn->GetCellClicked();
 
-	// Read the endPos parameter
-	pOut->PrintMessage("New Belt: Click on its End Cell ...");
-	endPos = pIn->GetCellClicked();
+	
 
 
 
