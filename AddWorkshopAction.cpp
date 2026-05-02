@@ -24,7 +24,29 @@ void AddWorkshopAction::ReadActionParameters()
 
 
 	///TODO: Make the needed validations on the read parameters
+    if (!workshopPos.IsValidCell())
+	{
+		pGrid->PrintErrorMessage("Error: Invalid cell position! Click to continue...");
+		workshopPos = CellPosition();
+		pOut->ClearStatusBar();
+		return;
+	}
 
+	if (workshopPos.GetCellNum() == 1)
+	{
+		pGrid->PrintErrorMessage("Error: Cannot place workshop in start cell (Cell 1)! Click to continue...");
+		workshopPos = CellPosition();
+		pOut->ClearStatusBar();
+		return;
+	}
+
+	if (pGrid->GetGameObjectFromCell(workshopPos) != nullptr)
+	{
+		pGrid->PrintErrorMessage("Error: Cell already has an object! Click to continue...");
+		workshopPos = CellPosition();
+		pOut->ClearStatusBar();
+		return;
+	}
 
 
 	// Clear messages
