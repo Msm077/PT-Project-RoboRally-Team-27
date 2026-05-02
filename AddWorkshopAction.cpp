@@ -59,8 +59,16 @@ void AddWorkshopAction::Execute()
 	// and hence initializes its data members
 	ReadActionParameters();
 
-	// Create a belt object with the parameters read from the user
-	
+Workshop* pWorkshop = new Workshop(workshopPos);
+
+	Grid* pGrid = pManager->GetGrid();
+
+	bool added = pGrid->AddObjectToCell(pWorkshop);
+
+	if (!added)
+	{
+		pGrid->PrintErrorMessage("Error: Failed to add Workshop! Click to continue...");
+	}	
 
 }
 
