@@ -40,6 +40,14 @@ void Antenna::Save(ofstream& OutFile, Type t) {
 	}
 }
 
+void Antenna::Read(ifstream& Infile) {
+	int x1;
+		Infile >> x1;
+		position = x1;
+	
+}
+
+
 bool Antenna::IsObject(Type t) {
 	if (t == Antennas) {
 		return 1;

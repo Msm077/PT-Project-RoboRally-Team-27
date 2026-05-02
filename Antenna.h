@@ -9,6 +9,9 @@ public:
 	virtual void Apply(Grid* pGrid, GameState* pState, Player* pPlayer); // Applies the effect of the antenna
 
 	void Save(ofstream& OutFile, Type t);
+	void Read(ifstream& Infile);
+
+
 	bool IsObject(Type t);
 	virtual ~Antenna();
 };

@@ -40,7 +40,13 @@ void Belt::Save(ofstream& OutFile, Type t) {
 		return;
 	}
 }
-
+void Belt::Read(ifstream& Infile) {
+	int x1 , x2;
+		Infile >> x1 >> x2;
+		position = x1;
+		endCellPos = x2;
+	
+}
 bool Belt::IsObject(Type t) {
 	if (t == Belts) {
 		return 1;

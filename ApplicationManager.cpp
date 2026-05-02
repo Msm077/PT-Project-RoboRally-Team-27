@@ -8,6 +8,7 @@
 #include "SwitchToPlayModeAction.h"
 #include "SwitchToDesignModeAction.h"
 #include "SaveGridAction.h"
+#include "ReadGridAction.h"
 ///TODO: Add #include for all action types
 
 #include "GameState.h"
@@ -86,6 +87,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 	case SAVE:
 		pAct = new SaveGridAction(this);
+		break;
+	case LOAD:
+		pAct = new ReadGridAction(this);
 		break;
 
 	case TO_PLAY_MODE:

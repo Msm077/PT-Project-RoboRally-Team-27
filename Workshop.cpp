@@ -27,6 +27,15 @@ void Workshop::Save(ofstream& OutFile, Type t) {
 		return;
 	}
 }
+
+void Workshop::Read(ifstream& Infile) {
+	int x1;
+	
+		Infile >> x1;
+		position = x1;
+	
+	
+}
 bool Workshop::IsObject(Type t) {
 	if (t == WorkShops) {
 		return 1;
