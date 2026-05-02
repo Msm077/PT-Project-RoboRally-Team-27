@@ -32,7 +32,7 @@ void Flag::Save(ofstream& OutFile, Type t) {
 void Flag::Read(ifstream& Infile) {
 	int x1;
 	Infile >> x1;
-	position = CellPosition(x1);
+	position = x1;
 
 }
 
