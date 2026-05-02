@@ -8,8 +8,8 @@ class AddDangerZoneAction :public Action
 	// Always add action parameters as private data members
 
 	// [Action Parameters]
-	CellPosition startPos; // 1- The start position of the belt
-	CellPosition endPos;   // 2- The end position of the belt
+	CellPosition dangerZonePos; // 1- The start position of the belt
+	   // 2- The end position of the belt
 
 	// Note: These parameters should be read in ReadActionParameters()
 public:
