@@ -24,7 +24,29 @@ void AddWaterPitAction::ReadActionParameters()
 
 
 	///TODO: Make the needed validations on the read parameters
+	if (!waterPitPos.IsValidCell())
+	{
+		pGrid->PrintErrorMessage("Error: Invalid cell position! Click to continue...");
+		waterPitPos = CellPosition();
+		pOut->ClearStatusBar();
+		return;
+	}
 
+	if (waterPitPos.GetCellNum() == 1)
+	{
+		pGrid->PrintErrorMessage("Error: Cannot place water pit in start cell (Cell 1)! Click to continue...");
+		waterPitPos = CellPosition();
+		pOut->ClearStatusBar();
+		return;
+	}
+
+	if (pGrid->GetGameObjectFromCell(waterPitPos) != nullptr)
+	{
+		pGrid->PrintErrorMessage("Error: Cell already has an object! Click to continue...");
+		waterPitPos = CellPosition();
+		pOut->ClearStatusBar();
+		return;
+	}
 
 
 	// Clear messages
