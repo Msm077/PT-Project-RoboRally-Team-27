@@ -230,6 +230,8 @@ void Player::Move(Grid* pGrid, GameState* pState)
         }
     }
 
+    // talk with msm about this
+
     // 7. apply Workshop effect if the player ended on it
     GameObject* pFinalObj = pCell->GetGameObject();
     Workshop* pFinalWS = dynamic_cast<Workshop*>(pFinalObj);
