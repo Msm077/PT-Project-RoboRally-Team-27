@@ -44,15 +44,15 @@ void Grid::RemoveObjectFromCell(const CellPosition& pos)
 		CellList[pos.VCell()][pos.HCell()]->SetGameObject(NULL);
 	}
 }
-//void Grid::ClearGrid() {
-//	for (int i = NumVerticalCells - 1; i >= 0; i--)
-//		for (int j = 0; j < NumHorizontalCells; j++)
-//		{
-//			GameObject* pObj = CellList[i][j]->GetGameObject();
-//			if (pObj)
-//				RemoveObjectFromCell(pObj->GetPosition());
-//		}
-//}
+void Grid::ClearGrid() {
+	for (int i = NumVerticalCells - 1; i >= 0; i--)
+		for (int j = 0; j < NumHorizontalCells; j++)
+		{
+			GameObject* pObj = CellList[i][j]->GetGameObject();
+			if (pObj)
+				RemoveObjectFromCell(pObj->GetPosition());
+		}
+}
 
 void Grid::UpdatePlayerCell(Player* player, const CellPosition& newPosition)
 {

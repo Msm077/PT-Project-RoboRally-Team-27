@@ -47,7 +47,7 @@ public:
 	bool AddObjectToCell(GameObject* pNewObject);        // Adds object to its cell; returns false if cell is occupied
 	void RemoveObjectFromCell(const CellPosition& pos); // Removes the GameObject of the Cell of the passed "position"
 	                                                     // Note: You may need to change the return type of this function (Think)
-	//void ClearGrid();
+	void ClearGrid();
 	void UpdatePlayerCell(Player* player, const CellPosition& newPosition); // Update the player's pCell with the CellList's Cell pointer of the "newPosition",
 	                                                                          // Clears the player's circle from the previous cell
 	    																	  // and Draws it in the new cell

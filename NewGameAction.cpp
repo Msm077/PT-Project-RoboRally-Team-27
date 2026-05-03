@@ -13,7 +13,6 @@ void NewGameAction::ReadActionParameters()
 
 	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
 
-	UI.InterfaceMode = MODE_DESIGN;
 
 }
 
@@ -21,10 +20,14 @@ void NewGameAction::ReadActionParameters()
 void NewGameAction::Execute()
 {
 	ReadActionParameters();
+	
 	Grid* pGrid = pManager->GetGrid();
+	Output* pOut = pGrid->GetOutput();
 	GameState* pState = pManager->GetGameState();
-	//pGrid->ClearGrid();
+	pGrid->ClearGrid();
+	pOut->CreateDesignModeToolBar();
 	pGrid->UpdateInterface(pState);
+	
 
 	
 

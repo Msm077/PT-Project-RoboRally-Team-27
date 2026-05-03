@@ -29,6 +29,8 @@ void ReadGridAction::Execute()
 	ReadActionParameters();
 	
 	Grid* pGrid = pManager->GetGrid();
+
+	pGrid->ClearGrid();
 	int n; GameObject* pObj;
 	inFile >> n;
 	
