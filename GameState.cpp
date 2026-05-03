@@ -50,8 +50,10 @@ void GameState::AdvanceCurrentPlayer()
 	currPlayerNumber = (currPlayerNumber + 1) % MaxPlayerCount;
 }
 
-void GameState::SetPlayerOrder(int sortedOrder[], int count)
-{
+void GameState::SetFirstPlayer(int playerNum)
+{currPlayerNumber = playerNum;
+
+
 	///TODO: Implement this function to set which player goes first this round
 }
 
