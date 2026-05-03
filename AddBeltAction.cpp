@@ -33,26 +33,67 @@ void AddBeltAction::ReadActionParameters()
 
 void AddBeltAction::Execute()
 {
-	// The first line of any Action Execution is to read its parameter first 
-	// and hence initializes its data members
-	ReadActionParameters();
+    ReadActionParameters();
 
-	// Create a belt object with the parameters read from the user
-	Belt * pBelt = new Belt(startPos, endPos);
+    Grid* pGrid = pManager->GetGrid();
+    Output* pOut = pGrid->GetOutput();
 
-	Grid * pGrid = pManager->GetGrid(); // We get a pointer to the Grid from the ApplicationManager
+    // --- Validation 1: both positions must be valid ---
+    if (!startPos.IsValidCell() || !endPos.IsValidCell())
+    {
+        pGrid->PrintErrorMessage("Error: Invalid cell selected. Click to continue ...");
+        return;
+    }
 
-										
-	bool added = pGrid->AddObjectToCell(pBelt);
+    // --- Validation 2: cannot place in cell 1 (bottom-left = vCell=4, hCell=0) ---
+    if (startPos.GetCellNum() == 1 || endPos.GetCellNum() == 1)
+    {
+        pGrid->PrintErrorMessage("Error: Cannot place belt on cell 1. Click to continue ...");
+        return;
+    }
 
-	// if the GameObject cannot be added
-	if (!added)
-	{
-		// Print an appropriate message
-		pGrid->PrintErrorMessage("Error: Cell already has an object ! Click to continue ...");
-	}
-	// Here, the belt is created and added to the GameObject of its Cell, so we finished executing the AddBeltAction
+    // --- Validation 3: cannot place in cell 55 (top-right = vCell=0, hCell=10) ---
+    if (startPos.GetCellNum() == 55 || endPos.GetCellNum() == 55)
+    {
+        pGrid->PrintErrorMessage("Error: Cannot place belt on cell 55. Click to continue ...");
+        return;
+    }
 
+    // --- Validation 4: start and end must be in the same row OR same column ---
+    if (startPos.VCell() != endPos.VCell() && startPos.HCell() != endPos.HCell())
+    {
+        pGrid->PrintErrorMessage("Error: Belt must be horizontal or vertical. Click to continue ...");
+        return;
+    }
+
+    // --- Validation 5: start cell must not already have a game object ---
+    // Grid's AddObjectToCell handles this (returns false if occupied)
+
+    // --- Validation 6: end cell cannot contain a flag ---
+    // We check via Cell's HasFlag() helper (sanctioned dynamic_cast in Cell)
+    // Grid provides access through a helper — we ask Grid to validate
+    if (pGrid->CellHasFlag(endPos))
+    {
+        pGrid->PrintErrorMessage("Error: Belt end cell cannot contain a flag. Click to continue ...");
+        return;
+    }
+
+    // --- Validation 7: end cell cannot be the start of another belt ---
+    if (pGrid->CellHasBelt(endPos))
+    {
+        pGrid->PrintErrorMessage("Error: Belt end cell cannot be the start of another belt. Click to continue ...");
+        return;
+    }
+
+    // --- All validations passed: create and add the belt ---
+    Belt* pBelt = new Belt(startPos, endPos);
+    bool added = pGrid->AddObjectToCell(pBelt);
+
+    if (!added)
+    {
+        delete pBelt; // prevent memory leak
+        pGrid->PrintErrorMessage("Error: Start cell already has an object. Click to continue ...");
+    }
 }
 
 AddBeltAction::~AddBeltAction()

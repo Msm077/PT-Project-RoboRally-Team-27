@@ -78,5 +78,8 @@ public:
 
 	void PrintErrorMessage(string msg); // Shows msg on the status bar, waits for a click, then clears it
 
+	bool CellHasFlag(const CellPosition& pos) const;  // returns true if cell at pos contains a Flag
+	bool CellHasBelt(const CellPosition& pos) const;  // returns true if cell at pos contains a Belt
+
 	~Grid();
 };

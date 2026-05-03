@@ -3,7 +3,11 @@
 
 Belt::Belt(const CellPosition & startCellPos, const CellPosition & endCellPos) : GameObject(startCellPos)
 {
-	this->endCellPos = endCellPos;
+	if (endCellPos.IsValidCell()) {
+		this->endCellPos = endCellPos;
+	}
+
+	
 
 	///TODO: Do the needed validation
 }
@@ -25,6 +29,16 @@ void Belt::Apply(Grid* pGrid, GameState* pState, Player* pPlayer)
 
 	// 2- Apply the belt's effect by moving the player to the endCellPos
 	//    Review the "pGrid" functions and decide which function can be used for that
+	Output* pOut = pGrid->GetOutput();
+	Input* pIn = pGrid->GetInput();
+
+	// notify the layer 
+	pOut->PrintMessage("You have reached a belt. Click to continue ...");
+	int x, y;
+	pIn->GetPointClicked(x, y);
+
+	// applying the belt effect
+	pGrid->UpdatePlayerCell(pPlayer, endCellPos);
 
 }
 CellPosition Belt::GetEndPosition() const

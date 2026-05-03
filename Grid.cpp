@@ -123,6 +123,18 @@ void Grid::PrintErrorMessage(string msg)
 	pOut->ClearStatusBar();
 }
 
+bool Grid::CellHasFlag(const CellPosition& pos) const
+{
+	if (!pos.IsValidCell()) return false;
+	return CellList[pos.VCell()][pos.HCell()]->HasFlag() != nullptr;
+}
+
+bool Grid::CellHasBelt(const CellPosition& pos) const
+{
+	if (!pos.IsValidCell()) return false;
+	return CellList[pos.VCell()][pos.HCell()]->HasBelt() != nullptr;
+}
+
 
 Grid::~Grid()
 {
