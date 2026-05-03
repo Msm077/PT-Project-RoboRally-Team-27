@@ -31,7 +31,7 @@ void DangerZone::Apply(Grid* pGrid, GameState* pState, Player* pPlayer)
 
     if (newHealth <= 0)
     {
-        int playerNum = pPlayer->GetPlayerNum();
+        int playerNum = pPlayer->GetPlayerNumber();
         int winnerNum;
 if (playerNum == 0)
 {
@@ -43,7 +43,7 @@ else
 }
         pGrid->PrintErrorMessage("Player " + to_string(playerNum) + " has died! Player " + 
                                   to_string(winnerNum) + " wins! Click to continue...");
-        pState->EndGame(winnerNum);
+       // pState->EndG(winnerNum);
     }
 
 

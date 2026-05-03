@@ -20,7 +20,7 @@ void WaterPit::Apply(Grid* pGrid, GameState* pState, Player* pPlayer)
 {
 
 	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
-int playerNum = pPlayer->GetPlayerNum();
+int playerNum = pPlayer->GetPlayerNumber();
     pGrid->PrintErrorMessage("Player " + to_string(playerNum) + " fell into a water pit! Click to continue...");
     
     int newHealth = pPlayer->GetHealth() - 3;
@@ -34,7 +34,7 @@ int playerNum = pPlayer->GetPlayerNum();
         winnerNum = 1;
     else
         winnerNum = 0;
-        pState->EndGame(winnerNum);
+       // pState->EndGame(winnerNum);
     }
     else
     {

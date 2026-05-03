@@ -11,7 +11,7 @@ public:
 	void Read(ifstream& Infile);
 	bool GetisClockWise() const; // Getter for the direction
 	bool IsObject(Type t);
-	virtual GameObject* Photocopy(const CellPosition& newPos) const;
+	GameObject* Photocopy(const CellPosition& newPos) const;
 
 	virtual ~RotatingGear();
 };
