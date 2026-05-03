@@ -72,7 +72,27 @@ ActionType ApplicationManager::GetUserAction() const
 // Creates an action and executes it
 void ApplicationManager::ExecuteAction(ActionType ActType)
 {
-
+	if (pGameState->GetEndGame())
+	{
+		if (ActType == NEW_GAME)
+		{
+			// Handle new game (see Step 4)
+			//======================
+			//======= CALL START NEW GAME FROM MSM
+			//ResetGame();
+			return;
+		}
+		else if (ActType == EXIT)
+		{
+			exit(0);
+		}
+		else
+		{
+			// Block everything else silently
+			pOut->PrintMessage("Game ended");
+			return;
+		}
+	}
 	Action* pAct = NULL;
 
 	// According to Action Type, create the corresponding action object
