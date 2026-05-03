@@ -199,8 +199,10 @@
     <ClCompile Include="SelectCommandsAction.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
-    <ClCompile Include="ExecuteCommandsAction.cpp" />
     <ClCompile Include="RebotAndRepairAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="ExecuteCommandsAction.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
   </ItemGroup>
@@ -332,8 +334,10 @@
     <ClInclude Include="SelectCommandsAction.h">
       <Filter>Actions</Filter>
     </ClInclude>
-    <ClInclude Include="ExecuteCommandsAction.h" />
     <ClInclude Include="RebotAndRepairAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="ExecuteCommandsAction.h">
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
