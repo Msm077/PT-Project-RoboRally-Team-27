@@ -194,15 +194,6 @@
       <Filter>Actions</Filter>
     </ClCompile>
     <ClCompile Include="GameState.cpp" />
-<<<<<<< HEAD
-    <ClCompile Include="SwitchToDesignModeAction.cpp" />
-    <ClCompile Include="SwitchToPlayModeAction.cpp" />
-    <ClCompile Include="SelectCommandsAction.cpp">
-      <Filter>Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="ExecuteCommandsAction.cpp" />
-    <ClCompile Include="RebotAndRepairAction.cpp">
-=======
     <ClCompile Include="SwitchToDesignModeAction.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
@@ -237,7 +228,6 @@
       <Filter>Actions</Filter>
     </ClCompile>
     <ClCompile Include="PasteAction.cpp">
->>>>>>> parent of 8e5be89 (Merge pull request #15 from Msm077/workshop_with_bouneses_and_repairing)
       <Filter>Actions</Filter>
     </ClCompile>
   </ItemGroup>
@@ -364,15 +354,6 @@
       <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="GameState.h" />
-<<<<<<< HEAD
-    <ClInclude Include="SwitchToDesignModeAction.h" />
-    <ClInclude Include="SwitchToPlayModeAction.h" />
-    <ClInclude Include="SelectCommandsAction.h">
-      <Filter>Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="ExecuteCommandsAction.h" />
-    <ClInclude Include="RebotAndRepairAction.h">
-=======
     <ClInclude Include="SwitchToDesignModeAction.h">
       <Filter>Actions</Filter>
     </ClInclude>
@@ -407,7 +388,6 @@
       <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="PasteAction.h">
->>>>>>> parent of 8e5be89 (Merge pull request #15 from Msm077/workshop_with_bouneses_and_repairing)
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
