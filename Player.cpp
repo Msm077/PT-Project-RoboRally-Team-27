@@ -6,6 +6,9 @@
 #include "SelectCommandsAction.h"
 #include "Input.h"
 #include<iostream>
+#include "WaterPit.h"
+#include "DangerZone.h"
+
 
 using namespace std;
 
@@ -168,9 +171,10 @@ Command* Player::GetSavedCommands()
 
 void Player::Draw(Output* pOut) const
 {
-	color playerColor = UI.PlayerColors[playerNum];
 
 	///TODO: Call the appropriate Output function to draw the player token with playerColor
+    color playerColor = UI.PlayerColors[playerNum];
+    pOut->DrawPlayer(pCell->GetCellPosition(), playerNum, playerColor, currDirection);
 }
 
 void Player::ClearDrawing(Output* pOut) const
@@ -180,6 +184,14 @@ void Player::ClearDrawing(Output* pOut) const
 	color cellColor = UI.CellColor;
 
 	///TODO: Call the appropriate Output function to draw the token using cellColor (erases it)
+    // Check if standing on a special cell to use correct background color
+
+    if (pCell->HasWaterPit())
+        cellColor = BLUE;
+    else if (pCell->HasDangerZone())
+        cellColor = RED;
+
+    pOut->DrawPlayer(pCell->GetCellPosition(), playerNum, cellColor, currDirection);
 }
 
 // ====== Game Logic ======

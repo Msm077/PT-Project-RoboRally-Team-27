@@ -60,6 +60,9 @@ Belt* Grid::GetNextBelt(const CellPosition& position)
 		for (int j = startH; j < NumHorizontalCells; j++) // searching from startH and RIGHT
 		{
 			///TODO: Check if CellList[i][j] has a belt, if yes return it
+			Belt* pBelt = CellList[i][j]->HasBelt();
+			if (pBelt)
+				return pBelt;
 		}
 		startH = 0; // because in the next above rows, we will search from the first left cell (hCell = 0) to the right
 	}

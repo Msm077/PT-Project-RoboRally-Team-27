@@ -48,28 +48,19 @@ Belt * Cell::HasBelt() const
 }
 
 
-Flag * Cell::HasFlag() const
+Flag* Cell::HasFlag() const
 {
-
-	///TODO: Implement the following function like HasBelt() function
-
-	return false; // THIS LINE SHOULD CHANGED WITH YOUR IMPLEMENTATION
-
-}
-WaterPit * Cell::HasWaterPit() const
-{
-
-	///TODO: Implement the following function like HasBelt() function
-
-	return false; // THIS LINE SHOULD CHANGED WITH YOUR IMPLEMENTATION
-
+	return false;
 }
 
-DangerZone * Cell::HasDangerZone() const
+WaterPit* Cell::HasWaterPit() const
 {
-	///TODO: Implement the following function like HasBelt() function
+	return dynamic_cast<WaterPit*>(pGameObject);
+}
 
-	return false; // THIS LINE SHOULD CHANGED WITH YOUR IMPLEMENTATION
+DangerZone* Cell::HasDangerZone() const
+{
+	return dynamic_cast<DangerZone*>(pGameObject);
 }
 
 
@@ -90,7 +81,7 @@ void Cell::DrawCellOrWaterPitOrDangerZone(Output* pOut) const
 void Cell::DrawGameObject(Output* pOut) const
 {
 	//TODO: edit this incomplete implemntation to check for other game objects (excluding waterpits and dangerzones)
-	if (HasFlag()|| HasBelt())
-		pGameObject->Draw(pOut); // draw game object
+	if (pGameObject && !HasWaterPit() && !HasDangerZone())
+		pGameObject->Draw(pOut);
 
 }
