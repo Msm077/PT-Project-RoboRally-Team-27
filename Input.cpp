@@ -77,6 +77,7 @@ int Input::GetInteger(Output* pO) const
 
 ActionType Input::GetUserAction() const
 {
+	// Detect user actions based on the clicked coordinates and map them to corresponding
 	int x = -1, y = -1;
 	GetPointClicked(x, y);
 
@@ -187,6 +188,8 @@ ActionType Input::GetUserAction() const
 
 CellPosition Input::GetCellClicked() const
 {
+	// Capture a mouse click from the user and return the cell position clicked. 
+	// If the click is outside the grid, return (-1, -1).
 	if (UI.InterfaceMode == MODE_DESIGN) {
 		int x, y;
 		pWind->WaitMouseClick(x, y);	// Get the coordinates of the user click

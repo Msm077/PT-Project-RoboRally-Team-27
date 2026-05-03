@@ -2,6 +2,7 @@
 
 #include "Grid.h"
 #include "Cell.h"
+#include"DEFS.h"
 
 // Forward declaration: GameState is needed for Move() but we don't include it
 // here to avoid a circular dependency (GameState.h includes Player.h).
@@ -20,16 +21,18 @@ class Player
 	// SelectCommandAction fills this array; Move() executes it; ClearSavedCommands() resets it.
 	Command savedCommands[MaxSavedCommands];
 	int savedCommandCount; // how many commands have been saved so far (0..MaxSavedCommands)
+	void ExecuteCommand(Command cmd, CellPosition& pos);
 
 	// ---- [OPTIONAL BONUS] Shooting Phase data members ----
 	// Uncomment when adding the shooting phase (see DEFS.h PhaseType):
 	//   int laserDamage; // damage per shot (default = 1; double-laser consumable = 2)
-	//   bool isHacked;   // true = this player skips their turn this round
+	bool isHacked;   // true = this player skips their turn this round
 
+	DeviceType equippedDevice;
 	// ---- [OPTIONAL BONUS] Workshop Consumables data members ----
 	// Uncomment when adding consumables (see Workshop.h):
-	//   Consumable* inventory[MaxConsumables];
-	//   int inventoryCount;
+	ConsumableType inventory[MaxConsumables]; // slots for consumables 
+	int inventoryCount; // num of consumables
 
 public:
 
@@ -56,6 +59,7 @@ public:
 	void    ClearSavedCommands();                 // Resets the saved-command list (call at the start of each round)
 	int     GetSavedCommandCount() const;
 	Command GetSavedCommand(int index) const;
+	Command* GetSavedCommands();
 
 	// ====== Drawing ======
 
@@ -67,4 +71,20 @@ public:
 	void Move(Grid* pGrid, GameState* pState);
 
 	void AppendPlayerInfo(string& playersInfo) const; // Appends "P0(direction, health)" to the string
+
+	void incrementHealth(); // fun to be used in repairing wether in the workshop or when the user choose to repair
+
+	// ====== Device & Consumables ======
+
+	int GetMaxCommands() const;
+	void SetDevice(DeviceType d);
+	DeviceType GetDevice() const;
+
+	void AddConsumable(ConsumableType c); // called by apply at workshop to add the consumable
+	bool UseConsumable(ConsumableType c); // consumes the consumable
+	bool HasConsumable(ConsumableType c) const;
+
+	void SetHacked(bool hacked);
+	bool IsHacked() const;
+
 };

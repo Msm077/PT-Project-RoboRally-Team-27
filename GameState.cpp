@@ -4,6 +4,10 @@
 #include "Player.h"
 #include "Cell.h"
 #include "Output.h"
+#include <iostream>
+#include <cstdlib> // Needed for rand() and srand()
+#include <ctime>   // Needed for time()
+
 
 GameState::GameState(Grid* pGrid)
 {
@@ -107,4 +111,45 @@ void GameState::AppendPlayersInfo(string& info) const
 			info += ", ";
 	}
 	info += " | Curr = " + to_string(currPlayerNumber);
+}
+/*
+void GameState::GenerateRandomCommands()
+{
+	for (int i =0; i < MaxAvailableCommands; i++){
+	// Get a different random number each time the program runs
+	srand(time(0));
+
+	// Generate a random number 
+	
+	//int randomNum = rand() % (COMMANDS_COUNT - 1) + 1; // Adding 1 shifts the range to [1, COMMANDS_COUNT - 1]. 
+	int randomNum =  rand() % 9;
+	cout << "i'm in the generate randm commands" << endl;
+	cout << randomNum << endl;
+	//This effectively skips NO_COMMAND (which is index 0) so the pool only contains useful actions.
+
+	// adding the command to the array after maping it according to the enum of command
+	availableRandomPool[i] = static_cast<Command> (randomNum);
+
+
+	}
+}
+*/
+#include <random>
+
+void GameState::GenerateRandomCommands()
+{
+	random_device rd;
+	mt19937 gen(rd());
+	uniform_int_distribution<> dist(1, COMMANDS_COUNT - 1);
+
+	for (int i = 0; i < MaxAvailableCommands; i++) {
+		int randomNum = dist(gen);
+		availableRandomPool[i] = static_cast<Command>(randomNum);
+	}
+}
+
+
+Command* GameState::GetRandomCommandsPool()
+{
+	return availableRandomPool;
 }

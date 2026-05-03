@@ -1,30 +1,32 @@
-
 #include "ApplicationManager.h"
-
-// This Main Function Must NOT be Changed
+#include <ctime>
+#include <cstdlib>
 
 int main()
 {
-	ActionType ActType;
+	// 1. Seed the random number generator exactly once. 
+	// This ensures your Random Commands Pool is unique in every game session.
+	srand(static_cast<unsigned int>(time(0)));
 
-	//Create an object of ApplicationManager
+	// 2. Create the ApplicationManager.
+	// This will trigger the constructor, creating Output, Input, Grid, and GameState.
 	ApplicationManager AppManager;
 
+	ActionType ActType;
+
+	// 3. The Main Game Loop
 	do
-	{		
-		//Read user action
+	{
+		// a. Read user action (click on toolbar, grid, or status bar)
 		ActType = AppManager.GetUserAction();
 
-		//Exexute the action
+		// b. Create and execute the action based on the click
 		AppManager.ExecuteAction(ActType);
 
-		//Update the drawings of the window after executing the action
+		// c. Update the interface to reflect any changes (player movement, new objects, etc.)
 		AppManager.UpdateInterface();
 
-	} while(ActType != EXIT);
-
+	} while (ActType != EXIT); // Continue until the user clicks the Exit icon
 
 	return 0;
 }
-
-

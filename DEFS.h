@@ -40,7 +40,6 @@ enum ActionType // The actions supported (add more as needed)
 	PASTE,
 	DELETE_,
 	
-	
 
 	//  [2] Actions of Play Mode
 
@@ -66,8 +65,26 @@ enum Direction // Directions of the game
 	LEFT
 };
 
+
+// set the max num of consumable can a player have at a workshop
+const int MaxConsumables = 2;
+
+// device types 
+enum DeviceType {
+	NO_DEVICE,
+	EXTENDED_MEMORY   // allows 6 commands instead of 5
+};
+
+// Consumable types
+enum ConsumableType {
+	NO_CONSUMABLE,
+	TOOLKIT,      // Repair without visiting workshop
+	HACK_DEVICE   // Opponent skips their turn this round
+};
+
 ///TODO: Set the maximum number of commands a player can save per round
-const int MaxSavedCommands = 5;
+
+const int MaxSavedCommands = 6;
 
 
 enum Command
@@ -84,6 +101,7 @@ enum Command
 
 	COMMANDS_COUNT,
 };
+
 
 // PhaseType: the phases within a single Play Mode round.
 // [OPTIONAL BONUS] Add more phases as needed (e.g. a shooting phase).
