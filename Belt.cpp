@@ -33,7 +33,7 @@ CellPosition Belt::GetEndPosition() const
 }
 
 void Belt::Save(ofstream& OutFile, Type t) {
-	if (t == Belts) {
+	if (IsObject(t)) {
 		OutFile << position.GetCellNum() << " " << endCellPos.GetCellNum() << endl;
 	}
 	else {

@@ -1,4 +1,4 @@
-#include "RotatingGear.h"
+ #include "RotatingGear.h"
 
 
 
@@ -28,7 +28,7 @@ bool RotatingGear::GetisClockWise() const
 }
 
 void RotatingGear::Save(ofstream& OutFile, Type t) {
-	if (t == RotatingGears) {
+	if (IsObject(t)) {
 		OutFile << position.GetCellNum() << " " << this->GetisClockWise() << endl;
 	}
 	else {

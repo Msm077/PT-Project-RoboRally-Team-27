@@ -20,7 +20,7 @@ void Workshop::Apply(Grid* pGrid, GameState* pState, Player* pPlayer)
 	// [OPTIONAL BONUS] Consumables can be given to the player here
 }
 void Workshop::Save(ofstream& OutFile, Type t) {
-	if (t == WorkShops) {
+	if (IsObject(t)) {
 		OutFile << position.GetCellNum() << endl;
 	}
 	else {

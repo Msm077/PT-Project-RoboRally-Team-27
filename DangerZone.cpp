@@ -52,7 +52,7 @@ else
 }
 
 void DangerZone::Save(ofstream& OutFile, Type t) {
-	if (t == DangerZones) {
+	if (IsObject(t)) {
 		OutFile << position.GetCellNum() << endl;
 	}
 	else {

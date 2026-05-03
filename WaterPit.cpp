@@ -46,7 +46,7 @@ int playerNum = pPlayer->GetPlayerNum();
 }
 
 void WaterPit::Save(ofstream& OutFile, Type t) {
-	if (t == WaterPits) {
+	if (IsObject(t)) {
 		OutFile << position.GetCellNum() << endl;
 	}
 	else {
