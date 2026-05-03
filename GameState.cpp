@@ -34,13 +34,13 @@ GameState::~GameState()
 Player* GameState::GetCurrentPlayer() const
 {
 	///TODO: Return the player whose turn it is
-	return PlayerList[0]; // wrong -- update this
+	return PlayerList[currPlayerNumber];
 }
 
 Player* GameState::GetPlayer(int playerNum) const
 {
 	///TODO: Return the player with the given player number
-	return PlayerList[0]; // wrong -- update this
+	return PlayerList[playerNum]; 
 }
 
 // ========== Turn Management ==========
