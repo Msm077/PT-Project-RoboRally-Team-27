@@ -88,6 +88,10 @@ Cell* Grid::GetStartCell() const
 
 void Grid::UpdateInterface(const GameState* pState) const
 {
+	//if (pState->GetEndGame()) {
+	//	pState->EndGame(pOut,pIn);
+	//}
+
 	if (UI.InterfaceMode == MODE_DESIGN)
 	{
 		// 1- Draw every cell (background colour, water pits, danger zones)
@@ -112,6 +116,7 @@ void Grid::UpdateInterface(const GameState* pState) const
 		pOut->PrintPlayersInfo(playersInfo);
 
 		// Note: UpdatePlayerCell() already redraws players step-by-step during Play mode.
+
 	}
 }
 

@@ -75,6 +75,7 @@ public:
 
 	bool GetEndGame() const;
 	void SetEndGame(bool end); // Call when a player reaches the Flag or falls into a WaterPit
+	void EndGame(Output* pOut, Input* pIn);
 
 	// ========== Drawing Helpers (called by Grid::UpdateInterface) ==========
 

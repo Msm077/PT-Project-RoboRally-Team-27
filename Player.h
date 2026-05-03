@@ -50,6 +50,7 @@ public:
 	void      SetDirection(Direction d);
 
 	///TODO: Add more setters/getters here as needed
+	int GetPlayerNum() const;
 
 	// ====== Saved Commands ======
 

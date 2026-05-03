@@ -5,6 +5,9 @@
 #include "Player.h"
 #include "Output.h"
 
+//output the winner
+// disable commands
+
 ExecuteCommandsAction::ExecuteCommandsAction(ApplicationManager* pApp) : Action(pApp)
 {
 }

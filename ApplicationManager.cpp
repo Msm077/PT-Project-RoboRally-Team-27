@@ -72,6 +72,7 @@ ActionType ApplicationManager::GetUserAction() const
 // Creates an action and executes it
 void ApplicationManager::ExecuteAction(ActionType ActType)
 {
+
 	Action* pAct = NULL;
 
 	// According to Action Type, create the corresponding action object

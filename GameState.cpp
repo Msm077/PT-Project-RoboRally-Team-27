@@ -91,6 +91,29 @@ void GameState::SetEndGame(bool end)
 	endGame = end;
 }
 
+void GameState::EndGame(Output* pOut, Input* pIn)
+{
+	// outputting the winner 
+	if (currPlayerNumber == 0) {
+		pOut->PrintMessage("1st player won");
+	}
+	else
+		pOut->PrintMessage("2nd player won");
+	pOut->PrintMessage("Click To continue");
+	int x, y;
+	pIn->GetPointClicked(x, y);
+	pOut->PrintMessage("Click on new game button to start new game OR click on exit to end");
+
+}
+
+
+	// Add EndGame function in GameState.cpp to output the winner and stop the playing mechanism
+// then Giving the choice to make a New Game or Exitting
+// Don't forget to reinitialize endgame with false
+// call the EndGame Function here (do not make and further logic in the Grid class just call the function)
+
+
+
 // ========== Drawing Helpers ==========
 
 void GameState::DrawAllPlayers(Output* pOut) const

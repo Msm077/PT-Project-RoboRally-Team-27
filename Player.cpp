@@ -136,6 +136,11 @@ int Player::GetHealth() const       { return health; }
 Direction Player::GetDirection() const      { return currDirection; }
 void      Player::SetDirection(Direction d) { currDirection = d; }
 
+int Player::GetPlayerNum() const
+{
+    return playerNum;
+}
+
 // ====== Saved Commands ======
 
 void Player::AddSavedCommand(Command cmd)
