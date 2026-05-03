@@ -38,10 +38,10 @@ void CutAction::Execute()
     }
 
     // remove from cell WITHOUT deleting the object
+    pGrid->SetClipboard(pObj->Photocopy(srcPos));
     pGrid->RemoveObjectFromCell(srcPos);
 
     // store object in clipboard
-    pGrid->SetClipboard(pObj);
 
     pManager->UpdateInterface();
 

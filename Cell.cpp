@@ -3,10 +3,15 @@
 #include "Grid.h"
 #include "GameObject.h"
 #include "Belt.h"
+#include "Flag.h"
 #include "WaterPit.h"
 #include "Player.h"
 #include "DangerZone.h"
 #include "Output.h"
+#include "Workshop.h"
+#include "RotatingGear.h"
+#include "Antenna.h"
+
 Cell::Cell(const CellPosition & pos) : position(pos)
 {
 	// initializes the data members (position & pGameObject)
@@ -51,27 +56,34 @@ Belt * Cell::HasBelt() const
 Flag * Cell::HasFlag() const
 {
 
-	///TODO: Implement the following function like HasBelt() function
-
-	return false; // THIS LINE SHOULD CHANGED WITH YOUR IMPLEMENTATION
+	return dynamic_cast<Flag*>(pGameObject);
 
 }
 WaterPit * Cell::HasWaterPit() const
 {
 
-	///TODO: Implement the following function like HasBelt() function
-
-	return false; // THIS LINE SHOULD CHANGED WITH YOUR IMPLEMENTATION
-
+	return dynamic_cast<WaterPit*>(pGameObject);
 }
 
 DangerZone * Cell::HasDangerZone() const
 {
-	///TODO: Implement the following function like HasBelt() function
-
-	return false; // THIS LINE SHOULD CHANGED WITH YOUR IMPLEMENTATION
+	return dynamic_cast<DangerZone*>(pGameObject);
 }
 
+Antenna* Cell::HasAntenna() const
+{
+	return dynamic_cast<Antenna*>(pGameObject);
+}
+
+Workshop* Cell::HasWS() const
+{
+	return dynamic_cast<Workshop*>(pGameObject);
+}
+
+RotatingGear* Cell::HasGear() const
+{
+	return dynamic_cast<RotatingGear*>(pGameObject);
+}
 
 // ======= Drawing Functions ======= 
 
@@ -90,7 +102,7 @@ void Cell::DrawCellOrWaterPitOrDangerZone(Output* pOut) const
 void Cell::DrawGameObject(Output* pOut) const
 {
 	//TODO: edit this incomplete implemntation to check for other game objects (excluding waterpits and dangerzones)
-	if (HasFlag()|| HasBelt())
+	if (HasFlag()|| HasBelt() || HasAntenna() || HasGear() || HasWS())
 		pGameObject->Draw(pOut); // draw game object
 
 }
