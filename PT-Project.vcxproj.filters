@@ -215,6 +215,9 @@
     <ClCompile Include="ReadGridAction.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="NewGameAction.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -358,6 +361,9 @@
       <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="ReadGridAction.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="NewGameAction.h">
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>

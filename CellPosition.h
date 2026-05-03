@@ -5,7 +5,6 @@ class CellPosition
 {
 	int vCell; // the vertical cell number: starts from 0 to NumVerticalCells - 1
 	int hCell; // the horizontal cell number: starts from 0 to NumHorizontalCells - 1
-	bool free_Cell = 1;
 
 	
 public:
