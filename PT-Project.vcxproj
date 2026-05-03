@@ -174,7 +174,11 @@
     <ClCompile Include="CMUgraphicsLib\jpeg\jquant2.c" />
     <ClCompile Include="CMUgraphicsLib\jpeg\jutils.c" />
     <ClCompile Include="DangerZone.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="ExecuteCommandsAction.cpp" />
+=======
+    <ClCompile Include="DeleteAction.cpp" />
+>>>>>>> parent of 8e5be89 (Merge pull request #15 from Msm077/workshop_with_bouneses_and_repairing)
     <ClCompile Include="Flag.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameState.cpp" />
@@ -183,9 +187,15 @@
     <ClCompile Include="Output.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Main.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="RebotAndRepairAction.cpp" />
     <ClCompile Include="RotatingGear.cpp" />
     <ClCompile Include="SelectCommandsAction.cpp" />
+=======
+    <ClCompile Include="ReadGridAction.cpp" />
+    <ClCompile Include="RotatingGear.cpp" />
+    <ClCompile Include="SaveGridAction.cpp" />
+>>>>>>> parent of 8e5be89 (Merge pull request #15 from Msm077/workshop_with_bouneses_and_repairing)
     <ClCompile Include="SwitchToDesignModeAction.cpp" />
     <ClCompile Include="SwitchToPlayModeAction.cpp" />
     <ClCompile Include="WaterPit.cpp" />
@@ -223,7 +233,11 @@
     <ClInclude Include="CMUgraphicsLib\jpeg\jversion.h" />
     <ClInclude Include="DangerZone.h" />
     <ClInclude Include="DEFS.h" />
+<<<<<<< HEAD
     <ClInclude Include="ExecuteCommandsAction.h" />
+=======
+    <ClInclude Include="DeleteAction.h" />
+>>>>>>> parent of 8e5be89 (Merge pull request #15 from Msm077/workshop_with_bouneses_and_repairing)
     <ClInclude Include="Flag.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameState.h" />
@@ -231,9 +245,15 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="Output.h" />
     <ClInclude Include="Player.h" />
+<<<<<<< HEAD
     <ClInclude Include="RebotAndRepairAction.h" />
     <ClInclude Include="RotatingGear.h" />
     <ClInclude Include="SelectCommandsAction.h" />
+=======
+    <ClInclude Include="ReadGridAction.h" />
+    <ClInclude Include="RotatingGear.h" />
+    <ClInclude Include="SaveGridAction.h" />
+>>>>>>> parent of 8e5be89 (Merge pull request #15 from Msm077/workshop_with_bouneses_and_repairing)
     <ClInclude Include="SwitchToDesignModeAction.h" />
     <ClInclude Include="SwitchToPlayModeAction.h" />
     <ClInclude Include="UI_Info.h" />

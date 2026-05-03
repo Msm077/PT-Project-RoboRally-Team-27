@@ -29,8 +29,6 @@ class GameState
 
 	PhaseType currentPhase; // Which phase of the current round we are in
 	bool endGame;           // True once a win/loss condition is detected
-	
-	Command availableRandomPool[MaxAvailableCommands];
 
 public:
 
@@ -80,8 +78,4 @@ public:
 
 	void DrawAllPlayers(Output* pOut) const;          // Draw every player's token
 	void AppendPlayersInfo(string& info) const;       // Build the play-mode status string
-
-
-	void GenerateRandomCommands();
-	Command* GetRandomCommandsPool();
 };
