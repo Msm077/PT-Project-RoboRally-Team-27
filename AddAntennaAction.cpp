@@ -38,6 +38,13 @@ void AddAntennaAction::ReadActionParameters()
 		return;
 	}
 
+	if (pGrid->GetNumberofObject(Antennas) != 0)
+	{
+		pGrid->PrintErrorMessage("Error: Only one Antenna is allowed on the grid! Click to continue...");
+		antPos = CellPosition();
+		pOut->ClearStatusBar();
+		return;
+	}
 	if (pGrid->GetGameObjectFromCell(antPos) != nullptr)
 	{
 		pGrid->PrintErrorMessage("Error: Cell already has an object! Click to continue...");

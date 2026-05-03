@@ -45,13 +45,13 @@ Grid* pGrid = pManager->GetGrid();
 		return;
 	}
 
-	//if (pGrid->GetFlagPosition().IsValidCell())
-	//{
-	//	pGrid->PrintErrorMessage("Error: Only one flag is allowed on the grid! Click to continue...");
-	//	flagPos = CellPosition();
-	//	pOut->ClearStatusBar();
-	//	return;
-	//}
+	if (pGrid->GetNumberofObject(Flags) != 0)
+	{
+		pGrid->PrintErrorMessage("Error: Only one flag is allowed on the grid! Click to continue...");
+		flagPos = CellPosition();
+		pOut->ClearStatusBar();
+		return;
+	}
 
 	if (pGrid->GetGameObjectFromCell(flagPos) != nullptr)
 	{
