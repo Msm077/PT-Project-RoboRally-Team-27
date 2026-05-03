@@ -10,6 +10,11 @@ public:
 	virtual void Draw(Output* pOut) const; // Draws workshop
 
 	virtual void Apply(Grid* pGrid, GameState* pState, Player* pPlayer); // Applies the effect of the workshop
+	void Save(ofstream& OutFile, Type t);
+	void Read(ifstream& Infile);
+	bool IsObject(Type t);
+	 GameObject* Photocopy(const CellPosition& newPos) const;
+	
 
 	~Workshop();
 };

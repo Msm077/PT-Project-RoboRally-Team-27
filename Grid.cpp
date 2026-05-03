@@ -40,8 +40,18 @@ void Grid::RemoveObjectFromCell(const CellPosition& pos)
 	if (pos.IsValidCell())
 	{
 		// Note: deallocate the object here before NULLing if ownership requires it
+		delete CellList[pos.VCell()][pos.HCell()]->GetGameObject();
 		CellList[pos.VCell()][pos.HCell()]->SetGameObject(NULL);
 	}
+}
+void Grid::ClearGrid() {
+	for (int i = NumVerticalCells - 1; i >= 0; i--)
+		for (int j = 0; j < NumHorizontalCells; j++)
+		{
+			GameObject* pObj = CellList[i][j]->GetGameObject();
+			if (pObj)
+				RemoveObjectFromCell(pObj->GetPosition());
+		}
 }
 
 void Grid::UpdatePlayerCell(Player* player, const CellPosition& newPosition)
@@ -66,6 +76,29 @@ Belt* Grid::GetNextBelt(const CellPosition& position)
 	return NULL; // not found
 }
 
+bool Grid::IsStartCellOfBelt(const CellPosition& cellpos) {
+	int H = cellpos.HCell();
+	int V = cellpos.VCell();
+	if (dynamic_cast<Belt*>(CellList[H][V]->GetGameObject()) != nullptr) {
+		if (CellList[V][H]->GetGameObject()->GetPosition().GetCellNum() == cellpos.GetCellNum()) {
+		return true;
+		}
+	}
+		return false;
+	
+}
+
+
+void Grid::SaveAll(ofstream& Outfile, Type type) {
+	for (int i = NumVerticalCells - 1; i >= 0; i--)
+		for (int j = 0; j < NumHorizontalCells; j++)
+		{
+			GameObject* pObj = CellList[i][j]->GetGameObject();
+			if (pObj)
+				pObj->Save(Outfile, type);
+		}
+}
+
 
 // ========== Setters / Getters ==========
 
@@ -82,7 +115,21 @@ Cell* Grid::GetStartCell() const
 	return CellList[NumVerticalCells - 1][0];
 }
 
+GameObject* Grid::GetGameObjectFromCell(const CellPosition& cellpos) const {
+	return (CellList[cellpos.VCell()][cellpos.HCell()])->GetGameObject();
+}
 
+int Grid::GetNumberofObject(Type type) {
+	int c=0;
+	for (int i = NumVerticalCells - 1; i >= 0; i--)
+		for (int j = 0; j < NumHorizontalCells; j++)
+		{
+			GameObject* pObj = CellList[i][j]->GetGameObject();
+			if (pObj)
+				c = c + pObj->IsObject(type);
+		}
+	return c;
+}
 // ========== User Interface ==========
 
 

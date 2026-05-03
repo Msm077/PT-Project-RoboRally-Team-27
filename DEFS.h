@@ -112,4 +112,14 @@ enum PhaseType
 	///TODO: Add more phases here as needed
 };
 
+enum Type
+{
+	Flags,
+	WaterPits,
+	DangerZones,
+	Belts,
+	WorkShops,
+	Antennas,
+	RotatingGears
+};
 #endif
