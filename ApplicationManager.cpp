@@ -7,12 +7,16 @@
 #include "DeleteAction.h"
 #include "AddBeltAction.h"
 #include "AddRotatingGearAction.h"
+#include "AddDangerZoneAction.h"
+#include "AddWaterPitAction.h"
+#include "AddWorkshopAction.h"
 #include "AddFlagAction.h"
 #include "SwitchToPlayModeAction.h"
 #include "SwitchToDesignModeAction.h"
 #include "SaveGridAction.h"
 #include "ReadGridAction.h"
 #include "NewGameAction.h"
+#include "AddAntennaAction.h"
 ///TODO: Add #include for all action types
 
 #include "GameState.h"
@@ -85,9 +89,20 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case SET_ROTATING_GEAR:
 		pAct = new AddRotatingGearAction(this);
 		break;
-
+	case SET_ANTENNA:
+		pAct = new AddAntennaAction(this);
+		break;
 	case SET_FLAG_CELL:
 		pAct = new AddFlagAction(this);
+		break;
+	case SET_WATER:
+		pAct = new AddWaterPitAction(this);
+		break;
+	case SET_DANGER:
+		pAct = new AddDangerZoneAction(this);
+		break;
+	case SET_WORKSHOP:
+		pAct = new AddWorkshopAction(this);
 		break;
 	case SAVE:
 		pAct = new SaveGridAction(this);
