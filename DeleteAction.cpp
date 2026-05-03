@@ -39,7 +39,6 @@ void DeleteAction::Execute()
 
     // remove from cell then delete from memory forever
     pGrid->RemoveObjectFromCell(targetPos);
-    delete pObj;
     pObj = NULL;
 
     pManager->UpdateInterface();

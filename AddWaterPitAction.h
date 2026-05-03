@@ -3,13 +3,14 @@
 #include "Input.h"
 #include "Output.h"
 #include "Belt.h"
+#include "WaterPit.h"
 class AddWaterPitAction :public Action
 {
 	// Always add action parameters as private data members
 
 	// [Action Parameters]
-	CellPosition startPos; // 1- The start position of the belt
-	CellPosition endPos;   // 2- The end position of the belt
+	CellPosition waterPitPos; // 
+	
 
 	// Note: These parameters should be read in ReadActionParameters()
 public:

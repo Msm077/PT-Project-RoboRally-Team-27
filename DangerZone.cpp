@@ -1,4 +1,4 @@
-#include "DangerZone.h"
+ #include "DangerZone.h"
 
 
 
@@ -19,6 +19,32 @@ GameObject* DangerZone::Photocopy(const CellPosition& newPos) const
 void DangerZone::Apply(Grid* pGrid, GameState* pState, Player* pPlayer)
 {
 	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
+    pGrid->PrintErrorMessage("You have reached a danger zone. Click to continue ...");
+
+    int oldHealth = pPlayer->GetHealth();
+    int newHealth = oldHealth - 1;
+    pPlayer->SetHealth(newHealth);
+
+    string msg = "Your health decreased from " + to_string(oldHealth) + 
+                 " to " + to_string(newHealth) + ". Click to continue...";
+    pGrid->PrintErrorMessage(msg);
+
+    if (newHealth <= 0)
+    {
+        int playerNum = pPlayer->GetPlayerNum();
+        int winnerNum;
+if (playerNum == 0)
+{
+    winnerNum = 1;
+}
+else
+{
+    winnerNum = 0;
+}
+        pGrid->PrintErrorMessage("Player " + to_string(playerNum) + " has died! Player " + 
+                                  to_string(winnerNum) + " wins! Click to continue...");
+        pState->EndGame(winnerNum);
+    }
 
 
 	// == Here are some guideline steps (numbered below) to implement this function ==
@@ -31,12 +57,18 @@ void DangerZone::Apply(Grid* pGrid, GameState* pState, Player* pPlayer)
 }
 
 void DangerZone::Save(ofstream& OutFile, Type t) {
-	if (t == DangerZones) {
+	if (IsObject(t)) {
 		OutFile << position.GetCellNum() << endl;
 	}
 	else {
 		return;
 	}
+}
+void DangerZone::Read(ifstream& Infile) {
+	int x1;
+		Infile >> x1;
+		position = x1;
+	
 }
 bool DangerZone::IsObject(Type t) {
 	if (t == DangerZones) {

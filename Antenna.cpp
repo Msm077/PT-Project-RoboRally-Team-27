@@ -37,13 +37,21 @@ GameObject* Antenna::Photocopy(const CellPosition& newPos) const
 }
 
 void Antenna::Save(ofstream& OutFile, Type t) {
-	if (t == Antennas) {
+	if (IsObject(t)) {
 		OutFile << position.GetCellNum() << endl;
 	}
 	else {
 		return;
 	}
 }
+
+void Antenna::Read(ifstream& Infile) {
+	int x1;
+		Infile >> x1;
+		position = x1;
+	
+}
+
 
 bool Antenna::IsObject(Type t) {
 	if (t == Antennas) {

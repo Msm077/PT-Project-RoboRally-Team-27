@@ -14,17 +14,40 @@ void AddDangerZoneAction::ReadActionParameters()
 	Input* pIn = pGrid->GetInput();
 
 	// Read the startPos parameter
-	pOut->PrintMessage("New Belt: Click on its Start Cell ...");
-	startPos = pIn->GetCellClicked();
+	pOut->PrintMessage("New Danger Zone: Click on its Cell ...");
+	dangerZonePos = pIn->GetCellClicked();
 
 	// Read the endPos parameter
-	pOut->PrintMessage("New Belt: Click on its End Cell ...");
-	endPos = pIn->GetCellClicked();
+	
 
 
 
 	///TODO: Make the needed validations on the read parameters
+    //AA
+	if (!dangerZonePos.IsValidCell())
+	{
+		pGrid->PrintErrorMessage("Error: Invalid cell position! Click to continue...");
+		dangerZonePos = CellPosition();
+		pOut->ClearStatusBar();
+		return;
+	}
+	
+	if (dangerZonePos.GetCellNum() == 1)
+	{
+		pGrid->PrintErrorMessage("Error: Cannot place danger zone in start cell (Cell 1)! Click to continue...");
+		dangerZonePos = CellPosition();
+		pOut->ClearStatusBar();
+		return;
+	}
 
+	
+	if (pGrid->GetGameObjectFromCell(dangerZonePos) != nullptr)
+	{
+		pGrid->PrintErrorMessage("Error: Cell already has an object! Click to continue...");
+		dangerZonePos = CellPosition();
+		pOut->ClearStatusBar();
+		return;
+	}
 
 
 	// Clear messages
@@ -37,21 +60,17 @@ void AddDangerZoneAction::Execute()
 	// and hence initializes its data members
 	ReadActionParameters();
 
-	// Create a belt object with the parameters read from the user
-	Belt* pBelt = new Belt(startPos, endPos);
+DangerZone* pDangerZone = new DangerZone(dangerZonePos);
 
-	Grid* pGrid = pManager->GetGrid(); // We get a pointer to the Grid from the ApplicationManager
+	Grid* pGrid = pManager->GetGrid();
 
+	bool added = pGrid->AddObjectToCell(pDangerZone);
 
-	bool added = pGrid->AddObjectToCell(pBelt);
-
-	// if the GameObject cannot be added
 	if (!added)
 	{
-		// Print an appropriate message
-		pGrid->PrintErrorMessage("Error: Cell already has an object ! Click to continue ...");
+		pGrid->PrintErrorMessage("Error: Failed to add Danger Zone! Click to continue...");
 	}
-	// Here, the belt is created and added to the GameObject of its Cell, so we finished executing the AddDangerZoneAction
+	
 
 }
 

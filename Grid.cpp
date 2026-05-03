@@ -44,6 +44,15 @@ void Grid::RemoveObjectFromCell(const CellPosition& pos)
 		CellList[pos.VCell()][pos.HCell()]->SetGameObject(NULL);
 	}
 }
+void Grid::ClearGrid() {
+	for (int i = NumVerticalCells - 1; i >= 0; i--)
+		for (int j = 0; j < NumHorizontalCells; j++)
+		{
+			GameObject* pObj = CellList[i][j]->GetGameObject();
+			if (pObj)
+				RemoveObjectFromCell(pObj->GetPosition());
+		}
+}
 
 void Grid::UpdatePlayerCell(Player* player, const CellPosition& newPosition)
 {
@@ -71,7 +80,7 @@ bool Grid::IsStartCellOfBelt(const CellPosition& cellpos) {
 	int H = cellpos.HCell();
 	int V = cellpos.VCell();
 	if (dynamic_cast<Belt*>(CellList[H][V]->GetGameObject()) != nullptr) {
-		if (CellList[H][V]->GetGameObject()->GetPosition().GetCellNum() == cellpos.GetCellNum()) {
+		if (CellList[V][H]->GetGameObject()->GetPosition().GetCellNum() == cellpos.GetCellNum()) {
 		return true;
 		}
 	}
@@ -89,6 +98,8 @@ void Grid::SaveAll(ofstream& Outfile, Type type) {
 				pObj->Save(Outfile, type);
 		}
 }
+
+
 // ========== Setters / Getters ==========
 
 
@@ -105,7 +116,7 @@ Cell* Grid::GetStartCell() const
 }
 
 GameObject* Grid::GetGameObjectFromCell(const CellPosition& cellpos) const {
-	return (CellList[cellpos.HCell()][cellpos.VCell()])->GetGameObject();
+	return (CellList[cellpos.VCell()][cellpos.HCell()])->GetGameObject();
 }
 
 int Grid::GetNumberofObject(Type type) {

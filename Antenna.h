@@ -10,6 +10,9 @@ public:
 	virtual GameObject* Photocopy(const CellPosition& newPos) const;
 
 	void Save(ofstream& OutFile, Type t);
+	void Read(ifstream& Infile);
+
+
 	bool IsObject(Type t);
 	virtual ~Antenna();
 };

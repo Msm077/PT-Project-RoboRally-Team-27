@@ -3,13 +3,14 @@
 #include "Input.h"
 #include "Output.h"
 #include "Belt.h"
+#include "Workshop.h"
 class AddWorkshopAction :public Action
 {
 	// Always add action parameters as private data members
 
 	// [Action Parameters]
-	CellPosition startPos; // 1- The start position of the belt
-	CellPosition endPos;   // 2- The end position of the belt
+	CellPosition workshopPos; // The position 
+	
 
 	// Note: These parameters should be read in ReadActionParameters()
 public:

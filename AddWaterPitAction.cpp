@@ -14,17 +14,37 @@ void AddWaterPitAction::ReadActionParameters()
 	Input* pIn = pGrid->GetInput();
 
 	// Read the startPos parameter
-	pOut->PrintMessage("New Belt: Click on its Start Cell ...");
-	startPos = pIn->GetCellClicked();
+	pOut->PrintMessage("New WaterPit: Click on its Cell ...");
+	waterPitPos = pIn->GetCellClicked();
 
-	// Read the endPos parameter
-	pOut->PrintMessage("New Belt: Click on its End Cell ...");
-	endPos = pIn->GetCellClicked();
+	
 
 
 
 	///TODO: Make the needed validations on the read parameters
+	if (!waterPitPos.IsValidCell())
+	{
+		pGrid->PrintErrorMessage("Error: Invalid cell position! Click to continue...");
+		waterPitPos = CellPosition();
+		pOut->ClearStatusBar();
+		return;
+	}
 
+	if (waterPitPos.GetCellNum() == 1)
+	{
+		pGrid->PrintErrorMessage("Error: Cannot place water pit in start cell (Cell 1)! Click to continue...");
+		waterPitPos = CellPosition();
+		pOut->ClearStatusBar();
+		return;
+	}
+
+	if (pGrid->GetGameObjectFromCell(waterPitPos) != nullptr)
+	{
+		pGrid->PrintErrorMessage("Error: Cell already has an object! Click to continue...");
+		waterPitPos = CellPosition();
+		pOut->ClearStatusBar();
+		return;
+	}
 
 
 	// Clear messages
@@ -37,21 +57,17 @@ void AddWaterPitAction::Execute()
 	// and hence initializes its data members
 	ReadActionParameters();
 
-	// Create a belt object with the parameters read from the user
-	Belt* pBelt = new Belt(startPos, endPos);
+WaterPit* pWaterPit = new WaterPit(waterPitPos);
 
-	Grid* pGrid = pManager->GetGrid(); // We get a pointer to the Grid from the ApplicationManager
+	
+	Grid* pGrid = pManager->GetGrid();
 
+	bool added = pGrid->AddObjectToCell(pWaterPit);
 
-	bool added = pGrid->AddObjectToCell(pBelt);
-
-	// if the GameObject cannot be added
 	if (!added)
 	{
-		// Print an appropriate message
-		pGrid->PrintErrorMessage("Error: Cell already has an object ! Click to continue ...");
-	}
-	// Here, the belt is created and added to the GameObject of its Cell, so we finished executing the AddWaterPitAction
+		pGrid->PrintErrorMessage("Error: Failed to add Water Pit! Click to continue...");
+	}	
 
 }
 
