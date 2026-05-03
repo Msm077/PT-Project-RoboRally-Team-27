@@ -32,32 +32,7 @@ CellPosition Belt::GetEndPosition() const
 	return endCellPos;
 }
 
-GameObject* Belt::Photocopy(const CellPosition& newPos) const
-{
-	return new Belt(newPos, endCellPos);
-}
 
-void Belt::Save(ofstream& OutFile, Type t) {
-	if (IsObject(t)) {
-		OutFile << position.GetCellNum() << " " << endCellPos.GetCellNum() << endl;
-	}
-	else {
-		return;
-	}
-}
-void Belt::Read(ifstream& Infile) {
-	int x1 , x2;
-		Infile >> x1 >> x2;
-		position = x1;
-		endCellPos = x2;
-	
-}
-bool Belt::IsObject(Type t) {
-	if (t == Belts) {
-		return 1;
-	}
-	return 0;
-}
 Belt::~Belt()
 {
 }

@@ -488,7 +488,7 @@ void Output::DrawCell(const CellPosition & cellPos, color cellColor) const
 void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playerColor, Direction direction) const
 {
 	//Validate the cell position and the playerNum
-	if (!cellPos.IsValidCell() || playerNum <= -1){ 
+	if (!cellPos.IsValidCell() || playerNum <= -1 || playerNum >= 2){ 
 		return;
 	}
 	
@@ -510,8 +510,8 @@ void Output::DrawPlayer(const CellPosition & cellPos, int playerNum, color playe
 	// Calculate the Y coordinate of the center of the player's triangle (based on playerNum)
 	int y = cellStartY + ySpace + radius + 2;
 
-	if (playerNum > 0)
-		y += 2 * (radius + 2) * playerNum; // because playerNum 1 is drawn in the second row of triangles
+	if (playerNum == 1)
+		y += 2 * (radius + 2); // because playerNum 1 is drawn in the second row of triangles
 
 	// Calculate the X coordinate of the center of the player's triangle (based on playerNum)
 	int x = cellStartX + UI.BeltXOffset + radius + 4; // UI.BeltXOffset is used to draw players' triangles 

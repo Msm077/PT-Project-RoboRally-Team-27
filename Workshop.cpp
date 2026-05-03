@@ -64,36 +64,6 @@ void Workshop::Apply(Grid* pGrid, GameState* pState, Player* pPlayer)
 		}
 	}
 }
-void Workshop::Save(ofstream& OutFile, Type t) {
-	if (IsObject(t)) {
-		OutFile << position.GetCellNum() << endl;
-	}
-	else {
-		return;
-	}
-}
-
-void Workshop::Read(ifstream& Infile) {
-	int x1;
-	
-		Infile >> x1;
-		position = x1;
-	
-	
-}
-bool Workshop::IsObject(Type t) {
-	if (t == WorkShops) {
-		return 1;
-	}
-	return 0;
-}
-
-GameObject* Workshop::Photocopy(const CellPosition& newPos) const
-{
-	return new Workshop(newPos);
-}
-
-
 
 Workshop::~Workshop()
 {

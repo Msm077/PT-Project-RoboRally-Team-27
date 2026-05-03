@@ -96,10 +96,6 @@ void GameState::SetEndGame(bool end)
 void GameState::DrawAllPlayers(Output* pOut) const
 {
 	///TODO: Draw all players
-	for (int i = 0; i < MaxPlayerCount; i++)
-	{
-		pOut->DrawPlayer(PlayerList[i]->GetCell()->GetCellPosition(), PlayerList[i]->GetPlayerNumber(), UI.PlayerColors[PlayerList[i]->GetPlayerNumber()], PlayerList[i]->GetDirection());
-	}
 }
 
 void GameState::AppendPlayersInfo(string& info) const

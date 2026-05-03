@@ -3,18 +3,11 @@
 
 #include "Grid.h"
 #include "ExecuteCommandsAction.h"
-#include "CopyAction.h"
-#include "CutAction.h"
-#include "PasteAction.h"
-#include "DeleteAction.h"
 #include "AddBeltAction.h"
 #include "AddRotatingGearAction.h"
 #include "AddFlagAction.h"
 #include "SwitchToPlayModeAction.h"
 #include "SwitchToDesignModeAction.h"
-#include "SaveGridAction.h"
-#include "ReadGridAction.h"
-#include "NewGameAction.h"
 ///TODO: Add #include for all action types
 #include "SelectCommandsAction.h"
 #include "ExecuteCommandsAction.h"
@@ -163,12 +156,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	case SET_FLAG_CELL:
 		pAct = new AddFlagAction(this);
 		break;
-	case SAVE:
-		pAct = new SaveGridAction(this);
-		break;
-	case LOAD:
-		pAct = new ReadGridAction(this);
-		break;
 
 	case TO_PLAY_MODE:
 		pAct = new SwitchToPlayModeAction(this);
@@ -176,30 +163,13 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 	case EXIT:
 		break;
-	case COPY:
-		pAct = new CopyAction(this);
-		break;
-
-	case CUT:
-		pAct = new CutAction(this);
-		break;
-
-	case PASTE:
-		pAct = new PasteAction(this);
-		break;
-
-	case DELETE_:
-		pAct = new DeleteAction(this);
-		break;
 
 	///TODO: Add a case for EACH remaining Design Mode action type
 
 	case TO_DESIGN_MODE:
 		pAct = new SwitchToDesignModeAction(this);
 		break;
-	case NEW_GAME:
-		pAct = new NewGameAction(this);
-		break;
+
 	///TODO: Add a case for EACH remaining Play Mode action type
 	case STATUS:	// a click on the status bar ==> no action
 		return;

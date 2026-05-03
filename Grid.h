@@ -47,17 +47,14 @@ public:
 	bool AddObjectToCell(GameObject* pNewObject);        // Adds object to its cell; returns false if cell is occupied
 	void RemoveObjectFromCell(const CellPosition& pos); // Removes the GameObject of the Cell of the passed "position"
 	                                                     // Note: You may need to change the return type of this function (Think)
-	void ClearGrid();
+
 	void UpdatePlayerCell(Player* player, const CellPosition& newPosition); // Update the player's pCell with the CellList's Cell pointer of the "newPosition",
 	                                                                          // Clears the player's circle from the previous cell
 	    																	  // and Draws it in the new cell
 
 	// Returns the first Belt found at or after 'position' (used when adding connected belts).
 	Belt* GetNextBelt(const CellPosition& position);
-	bool IsStartCellOfBelt(const CellPosition& cellpos);
 
-	void SaveAll(ofstream& Outfile, Type type);
-	
 	// ========== Setters / Getters ==========
 
 	Input*  GetInput()  const;
@@ -70,11 +67,8 @@ public:
 	// Called by GameState's constructor to initialise player positions.
 	Cell* GetStartCell() const;
 
-	GameObject* GetGameObjectFromCell(const CellPosition& cellpos) const;
-
 	///TODO: Add any additional board-query getters here (e.g. GetCell(CellPosition))
 
-	int GetNumberofObject(Type type);
 	// ========== User Interface ==========
 
 	// It Updates the Grid according to the last state of the game

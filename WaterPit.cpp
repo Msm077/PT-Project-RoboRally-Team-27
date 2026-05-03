@@ -11,36 +11,11 @@ void WaterPit::Draw(Output * pOut) const
 	pOut->DrawWaterPit(position);
 }
 
-GameObject* WaterPit::Photocopy(const CellPosition& newPos) const
-{
-	return new WaterPit(newPos);
-}
-
 void WaterPit::Apply(Grid* pGrid, GameState* pState, Player* pPlayer)
 {
 
 	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
-int playerNum = pPlayer->GetPlayerNumber();
-    pGrid->PrintErrorMessage("Player " + to_string(playerNum) + " fell into a water pit! Click to continue...");
-    
-    int newHealth = pPlayer->GetHealth() - 3;
-    pPlayer->SetHealth(newHealth);
-            int winnerNum;
 
-    if (newHealth <= 0)
-    {
-        pGrid->PrintErrorMessage("Player " + to_string(playerNum) + " has died! Game over. Click to continue...");
-    if (playerNum == 0)
-        winnerNum = 1;
-    else
-        winnerNum = 0;
-       // pState->EndGame(winnerNum);
-    }
-    else
-    {
-        pPlayer->SetCell(pGrid->GetStartCell());
-        pGrid->PrintErrorMessage("Player " + to_string(playerNum) + " returns to start with " + to_string(newHealth) + " health. Click to continue...");
-    }
 
 	// == Here are some guideline steps (numbered below) to implement this function ==
 
@@ -50,29 +25,6 @@ int playerNum = pPlayer->GetPlayerNumber();
 	// 3- Update the players info which is displayed (check Grid class and decide which function to use)
 }
 
-void WaterPit::Save(ofstream& OutFile, Type t) {
-	if (IsObject(t)) {
-		OutFile << position.GetCellNum() << endl;
-	}
-	else {
-		return;
-	}
-}
-
-void WaterPit::Read(ifstream& Infile) {
-	int x1;
-	Infile >> x1;
-	position = x1;
-	
-	
-}
-
-bool WaterPit::IsObject(Type t) {
-	if (t == WaterPits) {
-		return 1;
-	}
-	return 0;
-}
 
 WaterPit::~WaterPit()
 {
