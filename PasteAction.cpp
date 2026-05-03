@@ -37,21 +37,20 @@ void PasteAction::Execute()
         return;
     }
 
-    // update the object position to the new destination cell
-    pClipboard->SetPosition(destPos);
+    // create a brand new independent object at the destination
+    GameObject* pNewObject = pClipboard->Photocopy(destPos);
 
-    // put clipboard object directly into the destination cell
-    bool added = pGrid->AddObjectToCell(pClipboard);
+    // try to add it to the destination cell
+    bool added = pGrid->AddObjectToCell(pNewObject);
 
     if (!added)
     {
+        delete pNewObject;
         pGrid->PrintErrorMessage("Error: Cell already occupied! Click to continue ...");
         return;
     }
 
-    // clipboard is now empty
-    pGrid->SetClipboard(NULL);
-
+    // clipboard stays so user can paste multiple times
     pManager->UpdateInterface();
 }
 

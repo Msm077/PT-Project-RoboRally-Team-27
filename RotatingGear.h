@@ -10,6 +10,8 @@ public:
 	void Save(ofstream& OutFile, Type t);
 	bool GetisClockWise() const; // Getter for the direction
 	bool IsObject(Type t);
+	virtual GameObject* Photocopy(const CellPosition& newPos) const;
+
 	virtual ~RotatingGear();
 };
 

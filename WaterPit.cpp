@@ -11,6 +11,11 @@ void WaterPit::Draw(Output * pOut) const
 	pOut->DrawWaterPit(position);
 }
 
+GameObject* WaterPit::Photocopy(const CellPosition& newPos) const
+{
+	return new WaterPit(newPos);
+}
+
 void WaterPit::Apply(Grid* pGrid, GameState* pState, Player* pPlayer)
 {
 

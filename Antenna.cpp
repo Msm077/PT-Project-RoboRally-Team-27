@@ -31,6 +31,11 @@ void Antenna::Apply(Grid* pGrid, GameState* pState, Player* pPlayer)
 
 }
 
+GameObject* Antenna::Photocopy(const CellPosition& newPos) const
+{
+	return new Antenna(newPos) ;
+}
+
 void Antenna::Save(ofstream& OutFile, Type t) {
 	if (t == Antennas) {
 		OutFile << position.GetCellNum() << endl;

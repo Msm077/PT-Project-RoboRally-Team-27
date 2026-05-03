@@ -13,6 +13,7 @@ public:
 	void Save(ofstream& OutFile,Type t);
 	bool IsObject(Type t);
 	CellPosition GetEndPosition() const; // A getter for the endCellPos data member
+	virtual GameObject* Photocopy(const CellPosition& newPos) const;
 	virtual ~Belt();
 };
 

@@ -34,6 +34,13 @@ bool Workshop::IsObject(Type t) {
 	return 0;
 }
 
+GameObject* Workshop::Photocopy(const CellPosition& newPos) const
+{
+	return new Workshop(newPos);
+}
+
+
+
 Workshop::~Workshop()
 {
 }
