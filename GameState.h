@@ -55,7 +55,7 @@ public:
 	//
 	// [OPTIONAL] For 3+ players with full sorting, replace this with
 	//            SetPlayerOrder(int sortedOrder[], int count).
-	void SetPlayerOrder(int sortedOrder[], int count);
+	void SetFirstPlayer(int playerNum);
 
 	// ========== Phase Management ==========
 	// All phase-transition logic belongs here.
