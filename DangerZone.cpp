@@ -1,4 +1,4 @@
-#include "DangerZone.h"
+ #include "DangerZone.h"
 
 
 
@@ -14,6 +14,32 @@ void DangerZone::Draw(Output * pOut) const
 void DangerZone::Apply(Grid* pGrid, GameState* pState, Player* pPlayer)
 {
 	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
+    pGrid->PrintErrorMessage("You have reached a danger zone. Click to continue ...");
+
+    int oldHealth = pPlayer->GetHealth();
+    int newHealth = oldHealth - 1;
+    pPlayer->SetHealth(newHealth);
+
+    string msg = "Your health decreased from " + to_string(oldHealth) + 
+                 " to " + to_string(newHealth) + ". Click to continue...";
+    pGrid->PrintErrorMessage(msg);
+
+    if (newHealth <= 0)
+    {
+        int playerNum = pPlayer->GetPlayerNum();
+        int winnerNum;
+if (playerNum == 0)
+{
+    winnerNum = 1;
+}
+else
+{
+    winnerNum = 0;
+}
+        pGrid->PrintErrorMessage("Player " + to_string(playerNum) + " has died! Player " + 
+                                  to_string(winnerNum) + " wins! Click to continue...");
+        pState->EndGame(winnerNum);
+    }
 
 
 	// == Here are some guideline steps (numbered below) to implement this function ==
