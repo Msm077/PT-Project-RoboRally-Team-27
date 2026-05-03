@@ -9,5 +9,7 @@ public:
 	void Read(ifstream& Infile);
 	bool IsObject(Type t);
 	virtual void Apply(Grid* pGrid, GameState* pState, Player* pPlayer); // Applies the effect of the flag
+	virtual GameObject* Photocopy(const CellPosition& newPos) const;
+
 	virtual ~Flag(); // Virtual destructor
 };

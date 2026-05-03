@@ -26,6 +26,10 @@ void Flag::Apply(Grid* pGrid, GameState* pState, Player* pPlayer)
 	// 2- Apply the flag's effect by ending the game
 	//    Review the "pGrid" functions and decide which function can be used for that
 }
+GameObject* Flag::Photocopy(const CellPosition& newPos) const
+{
+	return new Flag (newPos);
+}
 void Flag::Save(ofstream& OutFile, Type t) {
 	if (IsObject(t)) {
 		OutFile << position.GetCellNum() << endl;

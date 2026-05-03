@@ -11,6 +11,11 @@ void DangerZone::Draw(Output * pOut) const
 	pOut->DrawDangerZone(position);
 }
 
+GameObject* DangerZone::Photocopy(const CellPosition& newPos) const
+{
+	return new DangerZone(newPos);
+}
+
 void DangerZone::Apply(Grid* pGrid, GameState* pState, Player* pPlayer)
 {
 	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below

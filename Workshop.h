@@ -13,6 +13,9 @@ public:
 	void Save(ofstream& OutFile, Type t);
 	void Read(ifstream& Infile);
 	bool IsObject(Type t);
+	virtual GameObject* Photocopy(const CellPosition& newPos) const;
+	
+
 	~Workshop();
 };
 

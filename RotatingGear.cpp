@@ -52,6 +52,10 @@ bool RotatingGear::IsObject(Type t) {
 	}
 	return 0;
 }
+GameObject* RotatingGear::Photocopy(const CellPosition& newPos) const
+{
+	return new RotatingGear(newPos, isClockWise);
+}
 RotatingGear::~RotatingGear()
 {
 }
