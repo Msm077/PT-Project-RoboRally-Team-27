@@ -13,12 +13,9 @@ void AddDangerZoneAction::ReadActionParameters()
 	Output* pOut = pGrid->GetOutput();
 	Input* pIn = pGrid->GetInput();
 
-	// Read the startPos parameter
+	// Read the Pos parameter
 	pOut->PrintMessage("New Danger Zone: Click on its Cell ...");
 	dangerZonePos = pIn->GetCellClicked();
-
-	// Read the endPos parameter
-	
 
 
 

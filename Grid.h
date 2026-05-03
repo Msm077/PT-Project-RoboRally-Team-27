@@ -71,7 +71,7 @@ public:
 	Cell* GetStartCell() const;
 
 	GameObject* GetGameObjectFromCell(const CellPosition& cellpos) const;
-
+	
 	///TODO: Add any additional board-query getters here (e.g. GetCell(CellPosition))
 
 	int GetNumberofObject(Type type);

@@ -16,25 +16,27 @@ void AddRotatingGearAction::ReadActionParameters()
 	pOut->PrintMessage("New Rotating Gear: Click on its Cell ...");
 	gearPos = pIn->GetCellClicked();
     // 3- Read whether the direction will be clockwise or not
-    pOut->PrintMessage("Rotating Gear: Choose direction - Click YES (left) for Clockwise, NO (right) for Anti-Clockwise ...");
-	int x, y;
-	pIn->GetPointClicked(x, y);
-
+    pOut->PrintMessage("Rotating Gear: Choose direction - Write CW for Clockwise, CCW for Anti-Clockwise ...");
+	string msg = pIn->GetSrting(pOut);
 	
-	if (x < UI.width / 2)
-	{
-		clockwise = true;   // Clockwise
-		pOut->PrintMessage("Rotating Gear: Clockwise direction selected.");
+	while (msg != "CW") {
+		if (msg == "CW" || msg == "Cw" || msg == "cw")
+		{
+			clockwise = true;   // Clockwise
+			pOut->PrintMessage("Rotating Gear: Clockwise direction selected.");
+			break;
+		}
+		else if (msg == "CCW" || msg == "Ccw" || msg == "ccw")
+		{
+			clockwise = false;  // Anti-clockwise
+			pOut->PrintMessage("Rotating Gear: Anti-Clockwise direction selected.");
+			break;
+		}
+		else {
+			pOut->PrintMessage("Error. Wrong Direction, Write CW for Clockwise, CCW for Anti-Clockwise ...");
+			msg = pIn->GetSrting(pOut);
+		}
 	}
-	else
-	{
-		clockwise = false;  // Anti-clockwise
-		pOut->PrintMessage("Rotating Gear: Anti-Clockwise direction selected.");
-	}
-
-	
-
-	
 	
 
 	// 4- Make the needed validations on the read parameters

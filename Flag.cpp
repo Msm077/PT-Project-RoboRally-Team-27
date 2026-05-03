@@ -17,6 +17,7 @@ void Flag::Apply(Grid* pGrid, GameState* pState, Player* pPlayer)
     string msg = "Player " + to_string(playerNum) + " has reached the flag! Player " + 
                  to_string(playerNum) + " wins! Click to continue ...";
     pGrid->PrintErrorMessage(msg);
+	pState->SetEndGame(true);
 
     //pState->EndGame(playerNum);
 	// == Here are some guideline steps (numbered below) to implement this function ==
