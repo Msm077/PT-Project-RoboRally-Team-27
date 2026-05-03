@@ -34,7 +34,15 @@ CellPosition Belt::GetEndPosition() const
 
 GameObject* Belt::Photocopy(const CellPosition& newPos) const
 {
-	return new Belt(newPos, endCellPos);
+	int offsetV = endCellPos.VCell() - position.VCell();
+	int offsetH = endCellPos.HCell() - position.HCell();
+
+	CellPosition newEndPos(newPos.VCell() + offsetV, newPos.HCell() + offsetH);
+
+	if (!newEndPos.IsValidCell())
+		return nullptr;
+
+	return new Belt(newPos, newEndPos);
 }
 
 void Belt::Save(ofstream& OutFile, Type t) {

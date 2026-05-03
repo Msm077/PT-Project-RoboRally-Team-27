@@ -41,13 +41,15 @@ void PasteAction::Execute()
     GameObject* pNewObject = pClipboard->Photocopy(destPos);
 
     // try to add it to the destination cell
-    bool added = pGrid->AddObjectToCell(pNewObject);
+    if (pNewObject != nullptr) {
+        bool added = pGrid->AddObjectToCell(pNewObject);
 
-    if (!added)
-    {
-        delete pNewObject;
-        pGrid->PrintErrorMessage("Error: Cell already occupied! Click to continue ...");
-        return;
+        if (!added)
+        {
+            delete pNewObject;
+            pGrid->PrintErrorMessage("Error: Cell already occupied! Click to continue ...");
+            return;
+        }
     }
 
     // clipboard stays so user can paste multiple times
