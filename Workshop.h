@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+#include "Player.h"
 
 // Workshop: a special cell that applies an effect on the player who lands on it.
 // [OPTIONAL BONUS] Consumables can be added as an extension.
