@@ -140,3 +140,8 @@ void GameState::AppendPlayersInfo(string& info) const
 	}
 	info += " | Curr = " + to_string(currPlayerNumber);
 }
+
+bool GameState::IsRoundStart() const
+{
+	 return (currTurnIndex == 0);
+}

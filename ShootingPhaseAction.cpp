@@ -4,12 +4,20 @@
 #include "Grid.h"
 #include "Consumable.h"
 #include "DoubleLaser.h"
+<<<<<<< Updated upstream
 #include <string>
 using namespace std;
 
 // ============================================================
 //  Constructor / Destructor
 // ============================================================
+=======
+#include "ApplicationManager.h"
+
+using namespace std;
+
+//  Constructor / Destructor
+>>>>>>> Stashed changes
 
 ShootingPhaseAction::ShootingPhaseAction(ApplicationManager* pApp)
     : Action(pApp)
@@ -59,9 +67,15 @@ void ShootingPhaseAction::Execute()
 {
     ReadActionParameters();
 
+<<<<<<< Updated upstream
     Grid*      pGrid  = pManager->GetGrid();
     Output*    pOut   = pGrid->GetOutput();
     Input*     pIn    = pGrid->GetInput();
+=======
+    Grid* pGrid = pManager->GetGrid();
+    Output* pOut = pGrid->GetOutput();
+    Input* pIn = pGrid->GetInput();
+>>>>>>> Stashed changes
     GameState* pState = pManager->GetGameState();
 
     pOut->PrintMessage("--- Shooting Phase ---  Click to begin...");
@@ -72,7 +86,11 @@ void ShootingPhaseAction::Execute()
     // Each player shoots in turn order (two-player game: player 0 then player 1)
     for (int shooterIdx = 0; shooterIdx < MaxPlayerCount; shooterIdx++)
     {
+<<<<<<< Updated upstream
         Player* pShooter  = pState->GetPlayer(shooterIdx);
+=======
+        Player* pShooter = pState->GetPlayer(shooterIdx);
+>>>>>>> Stashed changes
         Player* pOpponent = nullptr;
 
         // Find the opponent (the other player)
@@ -92,7 +110,11 @@ void ShootingPhaseAction::Execute()
         if (upgraded)
         {
             pOut->PrintMessage("Player " + to_string(shooterIdx + 1) +
+<<<<<<< Updated upstream
                                " activates Double Laser! Click to continue...");
+=======
+                " activates Double Laser! Click to continue...");
+>>>>>>> Stashed changes
             pIn->GetPointClicked(x, y);
             pOut->ClearStatusBar();
         }
@@ -106,10 +128,17 @@ void ShootingPhaseAction::Execute()
             pOpponent->SetHealth(newHealth);
 
             pOut->PrintMessage("Player " + to_string(shooterIdx + 1) +
+<<<<<<< Updated upstream
                                " hits Player " + to_string((shooterIdx == 0) ? 2 : 1) +
                                " for " + to_string(damage) + " damage! " +
                                "Opponent health: " + to_string(newHealth) +
                                "  Click to continue...");
+=======
+                " hits Player " + to_string((shooterIdx == 0) ? 2 : 1) +
+                " for " + to_string(damage) + " damage! " +
+                "Opponent health: " + to_string(newHealth) +
+                "  Click to continue...");
+>>>>>>> Stashed changes
             pIn->GetPointClicked(x, y);
             pOut->ClearStatusBar();
 
@@ -117,7 +146,11 @@ void ShootingPhaseAction::Execute()
             if (newHealth <= 0)
             {
                 pOut->PrintMessage("Player " + to_string(shooterIdx + 1) +
+<<<<<<< Updated upstream
                                    " wins! Opponent robot destroyed. Click...");
+=======
+                    " wins! Opponent robot destroyed. Click...");
+>>>>>>> Stashed changes
                 pIn->GetPointClicked(x, y);
                 pOut->ClearStatusBar();
                 pState->SetEndGame(true);
@@ -127,7 +160,11 @@ void ShootingPhaseAction::Execute()
         else
         {
             pOut->PrintMessage("Player " + to_string(shooterIdx + 1) +
+<<<<<<< Updated upstream
                                " fires -- no target in line of sight. Click...");
+=======
+                " fires -- no target in line of sight. Click...");
+>>>>>>> Stashed changes
             pIn->GetPointClicked(x, y);
             pOut->ClearStatusBar();
         }
@@ -139,4 +176,8 @@ void ShootingPhaseAction::Execute()
 
     // ── Advance back to Movement phase for next round ─────────────
     pState->AdvancePhase(); // SHOOTING -> MOVEMENT
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes

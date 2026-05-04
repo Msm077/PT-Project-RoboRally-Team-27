@@ -7,7 +7,10 @@ class Grid;
 class GameState;
 class Player;
 
+<<<<<<< Updated upstream
 // ============================================================
+=======
+>>>>>>> Stashed changes
 // Consumable  (abstract base class)
 //
 // Represents a one-time-use item a player can carry and spend
@@ -18,12 +21,15 @@ class Player;
 //   HackDevice -- forces the opponent to skip their next turn
 //   DoubleLaser-- weapon: deals 2 damage instead of 1 (shooting phase)
 //
+<<<<<<< Updated upstream
 // OOP design note:
 //   Player owns an array of Consumable* pointers so it can store
 //   any mix of subclasses without knowing their concrete types.
 //   UseEffect() is the polymorphic hook called when the player
 //   decides to spend the item.
 // ============================================================
+=======
+>>>>>>> Stashed changes
 class Consumable
 {
 public:

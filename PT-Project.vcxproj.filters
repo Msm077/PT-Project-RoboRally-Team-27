@@ -25,8 +25,13 @@
     <Filter Include="GUIClasses">
       <UniqueIdentifier>{03fd4e0d-92e0-4271-bb9b-d6e9f21ec35f}</UniqueIdentifier>
     </Filter>
+<<<<<<< Updated upstream
     <Filter Include="consumables">
       <UniqueIdentifier>{0b5aacda-f14b-44bf-8b4d-b93e8fb10a98}</UniqueIdentifier>
+=======
+    <Filter Include="Consumables">
+      <UniqueIdentifier>{3ad616c6-25a3-4f3e-bb8f-d5578ec46e76}</UniqueIdentifier>
+>>>>>>> Stashed changes
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -246,6 +251,7 @@
       <Filter>Actions</Filter>
     </ClCompile>
     <ClCompile Include="Consumable.cpp">
+<<<<<<< Updated upstream
       <Filter>consumables</Filter>
     </ClCompile>
     <ClCompile Include="Toolkit.cpp">
@@ -257,6 +263,20 @@
     <ClCompile Include="Doublelaser.cpp">
       <Filter>consumables</Filter>
     </ClCompile>
+=======
+      <Filter>Consumables</Filter>
+    </ClCompile>
+    <ClCompile Include="DoubleLaser.cpp">
+      <Filter>Consumables</Filter>
+    </ClCompile>
+    <ClCompile Include="HackDevice.cpp">
+      <Filter>Consumables</Filter>
+    </ClCompile>
+    <ClCompile Include="Toolkit.cpp">
+      <Filter>Consumables</Filter>
+    </ClCompile>
+    <ClCompile Include="ShootingPhaseAction.cpp" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -430,6 +450,7 @@
       <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="Consumable.h">
+<<<<<<< Updated upstream
       <Filter>consumables</Filter>
     </ClInclude>
     <ClInclude Include="Toolkit.h">
@@ -441,5 +462,19 @@
     <ClInclude Include="Doublelaser.h">
       <Filter>consumables</Filter>
     </ClInclude>
+=======
+      <Filter>Consumables</Filter>
+    </ClInclude>
+    <ClInclude Include="DoubleLaser.h">
+      <Filter>Consumables</Filter>
+    </ClInclude>
+    <ClInclude Include="HackDevice.h">
+      <Filter>Consumables</Filter>
+    </ClInclude>
+    <ClInclude Include="Toolkit.h">
+      <Filter>Consumables</Filter>
+    </ClInclude>
+    <ClInclude Include="ShootingPhaseAction.h" />
+>>>>>>> Stashed changes
   </ItemGroup>
 </Project>

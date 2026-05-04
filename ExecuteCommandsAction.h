@@ -1,17 +1,18 @@
 #pragma once
 #include "Action.h"
-class ExecuteCommandsAction :
-    public Action
+
+
+class ExecuteCommandsAction : public Action
 {
 public:
+
 	ExecuteCommandsAction(ApplicationManager* pApp);
 
-	// Reads parameters (Empty for this action, as no input is needed before executing)
-	virtual void ReadActionParameters();
+	// Nothing to read -- execution needs no extra GUI input.
+	virtual void ReadActionParameters() override;
 
-	// Executes the saved commands for the current player
-	virtual void Execute();
+	// Runs Move(), advances the turn, and triggers shooting if the round ended.
+	virtual void Execute() override;
 
 	virtual ~ExecuteCommandsAction();
 };
-

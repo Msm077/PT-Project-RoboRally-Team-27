@@ -30,6 +30,9 @@ class GameState
 	PhaseType currentPhase; // Which phase of the current round we are in
 	bool endGame;           // True once a win/loss condition is detected
 	Command availableRandomPool[MaxAvailableCommands];
+	// 0 = first player of the round.  Wraps back to 0 each new round.
+	int currTurnIndex;
+
 public:
 
 	// Constructor: creates all Player objects starting at Grid's start cell.
@@ -84,3 +87,4 @@ public:
 	// to know when to trigger the shooting phase.
 	bool IsRoundStart() const;
 };
+

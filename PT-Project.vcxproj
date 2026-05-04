@@ -187,13 +187,21 @@
     <ClCompile Include="CutAction.cpp" />
     <ClCompile Include="DangerZone.cpp" />
     <ClCompile Include="DeleteAction.cpp" />
+<<<<<<< Updated upstream
     <ClCompile Include="Doublelaser.cpp" />
+=======
+    <ClCompile Include="DoubleLaser.cpp" />
+>>>>>>> Stashed changes
     <ClCompile Include="ExecuteCommandsAction.cpp" />
     <ClCompile Include="Flag.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="Grid.cpp" />
+<<<<<<< Updated upstream
     <ClCompile Include="Hackdevice.cpp" />
+=======
+    <ClCompile Include="HackDevice.cpp" />
+>>>>>>> Stashed changes
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="NewGameAction.cpp" />
     <ClCompile Include="Output.cpp" />
@@ -205,6 +213,7 @@
     <ClCompile Include="RotatingGear.cpp" />
     <ClCompile Include="SaveGridAction.cpp" />
     <ClCompile Include="SelectCommandsAction.cpp" />
+    <ClCompile Include="ShootingPhaseAction.cpp" />
     <ClCompile Include="SwitchToDesignModeAction.cpp" />
     <ClCompile Include="SwitchToPlayModeAction.cpp" />
     <ClCompile Include="Toolkit.cpp" />
@@ -255,13 +264,21 @@
     <ClInclude Include="DangerZone.h" />
     <ClInclude Include="DEFS.h" />
     <ClInclude Include="DeleteAction.h" />
+<<<<<<< Updated upstream
     <ClInclude Include="Doublelaser.h" />
+=======
+    <ClInclude Include="DoubleLaser.h" />
+>>>>>>> Stashed changes
     <ClInclude Include="ExecuteCommandsAction.h" />
     <ClInclude Include="Flag.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="Grid.h" />
+<<<<<<< Updated upstream
     <ClInclude Include="Hackdevice.h" />
+=======
+    <ClInclude Include="HackDevice.h" />
+>>>>>>> Stashed changes
     <ClInclude Include="Input.h" />
     <ClInclude Include="NewGameAction.h" />
     <ClInclude Include="Output.h" />
@@ -272,6 +289,7 @@
     <ClInclude Include="RotatingGear.h" />
     <ClInclude Include="SaveGridAction.h" />
     <ClInclude Include="SelectCommandsAction.h" />
+    <ClInclude Include="ShootingPhaseAction.h" />
     <ClInclude Include="SwitchToDesignModeAction.h" />
     <ClInclude Include="SwitchToPlayModeAction.h" />
     <ClInclude Include="Toolkit.h" />

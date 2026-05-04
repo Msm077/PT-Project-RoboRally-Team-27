@@ -100,8 +100,14 @@ enum Command
 // SHOOTING  -> each robot fires its laser at the opponent if facing them
 enum PhaseType
 {
+<<<<<<< Updated upstream
 	PHASE_MOVEMENT,  // players select & execute saved commands
 	PHASE_SHOOTING   // [BONUS] robots fire lasers after movement
+=======
+	PHASE_MOVEMENT,  // players execute their saved commands
+	PHASE_SHOOTING,
+	///TODO: Add more phases here as needed
+>>>>>>> Stashed changes
 };
 
 #endif

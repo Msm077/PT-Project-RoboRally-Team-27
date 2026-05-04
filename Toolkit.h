@@ -1,5 +1,6 @@
 #pragma once
 #include "Consumable.h"
+<<<<<<< Updated upstream
 
 // ============================================================
 // Toolkit  (Consumable subclass)
@@ -8,6 +9,8 @@
 // is fully repaired to maximum health (10) without needing to
 // visit a Workshop cell.
 // ============================================================
+=======
+>>>>>>> Stashed changes
 class Toolkit : public Consumable
 {
 public:
@@ -19,3 +22,7 @@ public:
 
     virtual ~Toolkit() {}
 };
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes

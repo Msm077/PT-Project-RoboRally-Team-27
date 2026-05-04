@@ -1,8 +1,12 @@
 #pragma once
 #include "Action.h"
 
+<<<<<<< Updated upstream
 // ============================================================
 // ShootingPhaseAction  (Play Mode -- Bonus)
+=======
+// ShootingPhaseAction(Play Mode)
+>>>>>>> Stashed changes
 //
 // Called after BOTH players have executed their movement commands
 // for the round (i.e. after ExecuteCommandsAction for Player 2).
@@ -18,7 +22,10 @@
 //
 // ApplicationManager calls this action when GameState's current
 // phase == PHASE_SHOOTING (after AdvancePhase() from ExecuteCommandsAction).
+<<<<<<< Updated upstream
 // ============================================================
+=======
+>>>>>>> Stashed changes
 class ShootingPhaseAction : public Action
 {
 public:
@@ -30,4 +37,8 @@ public:
     virtual void Execute() override;
 
     virtual ~ShootingPhaseAction();
+<<<<<<< Updated upstream
 };
+=======
+};
+>>>>>>> Stashed changes
