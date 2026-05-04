@@ -29,7 +29,7 @@ class GameState
 
 	PhaseType currentPhase; // Which phase of the current round we are in
 	bool endGame;           // True once a win/loss condition is detected
-
+	Command availableRandomPool[MaxAvailableCommands];
 public:
 
 	// Constructor: creates all Player objects starting at Grid's start cell.
@@ -56,7 +56,8 @@ public:
 	// [OPTIONAL] For 3+ players with full sorting, replace this with
 	//            SetPlayerOrder(int sortedOrder[], int count).
 	void SetFirstPlayer(int playerNum);
-
+	void GenerateRandomCommands();
+	Command* GetRandomCommandsPool();
 	// ========== Phase Management ==========
 	// All phase-transition logic belongs here.
 	// Actions (ExecuteCommandsAction, etc.) call AdvancePhase() when a phase ends.

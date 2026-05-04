@@ -56,6 +56,7 @@ public:
 	void    ClearSavedCommands();                 // Resets the saved-command list (call at the start of each round)
 	int     GetSavedCommandCount() const;
 	Command GetSavedCommand(int index) const;
+	Command* GetSavedCommands();
 
 	// ====== Drawing ======
 

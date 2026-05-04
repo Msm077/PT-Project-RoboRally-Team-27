@@ -1,5 +1,8 @@
 #include "GameState.h"
-
+#include <cstdlib> // Needed for rand() and srand()
+#include <ctime>   // Needed for time()
+#include <random>
+#include <iostream>
 #include "Grid.h"
 #include "Player.h"
 #include "Cell.h"
@@ -58,7 +61,23 @@ void GameState::SetFirstPlayer(int playerNum)
 
 	///TODO: Implement this function to set which player goes first this round
 }
+void GameState::GenerateRandomCommands()
+{
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<> dist(1, COMMANDS_COUNT - 1);
 
+	for (int i = 0; i < MaxAvailableCommands; i++) {
+		int randomNum = dist(gen);
+		availableRandomPool[i] = static_cast<Command>(randomNum);
+	}
+}
+
+
+Command* GameState::GetRandomCommandsPool()
+{
+	return availableRandomPool;
+}
 // ========== Phase Management ==========
 
 PhaseType GameState::GetCurrentPhase() const

@@ -17,6 +17,8 @@
 #include "ReadGridAction.h"
 #include "NewGameAction.h"
 #include "AddAntennaAction.h"
+#include "SelectCommandsAction.h"
+#include "ExecuteCommandsAction.h"
 ///TODO: Add #include for all action types
 
 #include "GameState.h"
@@ -140,6 +142,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 	case NEW_GAME:
 		pAct = new NewGameAction(this);
+		break;
+	case SELECT_COMMAND:
+		pAct = new SelectCommandsAction(this);
+		break;
+	case EXECUTE_COMMANDS:
+		pAct = new ExecuteCommandsAction(this);
 		break;
 	///TODO: Add a case for EACH remaining Play Mode action type
 	case STATUS:	// a click on the status bar ==> no action
