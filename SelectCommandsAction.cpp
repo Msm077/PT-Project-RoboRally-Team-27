@@ -137,9 +137,10 @@ void SelectCommandsAction::Execute()
 				pCon->UseEffect(pGrid, pState, pCurrentPlayer);
 			}
 		}
+	}
 
 		// offer hacking in acase the player has one
-		if (pCurrentPlayer->HasHackDeviceConsumable()) {
+	if (pCurrentPlayer->HasHackDeviceConsumable()) {
 			pOut->PrintMessage("You have a Hack Device! Use it on opponent? (Left=YES / Right=NO)");
 			int x, y;
 			pIn->GetPointClicked(x, y);
@@ -157,13 +158,13 @@ void SelectCommandsAction::Execute()
 							pState->GetPlayer(opponentNum)->SetHacked(true);
 							pOut->PrintMessage("Opponent hacked! They will skip their next turn.");*/
 			}
-		}
+	}
 
-		ReadActionParameters();
+	ReadActionParameters();
 		// notify the user
 		pOut->PrintMessage("Commands saved. Click Execute Commands to continue.");
 	}
-}
+
 SelectCommandsAction::~SelectCommandsAction()
 {
 }
