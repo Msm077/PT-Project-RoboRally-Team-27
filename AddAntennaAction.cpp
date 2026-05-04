@@ -37,8 +37,14 @@ void AddAntennaAction::ReadActionParameters()
         antPos = CellPosition();
         return;
     }
-
-    pOut->ClearStatusBar();
+    if (pGrid->GetNumberofObject(Antennas) != 0)
+    {
+        pGrid->PrintErrorMessage("Error: Only one flag is allowed on the grid! Click to continue...");
+        antPos = CellPosition();
+        pOut->ClearStatusBar();
+        return;
+        pOut->ClearStatusBar();
+    }
 }
 
 void AddAntennaAction::Execute()
