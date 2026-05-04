@@ -19,6 +19,7 @@
 #include "AddAntennaAction.h"
 #include "SelectCommandsAction.h"
 #include "ExecuteCommandsAction.h"
+#include "RebotAndRepairAction.h"
 ///TODO: Add #include for all action types
 
 #include "GameState.h"
@@ -148,6 +149,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 	case EXECUTE_COMMANDS:
 		pAct = new ExecuteCommandsAction(this);
+		break;
+	case REBOOT:
+		pAct = new RebotAndRepairAction(this);
 		break;
 	///TODO: Add a case for EACH remaining Play Mode action type
 	case STATUS:	// a click on the status bar ==> no action

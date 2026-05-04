@@ -106,3 +106,8 @@ void Player::AppendPlayerInfo(string& playersInfo) const
 	playersInfo += to_string(currDirection) + ", ";
 	playersInfo += to_string(health) + ")";
 }
+void Player::incrementHealth(int n)
+{
+	int health = this->health + n;
+	SetHealth(health);
+}

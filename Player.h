@@ -66,6 +66,6 @@ public:
 	// ====== Game Logic ======
 
 	void Move(Grid* pGrid, GameState* pState);
-
+	void incrementHealth(int n);
 	void AppendPlayerInfo(string& playersInfo) const; // Appends "P0(direction, health)" to the string
 };
