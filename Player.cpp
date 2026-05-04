@@ -20,8 +20,15 @@ Cell* Player::GetCell() const       { return pCell; }
 
 void Player::SetHealth(int h)
 {
-	///TODO: Add validation (e.g. clamp to 0..MaxHealth)
-	health = h;
+	if (h > 10) {
+		health = 10;
+	}
+	else if (h < 0) {
+		health = 0;
+	}
+	else {
+		health = h;
+	}
 }
 int Player::GetHealth() const       { return health; }
 
@@ -74,10 +81,9 @@ void Player::ClearDrawing(Output* pOut) const
 	else if (this->GetCell()->GetDangerZone()) {
 		cellColor = UI.DangerZoneCellColor;
 	}
-	///TODO: Determine the correct background colour for this cell
 	//       (hint: may differ from UI.CellColor if cell is a WaterPit or DangerZone)
 	pOut->DrawCell(this->GetCell()->GetCellPosition(), cellColor);
-	///TODO: Call the appropriate Output function to draw the token using cellColor (erases it)
+	
 }
 
 // ====== Game Logic ======
