@@ -74,7 +74,7 @@ public:
 	DeviceType GetDevice() const;
 
 	void AddConsumable(Consumable* c, int idx); // called by apply at workshop to add the consumable
-	bool UseConsumable(Consumable* c); // consumes the consumable
+	bool UseConsumable(int idx); // consumes the consumable
 	bool HasToolKitConsumable() const;
 	bool HasHackDeviceConsumable() const;
 	void SetHacked(bool hacked);
