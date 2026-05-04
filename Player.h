@@ -20,6 +20,7 @@ class Player
 	// SelectCommandAction fills this array; Move() executes it; ClearSavedCommands() resets it.
 	Command savedCommands[MaxSavedCommands];
 	int savedCommandCount; // how many commands have been saved so far (0..MaxSavedCommands)
+	void ExecuteCommand(Command cmd, CellPosition& pos);
 
 	// ---- [OPTIONAL BONUS] Shooting Phase data members ----
 	// Uncomment when adding the shooting phase (see DEFS.h PhaseType):
@@ -27,15 +28,13 @@ class Player
 	//   bool isHacked;   // true = this player skips their turn this round
 	bool isHacked;   // true = this player skips their turn this round
 	// ---- [OPTIONAL BONUS] Workshop Consumables data members ----
+	DeviceType equippedDevice;
 	// Uncomment when adding consumables (see Workshop.h):
 	//   Consumable* inventory[MaxConsumables];
 	//   int inventoryCount;
 	ConsumableType inventory[MaxConsumables]; // slots for consumables 
 	int inventoryCount; // num of consumables
 
-	DeviceType equippedDevice;
-
-	 
 public:
 
 	Player(Cell* pCell, int playerNum); // Initialises all data members
@@ -85,6 +84,6 @@ public:
 	// ====== Game Logic ======
 
 	void Move(Grid* pGrid, GameState* pState);
-	void incrementHealth(int n); void DecrementHealth(int n);
+	void incrementHealth(int n);
 	void AppendPlayerInfo(string& playersInfo) const; // Appends "P0(direction, health)" to the string
 };
