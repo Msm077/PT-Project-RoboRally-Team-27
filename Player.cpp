@@ -204,9 +204,9 @@ bool Player::UseConsumable(Consumable* c)
 	for (int i = 0; i < inventoryCount; i++) {
 		if (inventory[i] == c) {
 			// Shift array left to remove it
-			for (int j = i; j < inventoryCount - 1; j++)
-				inventory[j] = inventory[j + 1]; // ask msm
-			inventory[--inventoryCount] = nullptr;
+            delete inventory[i];
+            inventory[i] = nullptr;
+            inventoryCount--;
 			return true;
 		}
 	}
