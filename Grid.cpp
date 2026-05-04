@@ -138,7 +138,7 @@ int Grid::GetNumberofObject(Type type) {
 
 void Grid::UpdateInterface(const GameState* pState) const
 {
-	if (UI.InterfaceMode == MODE_DESIGN)
+	
 	{
 		// 1- Draw every cell (background colour, water pits, danger zones)
 		for (int i = NumVerticalCells - 1; i >= 0; i--)
@@ -153,7 +153,7 @@ void Grid::UpdateInterface(const GameState* pState) const
 		// 3- Draw all player tokens (delegated to GameState -- Grid does not own players)
 		pState->DrawAllPlayers(pOut);
 	}
-	else // Play mode
+	if (UI.InterfaceMode == MODE_PLAY) // Play mode
 	{
 		pOut->CreatePlayModeToolBar();
 		// Print the players info bar on the right side of the toolbar.

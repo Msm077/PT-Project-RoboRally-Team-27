@@ -38,6 +38,8 @@ int playerNum = pPlayer->GetPlayerNumber();
     else
     {
         pPlayer->SetCell(pGrid->GetStartCell());
+		Draw(pGrid->GetOutput());
+		pState->DrawAllPlayers(pGrid->GetOutput());
         pGrid->PrintErrorMessage("Player " + to_string(playerNum) + " returns to start with " + to_string(pPlayer->GetHealth()) + " health. Click to continue...");
     }
 
