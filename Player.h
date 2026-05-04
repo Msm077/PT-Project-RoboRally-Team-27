@@ -109,4 +109,5 @@ public:
 
 	void SetHacked(bool hacked);
 	bool IsHacked() const;
+	void Reset();
 };

@@ -1,6 +1,7 @@
 #pragma once
 #include "Consumable.h"
 
+
 // ============================================================
 // HackDevice  (Consumable subclass)
 //
