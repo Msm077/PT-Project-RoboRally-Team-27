@@ -97,10 +97,11 @@ void GameState::SetCurrentPhase(PhaseType phase)
 
 void GameState::AdvancePhase()
 {
-	// Currently only PHASE_MOVEMENT exists.
-	// [OPTIONAL BONUS] If you add PHASE_SHOOTING to the PhaseType enum (DEFS.h),
-	// update this to cycle:  MOVEMENT --> SHOOTING --> MOVEMENT
-	currentPhase = PHASE_MOVEMENT;
+	// MOVEMENT --> SHOOTING --> MOVEMENT --> ...
+	if (currentPhase == PHASE_MOVEMENT)
+		currentPhase = PHASE_SHOOTING;
+	else
+		currentPhase = PHASE_MOVEMENT;
 }
 
 // ========== End-Game ==========

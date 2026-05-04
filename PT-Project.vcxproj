@@ -129,6 +129,10 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\Downloads\bonus_consumables\Consumable.cpp" />
+    <ClCompile Include="..\..\..\Downloads\bonus_consumables\DoubleLaser.cpp" />
+    <ClCompile Include="..\..\..\Downloads\bonus_consumables\HackDevice.cpp" />
+    <ClCompile Include="..\..\..\Downloads\bonus_consumables\Toolkit.cpp" />
     <ClCompile Include="Action.cpp" />
     <ClCompile Include="AddAntennaAction.cpp" />
     <ClCompile Include="AddBeltAction.cpp" />
@@ -208,6 +212,10 @@
     <ClCompile Include="Workshop.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\Downloads\bonus_consumables\Consumable.h" />
+    <ClInclude Include="..\..\..\Downloads\bonus_consumables\DoubleLaser.h" />
+    <ClInclude Include="..\..\..\Downloads\bonus_consumables\HackDevice.h" />
+    <ClInclude Include="..\..\..\Downloads\bonus_consumables\Toolkit.h" />
     <ClInclude Include="Action.h" />
     <ClInclude Include="AddAntennaAction.h" />
     <ClInclude Include="AddBeltAction.h" />

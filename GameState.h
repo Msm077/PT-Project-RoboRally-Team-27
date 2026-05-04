@@ -80,4 +80,7 @@ public:
 
 	void DrawAllPlayers(Output* pOut) const;          // Draw every player's token
 	void AppendPlayersInfo(string& info) const;       // Build the play-mode status string
+
+	// to know when to trigger the shooting phase.
+	bool IsRoundStart() const;
 };
