@@ -36,7 +36,7 @@ void ExecuteCommandsAction::Execute()
 	pCurrentPlayer->Move(pGrid, pGameState);
 
 	// Reset hacked state after turn ends
-	//pCurrentPlayer->SetHacked(false); HANDLED IN SELECT COMMANDS ACTION
+	pCurrentPlayer->SetHacked(false); //HANDLED IN SELECT COMMANDS ACTION
 
 
 

@@ -234,14 +234,13 @@ void Player::Draw(Output* pOut) const
 void Player::ClearDrawing(Output* pOut) const
 {
 	color cellColor = UI.CellColor;
-	if (this->GetCell()->GetWaterPit()) {
-		cellColor = UI.WaterPitsCellColor;
-	}
-	else if (this->GetCell()->GetDangerZone()) {
-		cellColor = UI.DangerZoneCellColor;
-	}
-	//       (hint: may differ from UI.CellColor if cell is a WaterPit or DangerZone)
+    GameObject* pObj = this->GetCell()->GetGameObject();
 	pOut->DrawCell(this->GetCell()->GetCellPosition(), cellColor);
+    if (pObj) {
+        this->GetCell()->GetGameObject()->Draw(pOut);  
+    }
+	//       (hint: may differ from UI.CellColor if cell is a WaterPit or DangerZone)
+    
 	
 }
 
@@ -278,7 +277,7 @@ void Player::Move(Grid* pGrid, GameState* pState)
         pGrid->UpdatePlayerCell(this, currentPos);
 
         // 5th drawing the player at the new position
-        Draw(pOut);
+        pGrid->UpdateInterface(pState);
 
         // 6. Trigger the Apply() of the game object at the NEW cell
         // exception: the workshop is applied only after the final command
@@ -309,9 +308,24 @@ void Player::Move(Grid* pGrid, GameState* pState)
 
 void Player::AppendPlayerInfo(string& playersInfo) const
 {
+    string direction;
+    switch (currDirection) {  //Locating the Veriticies depending on the triangle direction
+    case UP:
+        direction = "Up";
+        break;
+    case DOWN:
+        direction = "Down";
+        break;
+    case RIGHT:
+        direction = "Right";
+        break;
+    case LEFT:
+        direction = "Left";
+        break;
+    }
 	// TODO: Modify the Info as needed
-	playersInfo += "P" + to_string(playerNum) + "(";
-	playersInfo += to_string(currDirection) + ", ";
+	playersInfo += "P" + to_string(playerNum) + "(Facing: ";
+	playersInfo += direction + ", Health: ";
 	playersInfo += to_string(health) + ")";
 }
 
