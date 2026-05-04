@@ -302,8 +302,8 @@ void Player::Move(Grid* pGrid, GameState* pState)
     }
 
     pOut->PrintMessage("movement round finished. Select the next action ");
-/*    ClearSavedCommands(); // prepare for the next round by clearing the commands
-    pState->AdvanceCurrentPlayer();*/
+       ClearSavedCommands(); // prepare for the next round by clearing the commands
+   
 }
 
 void Player::AppendPlayerInfo(string& playersInfo) const

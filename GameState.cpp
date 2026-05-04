@@ -61,9 +61,8 @@ void GameState::AdvanceCurrentPlayer()
 }
 
 void GameState::SetFirstPlayer(int playerNum)
-{currPlayerNumber = playerNum;
-
-
+{		
+	currPlayerNumber = playerNum;
 	///TODO: Implement this function to set which player goes first this round
 }
 void GameState::GenerateRandomCommands()
@@ -100,6 +99,14 @@ void GameState::AdvancePhase()
 	// Currently only PHASE_MOVEMENT exists.
 	// [OPTIONAL BONUS] If you add PHASE_SHOOTING to the PhaseType enum (DEFS.h),
 	// update this to cycle:  MOVEMENT --> SHOOTING --> MOVEMENT
+	//switch (GetCurrentPhase()) {
+	//case PHASE_MOVEMENT:
+	//		SetCurrentPhase(PHASE_SHOOTING);
+	//		break;
+	//case PHASE_SHOOTING:
+	//	SetCurrentPhase(PHASE_MOVEMENT);
+	//	break;
+	//} 
 	currentPhase = PHASE_MOVEMENT;
 }
 
