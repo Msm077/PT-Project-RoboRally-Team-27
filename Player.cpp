@@ -84,10 +84,10 @@ void Player::ExecuteCommand(Command cmd, CellPosition& pos)
 
     // cuz Cell 1 is bottom-left, UP increases VCell and RIGHT increases HCell
     if (currDirection == UP) {
-        targetV += steps;
+        targetV -= steps;
     }
     else if (currDirection == DOWN) {
-        targetV -= steps;
+        targetV += steps;
     }
     else if (currDirection == LEFT) {
         targetH -= steps;
