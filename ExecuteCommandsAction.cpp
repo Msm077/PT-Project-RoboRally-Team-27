@@ -36,9 +36,12 @@ void ExecuteCommandsAction::Execute()
 	pCurrentPlayer->Move(pGrid, pGameState);
 
 	// Reset hacked state after turn ends
-	pCurrentPlayer->SetHacked(false);
+	//pCurrentPlayer->SetHacked(false); HANDLED IN SELECT COMMANDS ACTION
 
-	// 5. Advance to the next player's turn (if applicable)
+
+
+	// 5. Advance to the next player's turn AND CLEAR COMMANDS
+	pCurrentPlayer->ClearSavedCommands();
 	pGameState->AdvanceCurrentPlayer();
 
 	// 6. Update UI

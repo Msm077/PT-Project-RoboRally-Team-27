@@ -98,8 +98,6 @@ void SelectCommandsAction::Execute()
 {
 
 
-	// 1. Get the commands
-	ReadActionParameters();
 
 	// notify the user
 	Grid* pGrid = pManager->GetGrid();
@@ -110,9 +108,12 @@ void SelectCommandsAction::Execute()
 
 	// hacking check
 	if (pCurrentPlayer->IsHacked()) {
-		pOut->PrintMessage("Your robot was hacked! Skipping your turn.");
+		pOut->PrintMessage("Your robot was hacked! Skipping your turn., click to continue");
+		int x, y;
+		pIn->GetPointClicked(x, y);
 		pCurrentPlayer->SetHacked(false); // reset for next round
-		pState->AdvanceCurrentPlayer();   // skip to next player
+		//pState->AdvanceCurrentPlayer();   // skip to next player
+		pOut->ClearStatusBar();
 		return;
 	}
 
