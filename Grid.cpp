@@ -3,6 +3,7 @@
 #include "Cell.h"
 #include "GameObject.h"
 #include "Belt.h"
+#include "Antenna.h"
 #include "Player.h"
 #include "GameState.h"
 
@@ -117,7 +118,16 @@ Cell* Grid::GetStartCell() const
 	// Players start at the bottom-left cell of the board
 	return CellList[NumVerticalCells - 1][0];
 }
-
+Cell* Grid::GetAntennaCell()const {
+	for (int i = NumVerticalCells - 1; i >= 0; i--)
+		for (int j = 0; j < NumHorizontalCells; j++)
+		{
+			GameObject* pObj = CellList[i][j]->GetGameObject();
+			if (dynamic_cast<Antenna*>(pObj) != nullptr)
+				return CellList[i][j];
+		}
+	
+}
 GameObject* Grid::GetGameObjectFromCell(const CellPosition& cellpos) const {
 	return (CellList[cellpos.VCell()][cellpos.HCell()])->GetGameObject();
 }

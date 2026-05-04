@@ -46,7 +46,9 @@ GameObject * Cell::GetGameObject() const
 {
 	return pGameObject;
 }
-
+Antenna* Cell::GetAntenna() const {
+	return dynamic_cast<Antenna*>(pGameObject);
+}
 Belt * Cell::GetBelt() const
 {
 	return dynamic_cast<Belt *>(pGameObject);

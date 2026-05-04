@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Cell.h"
 #include "Output.h"
+#include "Antenna.h"
 
 GameState::GameState(Grid* pGrid)
 {
@@ -23,7 +24,7 @@ GameState::GameState(Grid* pGrid)
 
 	currPlayerNumber = 0;         // Player 0 goes first by default
 	currentPhase = PHASE_MOVEMENT;
-	endGame = false;
+	endGame = false; startOfRound = false;
 }
 
 GameState::~GameState()
@@ -56,15 +57,24 @@ void GameState::ResetAllPlayers() {
 }
 // ========== Turn Management ==========
 
-void GameState::AdvanceCurrentPlayer()
+void GameState::SetFirstPlayer(int playerNum)
 {
-	currPlayerNumber = (currPlayerNumber + 1) % MaxPlayerCount;
+	currPlayerNumber = playerNum;
 }
 
-void GameState::SetFirstPlayer(int playerNum)
-{		
-	currPlayerNumber = playerNum;
-	///TODO: Implement this function to set which player goes first this round
+void GameState::AdvanceCurrentPlayer(Grid* pGrid)
+{
+	// First player of the round just went — give turn to second player
+	if (!startOfRound)
+	{
+		currPlayerNumber = (currPlayerNumber + 1) % MaxPlayerCount;
+		startOfRound = true; // Mark that after this turn, the round ends
+		return;
+	}
+
+	// Both players have gone — let the antenna decide who goes first NEXT round
+	startOfRound = false;
+	pGrid->GetAntennaCell()->GetAntenna()->Apply(pGrid, this, GetPlayer(currPlayerNumber));
 }
 void GameState::GenerateRandomCommands()
 {

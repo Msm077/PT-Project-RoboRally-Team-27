@@ -35,6 +35,7 @@ public:
 	                                        // It does NOT add the object and returns false if the cell already contains one
 	GameObject * GetGameObject() const;     // A getter for pGameObject of the cell
 	//TODO implement similar functions to check if a cell has a specific gameobject if needed	
+	Antenna* GetAntenna() const;
 	Belt * GetBelt() const;	// Checks if pGameObject is a Belt Then returns true if it is a belt or returns NULL if not belt
 	Flag * GetFlag() const;	    // Checks if pGameObject is a Flag Then returns true if it is a flag or returns NULL if not flag
 	WaterPit* GetWaterPit() const;

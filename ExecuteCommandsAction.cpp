@@ -42,7 +42,7 @@ void ExecuteCommandsAction::Execute()
 
 	// 5. Advance to the next player's turn AND CLEAR COMMANDS
 	pCurrentPlayer->ClearSavedCommands();
-	pGameState->AdvanceCurrentPlayer();
+	pGameState->AdvanceCurrentPlayer(pGrid);
 	pOut->ClearCommandsBar();
 
 	// 6. Update UI
