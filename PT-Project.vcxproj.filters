@@ -25,6 +25,9 @@
     <Filter Include="GUIClasses">
       <UniqueIdentifier>{03fd4e0d-92e0-4271-bb9b-d6e9f21ec35f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Consumables">
+      <UniqueIdentifier>{f7ea8e8e-187e-4117-ab49-3de4de66b1f2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMUgraphicsLib\auxil.cpp">
@@ -242,6 +245,15 @@
     <ClCompile Include="SelectCommandsAction.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="ToolKit.cpp">
+      <Filter>Consumables</Filter>
+    </ClCompile>
+    <ClCompile Include="HackDevice.cpp">
+      <Filter>Consumables</Filter>
+    </ClCompile>
+    <ClCompile Include="Consumable.cpp">
+      <Filter>Consumables</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -413,6 +425,15 @@
     </ClInclude>
     <ClInclude Include="SelectCommandsAction.h">
       <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolKit.h">
+      <Filter>Consumables</Filter>
+    </ClInclude>
+    <ClInclude Include="HackDevice.h">
+      <Filter>Consumables</Filter>
+    </ClInclude>
+    <ClInclude Include="Consumable.h">
+      <Filter>Consumables</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

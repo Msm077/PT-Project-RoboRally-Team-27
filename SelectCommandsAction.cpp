@@ -123,37 +123,47 @@ void SelectCommandsAction::Execute()
 	}
 
 	// offering toolkit if the user has one 
-	if (pCurrentPlayer->HasConsumable(TOOLKIT)) {
+
+
+
+	if (pCurrentPlayer->HasToolKitConsumable()) {
 		pOut->PrintMessage("You have a Toolkit! Use it to repair? (Left=YES / Right=NO)");
 		int x, y;
 		pIn->GetPointClicked(x, y);
 		if (x < UI.width / 2) {
-			pCurrentPlayer->UseConsumable(TOOLKIT);
-			pCurrentPlayer->SetHealth(10);
-			pOut->PrintMessage("Toolkit used! Robot fully repaired.");
-		}
-	}
 
-	// offer hacking in acase the player has one
-	if (pCurrentPlayer->HasConsumable(HACK_DEVICE)) {
-		pOut->PrintMessage("You have a Hack Device! Use it on opponent? (Left=YES / Right=NO)");
-		int x, y;
-		pIn->GetPointClicked(x, y);
-		if (x < UI.width / 2) {
-			pCurrentPlayer->UseConsumable(HACK_DEVICE);
-			// Hack the OTHER player
-			int currNum = (pCurrentPlayer == pState->GetPlayer(0)) ? 0 : 1;
-			int opponentNum = (currNum == 0) ? 1 : 0;
-			pState->GetPlayer(opponentNum)->SetHacked(true);
-			pOut->PrintMessage("Opponent hacked! They will skip their next turn.");
+			Consumable* pCon = pCurrentPlayer->GetInventoryItem(0);
+			if (pCurrentPlayer->UseConsumable(pCon)) {
+				pCon->UseEffect(pGrid, pState, pCurrentPlayer);
+			}
 		}
-	}
 
-	ReadActionParameters();
-	// notify the user
-	pOut->PrintMessage("Commands saved. Click Execute Commands to continue.");
+		// offer hacking in acase the player has one
+		if (pCurrentPlayer->HasHackDeviceConsumable()) {
+			pOut->PrintMessage("You have a Hack Device! Use it on opponent? (Left=YES / Right=NO)");
+			int x, y;
+			pIn->GetPointClicked(x, y);
+			if (x < UI.width / 2) {
+				//
+				Consumable* pCon = pCurrentPlayer->GetInventoryItem(1);
+				if (pCurrentPlayer->UseConsumable(pCon)) {
+					pCon->UseEffect(pGrid, pState, pCurrentPlayer);
+				}
+
+				/*			pCurrentPlayer->UseConsumable(HACK_DEVICE);
+							// Hack the OTHER player
+							int currNum = (pCurrentPlayer == pState->GetPlayer(0)) ? 0 : 1;
+							int opponentNum = (currNum == 0) ? 1 : 0;
+							pState->GetPlayer(opponentNum)->SetHacked(true);
+							pOut->PrintMessage("Opponent hacked! They will skip their next turn.");*/
+			}
+		}
+
+		ReadActionParameters();
+		// notify the user
+		pOut->PrintMessage("Commands saved. Click Execute Commands to continue.");
+	}
 }
-
 SelectCommandsAction::~SelectCommandsAction()
 {
 }
