@@ -182,6 +182,7 @@
     <ClCompile Include="CutAction.cpp" />
     <ClCompile Include="DangerZone.cpp" />
     <ClCompile Include="DeleteAction.cpp" />
+    <ClCompile Include="ExecuteCommandsAction.cpp" />
     <ClCompile Include="Flag.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameState.cpp" />
@@ -193,8 +194,10 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ReadGridAction.cpp" />
+    <ClCompile Include="RebotAndRepairAction.cpp" />
     <ClCompile Include="RotatingGear.cpp" />
     <ClCompile Include="SaveGridAction.cpp" />
+    <ClCompile Include="SelectCommandsAction.cpp" />
     <ClCompile Include="SwitchToDesignModeAction.cpp" />
     <ClCompile Include="SwitchToPlayModeAction.cpp" />
     <ClCompile Include="WaterPit.cpp" />
@@ -239,6 +242,7 @@
     <ClInclude Include="DangerZone.h" />
     <ClInclude Include="DEFS.h" />
     <ClInclude Include="DeleteAction.h" />
+    <ClInclude Include="ExecuteCommandsAction.h" />
     <ClInclude Include="Flag.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameState.h" />
@@ -249,8 +253,10 @@
     <ClInclude Include="PasteAction.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="ReadGridAction.h" />
+    <ClInclude Include="RebotAndRepairAction.h" />
     <ClInclude Include="RotatingGear.h" />
     <ClInclude Include="SaveGridAction.h" />
+    <ClInclude Include="SelectCommandsAction.h" />
     <ClInclude Include="SwitchToDesignModeAction.h" />
     <ClInclude Include="SwitchToPlayModeAction.h" />
     <ClInclude Include="UI_Info.h" />

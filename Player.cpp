@@ -314,15 +314,8 @@ void Player::AppendPlayerInfo(string& playersInfo) const
 	playersInfo += to_string(currDirection) + ", ";
 	playersInfo += to_string(health) + ")";
 }
-int Player::GetMaxCommands() const
-{
-	if (equippedDevice == NO_DEVICE) {
-		return 5;
-	}
-	else if (equippedDevice == EXTENDED_MEMORY) {
-		return 6;
-	}
-}
+
+
 int Player::GetMaxCommands() const
 {
 	if (equippedDevice == NO_DEVICE) {

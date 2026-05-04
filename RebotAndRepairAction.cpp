@@ -15,7 +15,7 @@ void RebotAndRepairAction::Execute()
 
 	Player* pCurrentPlayer = pManager->GetGameState()->GetCurrentPlayer();
 
-	pCurrentPlayer->incrementHealth();
+	pCurrentPlayer->incrementHealth(1);
 
 
 	pOut->PrintMessage("Current player cannot move, moving to the next player");

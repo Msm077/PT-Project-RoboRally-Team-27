@@ -23,11 +23,10 @@ void WaterPit::Apply(Grid* pGrid, GameState* pState, Player* pPlayer)
 int playerNum = pPlayer->GetPlayerNumber();
     pGrid->PrintErrorMessage("Player " + to_string(playerNum) + " fell into a water pit! Click to continue...");
     
-    int newHealth = pPlayer->GetHealth() - 3;
-    pPlayer->SetHealth(newHealth);
+	pPlayer->incrementHealth(-3);
             int winnerNum;
 
-    if (newHealth <= 0)
+    if (pPlayer->GetHealth() <= 0)
     {
         pGrid->PrintErrorMessage("Player " + to_string(playerNum) + " has died! Game over. Click to continue...");
     if (playerNum == 0)
@@ -39,7 +38,7 @@ int playerNum = pPlayer->GetPlayerNumber();
     else
     {
         pPlayer->SetCell(pGrid->GetStartCell());
-        pGrid->PrintErrorMessage("Player " + to_string(playerNum) + " returns to start with " + to_string(newHealth) + " health. Click to continue...");
+        pGrid->PrintErrorMessage("Player " + to_string(playerNum) + " returns to start with " + to_string(pPlayer->GetHealth()) + " health. Click to continue...");
     }
 
 	// == Here are some guideline steps (numbered below) to implement this function ==

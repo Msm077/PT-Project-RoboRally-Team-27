@@ -21,15 +21,12 @@ void DangerZone::Apply(Grid* pGrid, GameState* pState, Player* pPlayer)
 	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
     pGrid->PrintErrorMessage("You have reached a danger zone. Click to continue ...");
 
-    int oldHealth = pPlayer->GetHealth();
-    int newHealth = oldHealth - 1;
-    pPlayer->SetHealth(newHealth);
+	pPlayer->incrementHealth(-1);
 
-    string msg = "Your health decreased from " + to_string(oldHealth) + 
-                 " to " + to_string(newHealth) + ". Click to continue...";
+    string msg = "Your health decreased to " + to_string(pPlayer->GetHealth()) + ". Click to continue...";
     pGrid->PrintErrorMessage(msg);
 
-    if (newHealth <= 0)
+    if (pPlayer->GetHealth() <= 0)
     {
         int playerNum = pPlayer->GetPlayerNumber();
         int winnerNum;
