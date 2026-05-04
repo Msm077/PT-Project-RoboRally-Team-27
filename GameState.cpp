@@ -47,7 +47,12 @@ Player* GameState::GetPlayer(int playerNum) const
 		return PlayerList[playerNum];
 	return nullptr;
 }
-
+void GameState::ResetAllPlayers() {
+	for (int i = 0; i < MaxPlayerCount; i++)
+	{
+		PlayerList[i]->Reset(); 
+	}
+}
 // ========== Turn Management ==========
 
 void GameState::AdvanceCurrentPlayer()

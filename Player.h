@@ -10,6 +10,7 @@ class GameState;
 class Player
 {
 	Cell* pCell;           // Pointer to the cell the player currently occupies
+	Cell* startCell;
 	const int playerNum;   // Player index 0..MaxPlayerCount-1 (constant after construction)
 
 	Direction currDirection; // The direction the player is currently facing
@@ -85,5 +86,6 @@ public:
 
 	void Move(Grid* pGrid, GameState* pState);
 	void incrementHealth(int n);
+	void Reset();
 	void AppendPlayerInfo(string& playersInfo) const; // Appends "P0(direction, health)" to the string
 };

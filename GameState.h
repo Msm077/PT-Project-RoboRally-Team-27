@@ -42,7 +42,7 @@ public:
 
 	Player* GetCurrentPlayer() const;           // Returns the player whose turn it is
 	Player* GetPlayer(int playerNum) const;     // Returns any player by index (0-based)
-
+	void ResetAllPlayers();
 	// ========== Turn Management ==========
 
 	void AdvanceCurrentPlayer(); // Moves to the next player (cycles: 0 -> 1 -> ... -> 0)

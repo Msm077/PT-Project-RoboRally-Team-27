@@ -3,6 +3,7 @@
 #include "Input.h"
 #include "Output.h"
 #include "Grid.h"
+#include "GameState.h"
 class NewGameAction :public Action
 {
 	// Always add action parameters as private data members
