@@ -15,7 +15,7 @@ Player::Player(Cell* pCell, int playerNum)
 	for (int i = 0; i < MaxSavedCommands; i++)
 		savedCommands[i] = NO_COMMAND;
 	for (int i = 0; i < MaxConsumables; i++)
-		inventory[i] = NO_CONSUMABLE;
+		inventory[i] = nullptr; //CHANGED
 }
 
 void Player::ExecuteCommand(Command cmd, CellPosition& pos)
@@ -139,6 +139,16 @@ int Player::GetHealth() const       { return health; }
 Direction Player::GetDirection() const      { return currDirection; }
 void      Player::SetDirection(Direction d) { currDirection = d; }
 
+int Player::GetInventoryCount()
+{
+    return inventoryCount;
+}
+
+Consumable* Player::GetInventoryItem(int idx)
+{
+    return inventory[idx];
+}
+
 int Player::GetPlayerNumber() {
 	return playerNum;
 }
@@ -180,22 +190,23 @@ DeviceType Player::GetDevice() const
 	return equippedDevice;
 }
 
-void Player::AddConsumable(ConsumableType c)
+void Player::AddConsumable(Consumable* c, int idx) // idx to identify the consumable type
+// idx 0 for toolkit idx 1 for hackDevice 2 for both
 {
 	if (inventoryCount < MaxConsumables) {
-		inventory[inventoryCount] = c;
+		inventory[idx] = c;
 		inventoryCount++;
 	}
 }
 
-bool Player::UseConsumable(ConsumableType c)
+bool Player::UseConsumable(Consumable* c)
 {
 	for (int i = 0; i < inventoryCount; i++) {
 		if (inventory[i] == c) {
 			// Shift array left to remove it
 			for (int j = i; j < inventoryCount - 1; j++)
-				inventory[j] = inventory[j + 1];
-			inventory[--inventoryCount] = NO_CONSUMABLE;
+				inventory[j] = inventory[j + 1]; // ask msm
+			inventory[--inventoryCount] = nullptr;
 			return true;
 		}
 	}
@@ -203,11 +214,21 @@ bool Player::UseConsumable(ConsumableType c)
 
 }
 
-bool Player::HasConsumable(ConsumableType c) const
+bool Player::HasToolKitConsumable() const
 {
-	for (int i = 0; i < inventoryCount; i++)
-		if (inventory[i] == c) return true;
-	return false;
+    // idx 0 for toolkit idx 1 for hackDevice 2 for both
+    if (inventory[0] != nullptr) {
+        return true;
+    }
+    return false;
+}
+
+bool Player::HasHackDeviceConsumable() const
+{
+    if (inventory[1] != nullptr) {
+        return true;
+    }
+    return false;
 }
 
 void Player::SetHacked(bool hacked)
@@ -351,7 +372,10 @@ void Player::Reset(){
     // Initialise saved commands to NO_COMMAND
     for (int i = 0; i < MaxSavedCommands; i++)
         savedCommands[i] = NO_COMMAND;
-    for (int i = 0; i < MaxConsumables; i++)
-        inventory[i] = NO_CONSUMABLE;
+    for (int i = 0; i < MaxConsumables; i++){
+        delete inventory[i];
+
+        inventory[i] = nullptr;//changed
+        }
     health = 10; currDirection = RIGHT; savedCommandCount = 0; equippedDevice = NO_DEVICE; inventoryCount = 0; isHacked = false;
 }

@@ -1,4 +1,5 @@
 #pragma once
+#include "Consumable.h"
 
 #include "Grid.h"
 #include "Cell.h"
@@ -31,10 +32,10 @@ class Player
 	// ---- [OPTIONAL BONUS] Workshop Consumables data members ----
 	DeviceType equippedDevice;
 	// Uncomment when adding consumables (see Workshop.h):
-	//   Consumable* inventory[MaxConsumables];
-	//   int inventoryCount;
-	ConsumableType inventory[MaxConsumables]; // slots for consumables 
-	int inventoryCount; // num of consumables
+	Consumable* inventory[MaxConsumables]; // idx 0 for toolkit idx 1 for hackDevice 2 for both
+	int inventoryCount;
+	//ConsumableType inventory[MaxConsumables]; // slots for consumables 
+	//int inventoryCount; // num of consumables
 
 public:
 
@@ -51,7 +52,9 @@ public:
 	Direction GetDirection() const;
 	void      SetDirection(Direction d);
 
-	
+	int GetInventoryCount();
+	Consumable* GetInventoryItem(int idx);
+
 	int GetPlayerNumber();
 
 	///TODO: Add more setters/getters here as needed
@@ -70,10 +73,10 @@ public:
 	void SetDevice(DeviceType d);
 	DeviceType GetDevice() const;
 
-	void AddConsumable(ConsumableType c); // called by apply at workshop to add the consumable
-	bool UseConsumable(ConsumableType c); // consumes the consumable
-	bool HasConsumable(ConsumableType c) const;
-
+	void AddConsumable(Consumable* c, int idx); // called by apply at workshop to add the consumable
+	bool UseConsumable(Consumable* c); // consumes the consumable
+	bool HasToolKitConsumable() const;
+	bool HasHackDeviceConsumable() const;
 	void SetHacked(bool hacked);
 	bool IsHacked() const;
 

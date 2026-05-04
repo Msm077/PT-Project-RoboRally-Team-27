@@ -1,6 +1,6 @@
 #include "Workshop.h"
-
-
+#include "ToolKit.h"
+#include "HackDevice.h"
 
 Workshop::Workshop(const CellPosition & workshopPosition):GameObject( workshopPosition)
 {
@@ -36,26 +36,26 @@ void Workshop::Apply(Grid* pGrid, GameState* pState, Player* pPlayer)
 		pOut->PrintMessage("Extended Memory equipped!");
 	}
 
-	// --- 3. Consumables: offer Toolkit ---
-	if (!pPlayer->HasConsumable(TOOLKIT)) {
+	// --- 3. Consumables: offer Toolkit --- (Inventory Index 0)
+	if (!pPlayer->HasToolKitConsumable()){
 		pOut->PrintMessage("Workshop: Buy Toolkit (repair anywhere)? Click YES / NO");
 		Input* pIn = pGrid->GetInput();
 		int x, y;
 		pIn->GetPointClicked(x, y);
 		if (x < UI.width / 2) {
-			pPlayer->AddConsumable(TOOLKIT);
+			pPlayer->AddConsumable(new Toolkit(), 0);
 			pOut->PrintMessage("Toolkit added to inventory!");
 		}
 	}
 
 	// --- 4. Consumables: offer Hack Device ---
-	if (!pPlayer->HasConsumable(HACK_DEVICE)) {
+	if (!pPlayer->HasHackDeviceConsumable()) {
 		pOut->PrintMessage("Workshop: Buy Hack Device (skip opponent)? Click YES / NO");
 		Input* pIn = pGrid->GetInput();
 		int x, y;
 		pIn->GetPointClicked(x, y);
 		if (x < UI.width / 2) {
-			pPlayer->AddConsumable(HACK_DEVICE);
+			pPlayer->AddConsumable(new HackDevice(), 1);
 			pOut->PrintMessage("Hack Device added to inventory!");
 		}
 	}
