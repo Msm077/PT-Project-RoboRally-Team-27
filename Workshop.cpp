@@ -19,16 +19,17 @@ void Workshop::Apply(Grid* pGrid, GameState* pState, Player* pPlayer)
 	// Apply the workshop's effect on the player
 	// [OPTIONAL BONUS] Consumables can be given to the player here
 	Output* pOut = pGrid->GetOutput();
+	Input* pIn = pGrid->GetInput();
+
 	pPlayer->SetHealth(10);
 	pOut->PrintMessage("workshop effect has been applies, the robot has been repaired");
-
+	int x, y;
+	pIn->GetPointClicked(x, y);
 
 	if (pPlayer->GetDevice() == NO_DEVICE) {
 		pOut->PrintMessage("workshop: Buy Extended Memory (6 cmds)? Click YES area / NO area");
 	}
 	// contact with msm about that
-	Input* pIn = pGrid->GetInput();
-	int x, y;
 	pIn->GetPointClicked(x, y);
 	// Define YES zone as left half of screen, NO as right half (adjust to your UI)
 	if (x < UI.width / 2) {

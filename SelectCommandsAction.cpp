@@ -133,10 +133,12 @@ void SelectCommandsAction::Execute()
 		if (x < UI.width / 2) {
 
 			Consumable* pCon = pCurrentPlayer->GetInventoryItem(0);
-			if (pCurrentPlayer->UseConsumable(0)) {
+			pCon->UseEffect(pGrid, pState, pCurrentPlayer);
+			pCurrentPlayer->UseConsumable(0);
+/*			if (pCurrentPlayer->UseConsumable(0)) {
 				pCon->UseEffect(pGrid, pState, pCurrentPlayer);
-				delete pCurrentPlayer->GetInventoryItem(0);
-			}
+				//delete pCurrentPlayer->GetInventoryItem(0);
+			}*/
 		}
 	}
 
@@ -148,10 +150,12 @@ void SelectCommandsAction::Execute()
 			if (x < UI.width / 2) {
 				//
 				Consumable* pCon = pCurrentPlayer->GetInventoryItem(1);
-				if (pCurrentPlayer->UseConsumable(1)) {
+				pCon->UseEffect(pGrid, pState, pCurrentPlayer);
+				pCurrentPlayer->UseConsumable(1);
+/*				if (pCurrentPlayer->UseConsumable(1)) {
 					pCon->UseEffect(pGrid, pState, pCurrentPlayer);
-					delete pCurrentPlayer->GetInventoryItem(1);
-				}
+					//delete pCurrentPlayer->GetInventoryItem(1);
+				}*/
 
 			}
 	}
