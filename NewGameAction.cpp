@@ -24,9 +24,9 @@ void NewGameAction::Execute()
 	Grid* pGrid = pManager->GetGrid();
 	Output* pOut = pGrid->GetOutput();
 	GameState* pState = pManager->GetGameState();
-	pGrid->ClearGrid();
+	
 	pState->ResetAllPlayers();
-	pOut->CreateDesignModeToolBar();
+	
 	pOut->ClearStatusBar();
 	pGrid->UpdateInterface(pState);
 	

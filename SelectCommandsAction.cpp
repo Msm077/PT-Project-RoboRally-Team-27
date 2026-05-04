@@ -151,12 +151,6 @@ void SelectCommandsAction::Execute()
 					pCon->UseEffect(pGrid, pState, pCurrentPlayer);
 				}
 
-				/*			pCurrentPlayer->UseConsumable(HACK_DEVICE);
-							// Hack the OTHER player
-							int currNum = (pCurrentPlayer == pState->GetPlayer(0)) ? 0 : 1;
-							int opponentNum = (currNum == 0) ? 1 : 0;
-							pState->GetPlayer(opponentNum)->SetHacked(true);
-							pOut->PrintMessage("Opponent hacked! They will skip their next turn.");*/
 			}
 	}
 

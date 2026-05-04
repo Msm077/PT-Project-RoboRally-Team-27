@@ -52,6 +52,7 @@ void GameState::ResetAllPlayers() {
 	{
 		PlayerList[i]->Reset(); 
 	}
+	currPlayerNumber = 0;
 }
 // ========== Turn Management ==========
 
