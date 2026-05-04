@@ -309,9 +309,24 @@ void Player::Move(Grid* pGrid, GameState* pState)
 
 void Player::AppendPlayerInfo(string& playersInfo) const
 {
+    string direction;
+    switch (currDirection) {  //Locating the Veriticies depending on the triangle direction
+    case UP:
+        direction = "Up";
+        break;
+    case DOWN:
+        direction = "Down";
+        break;
+    case RIGHT:
+        direction = "Right";
+        break;
+    case LEFT:
+        direction = "Left";
+        break;
+    }
 	// TODO: Modify the Info as needed
-	playersInfo += "P" + to_string(playerNum) + "(";
-	playersInfo += to_string(currDirection) + ", ";
+	playersInfo += "P" + to_string(playerNum) + "(Facing: ";
+	playersInfo += direction + ", Health: ";
 	playersInfo += to_string(health) + ")";
 }
 

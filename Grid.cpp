@@ -155,11 +155,13 @@ void Grid::UpdateInterface(const GameState* pState) const
 	}
 	else // Play mode
 	{
+		pOut->CreatePlayModeToolBar();
 		// Print the players info bar on the right side of the toolbar.
 		// GameState builds the string because it owns the player data.
 		string playersInfo = "";
 		pState->AppendPlayersInfo(playersInfo);
 		pOut->PrintPlayersInfo(playersInfo);
+		
 
 		// Note: UpdatePlayerCell() already redraws players step-by-step during Play mode.
 	}

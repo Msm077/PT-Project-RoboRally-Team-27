@@ -129,7 +129,7 @@ void GameState::DrawAllPlayers(Output* pOut) const
 	}
 }
 
-void GameState::AppendPlayersInfo(string& info) const
+void GameState::AppendPlayersInfo(string& info) const 
 {
 	for (int i = 0; i < MaxPlayerCount; i++)
 	{
