@@ -19,5 +19,5 @@ void RebotAndRepairAction::Execute()
 
 
 	pOut->PrintMessage("Current player cannot move, moving to the next player");
-	pGS->AdvanceCurrentPlayer();
+	pGS->AdvanceCurrentPlayer(pGrid);
 }

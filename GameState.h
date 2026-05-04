@@ -26,7 +26,7 @@ class GameState
 	Player* PlayerList[MaxPlayerCount]; // Owns all Player objects
 
 	int currPlayerNumber; // index of the player whose turn it is (0..MaxPlayerCount-1)
-
+	bool startOfRound;
 	PhaseType currentPhase; // Which phase of the current round we are in
 	bool endGame;           // True once a win/loss condition is detected
 	Command availableRandomPool[MaxAvailableCommands];
@@ -45,7 +45,7 @@ public:
 	void ResetAllPlayers();
 	// ========== Turn Management ==========
 
-	void AdvanceCurrentPlayer(); // Moves to the next player (cycles: 0 -> 1 -> ... -> 0)
+	void AdvanceCurrentPlayer(Grid* pGrid); // Moves to the next player (cycles: 0 -> 1 -> ... -> 0)
 	
 	// SetFirstPlayer: tells the GameState which player goes first this round.
 	// Called by Antenna::Apply() after it computes distances.
