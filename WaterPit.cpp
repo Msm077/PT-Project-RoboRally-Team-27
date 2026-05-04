@@ -30,11 +30,13 @@ int playerNum = pPlayer->GetPlayerNumber();
     {
         pGrid->PrintErrorMessage("Player " + to_string(playerNum) + " has died! Game over. Click to continue...");
 		pState->SetEndGame(true);
+		int x, y;
+		pGrid->GetInput()->GetPointClicked(x, y);
     if (playerNum == 0)
         winnerNum = 1;
     else
         winnerNum = 0;
-       // pState->EndGame(winnerNum);
+       
     }
     else
     {

@@ -165,6 +165,7 @@ void Grid::UpdateInterface(const GameState* pState) const
 
 		// Note: UpdatePlayerCell() already redraws players step-by-step during Play mode.
 	}
+
 }
 
 void Grid::PrintErrorMessage(string msg)

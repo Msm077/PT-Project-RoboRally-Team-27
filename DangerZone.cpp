@@ -41,6 +41,8 @@ else
         pGrid->PrintErrorMessage("Player " + to_string(playerNum) + " has died! Player " + 
                                   to_string(winnerNum) + " wins! Click to continue...");
 		pState->SetEndGame(true);
+		int x, y;
+		pGrid->GetInput()->GetPointClicked(x, y);
     }
 
 
