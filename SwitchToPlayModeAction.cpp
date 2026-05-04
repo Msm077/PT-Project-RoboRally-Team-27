@@ -14,7 +14,8 @@ void SwitchToPlayModeAction::ReadActionParameters()
 
 void SwitchToPlayModeAction::Execute()
 {
-	Output*    pOut   = pManager->GetGrid()->GetOutput();
+	Grid* pGrid = pManager->GetGrid();
+	Output* pOut = pGrid->GetOutput();
 	GameState* pState = pManager->GetGameState();
 
 	// 1. Switch the global interface mode to Play Mode
@@ -25,7 +26,7 @@ void SwitchToPlayModeAction::Execute()
 
 	// 3. Reset game state for the new play session
 	pState->SetCurrentPhase(PHASE_MOVEMENT);
-
+	pState->ResetAllPlayers();
 	// 4. Redraw the full interface (board + player info bar)
 	pManager->UpdateInterface();
 
