@@ -35,13 +35,10 @@ public:
 	                                        // It does NOT add the object and returns false if the cell already contains one
 	GameObject * GetGameObject() const;     // A getter for pGameObject of the cell
 	//TODO implement similar functions to check if a cell has a specific gameobject if needed	
-	Belt * HasBelt() const;	// Checks if pGameObject is a Belt Then returns true if it is a belt or returns NULL if not belt
-	Flag * HasFlag() const;	    // Checks if pGameObject is a Flag Then returns true if it is a flag or returns NULL if not flag
-	Workshop* HasWS() const;
-	Antenna* HasAntenna() const;
-	RotatingGear* HasGear() const;
-	WaterPit* HasWaterPit() const;
-	DangerZone* HasDangerZone() const;
+	Belt * GetBelt() const;	// Checks if pGameObject is a Belt Then returns true if it is a belt or returns NULL if not belt
+	Flag * GetFlag() const;	    // Checks if pGameObject is a Flag Then returns true if it is a flag or returns NULL if not flag
+	WaterPit* GetWaterPit() const;
+	DangerZone* GetDangerZone() const;
 	// ======= Drawing Functions ======= 
 
 	void DrawCellOrWaterPitOrDangerZone(Output* pOut) const;	// Draws the Cell either has waterpit or dangerzone(either of the gameobjects changes the cell color)

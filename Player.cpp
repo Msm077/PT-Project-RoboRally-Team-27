@@ -61,14 +61,22 @@ void Player::Draw(Output* pOut) const
 	color playerColor = UI.PlayerColors[playerNum];
 
 	///TODO: Call the appropriate Output function to draw the player token with playerColor
+	pOut->DrawPlayer(pCell->GetCellPosition(), playerNum,playerColor, currDirection);
+
 }
 
 void Player::ClearDrawing(Output* pOut) const
 {
+	color cellColor = UI.CellColor;
+	if (this->GetCell()->GetWaterPit()) {
+		cellColor = UI.WaterPitsCellColor;
+	}
+	else if (this->GetCell()->GetDangerZone()) {
+		cellColor = UI.DangerZoneCellColor;
+	}
 	///TODO: Determine the correct background colour for this cell
 	//       (hint: may differ from UI.CellColor if cell is a WaterPit or DangerZone)
-	color cellColor = UI.CellColor;
-
+	pOut->DrawCell(this->GetCell()->GetCellPosition(), cellColor);
 	///TODO: Call the appropriate Output function to draw the token using cellColor (erases it)
 }
 

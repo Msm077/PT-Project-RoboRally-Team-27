@@ -81,6 +81,8 @@ void AddRotatingGearAction::Execute()
 
 	// 2-get a pointer to the Grid from the ApplicationManager
 	Grid* pGrid = pManager->GetGrid();
+	Output* pOut = pGrid->GetOutput();
+	Input* pIn = pGrid->GetInput();
 
 	// 3-Add the rotating object to the GameObject of its Cell
 	bool added = pGrid->AddObjectToCell(pGear);
@@ -88,7 +90,18 @@ void AddRotatingGearAction::Execute()
 	// 4-Check if the rotating gear was added and print an error message if gear couldn't be added
 	if (!added)
 	{
+		delete pGear;
 		pGrid->PrintErrorMessage("Error: Failed to add Rotating Gear! Click to continue...");
+	}
+	else
+	{
+		string msg = "Rotating gear (";
+		msg += clockwise ? "Clockwise" : "Counter-Clockwise";
+		msg += ") added successfully at cell " + to_string(gearPos.GetCellNum()) + ". Click to continue...";
+		pOut->PrintMessage(msg);
+		int x, y;
+		pIn->GetPointClicked(x, y);
+		pOut->ClearStatusBar();
 	}
 }
 

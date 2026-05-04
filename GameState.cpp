@@ -40,7 +40,9 @@ Player* GameState::GetCurrentPlayer() const
 Player* GameState::GetPlayer(int playerNum) const
 {
 	///TODO: Return the player with the given player number
-	return PlayerList[playerNum]; 
+	if (playerNum >= 0 && playerNum < MaxPlayerCount)
+		return PlayerList[playerNum];
+	return nullptr;
 }
 
 // ========== Turn Management ==========
@@ -99,7 +101,7 @@ void GameState::DrawAllPlayers(Output* pOut) const
 	///TODO: Draw all players
 	for (int i = 0; i < MaxPlayerCount; i++)
 	{
-		pOut->DrawPlayer(PlayerList[i]->GetCell()->GetCellPosition(), PlayerList[i]->GetPlayerNumber(), UI.PlayerColors[PlayerList[i]->GetPlayerNumber()], PlayerList[i]->GetDirection());
+		PlayerList[i]->Draw(pOut);
 	}
 }
 
