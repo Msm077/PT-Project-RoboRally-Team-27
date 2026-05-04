@@ -1,6 +1,6 @@
 #include "Antenna.h"
-
-
+#include "GameState.h"
+#include "Player.h"
 
 
 
@@ -15,7 +15,35 @@ void Antenna::Draw(Output * pOut) const
 
 void Antenna::Apply(Grid* pGrid, GameState* pState, Player* pPlayer)
 {
+	Output* pOut = pGrid->GetOutput();
+	Input* pIn = pGrid->GetInput();
+	pOut->PrintMessage("The antenna will decide the turn of players. Click to continue ...");
+	int x;
+	int y;
+	pIn->GetPointClicked(x, y);
+	int minDistance = -1;
+	int firstPlayer = 0;
+	for (int i = 0; i < MaxPlayerCount; i++)
+	{
+		Player* p = pState->GetPlayer(i);
+		CellPosition playerPos = p->GetCell()->GetCellPosition();
 
+		int dV = abs(playerPos.VCell() - position.VCell());
+		int dH = abs(playerPos.HCell() - position.HCell());
+		int distance = dV + dH;
+
+		if (minDistance == -1 || distance < minDistance)
+		{
+			minDistance = distance;
+			firstPlayer = i;
+		}
+		pState->SetFirstPlayer(firstPlayer);
+
+		pOut->PrintMessage("Player " + to_string(firstPlayer + 1) + " will play first. Click to continue ...");
+		pIn->GetPointClicked(x, y);
+		pOut->ClearStatusBar();
+	}
+	
 	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
 
 
