@@ -372,7 +372,10 @@ void Player::Reset(){
     // Initialise saved commands to NO_COMMAND
     for (int i = 0; i < MaxSavedCommands; i++)
         savedCommands[i] = NO_COMMAND;
-    for (int i = 0; i < MaxConsumables; i++)
+    for (int i = 0; i < MaxConsumables; i++){
+        delete inventory[i];
+
         inventory[i] = nullptr;//changed
+        }
     health = 10; currDirection = RIGHT; savedCommandCount = 0; equippedDevice = NO_DEVICE; inventoryCount = 0; isHacked = false;
 }
