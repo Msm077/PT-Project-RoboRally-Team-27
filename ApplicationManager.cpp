@@ -83,79 +83,94 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	Action* pAct = NULL;
 
 	// According to Action Type, create the corresponding action object
-	switch (ActType)
-	{
-	case SET_BELT:
-		pAct = new AddBeltAction(this);
-		break;
+	if (!GetGameState()->GetEndGame()) {
+		switch (ActType)
+		{
+		case SET_BELT:
+			pAct = new AddBeltAction(this);
+			break;
 
-	case SET_ROTATING_GEAR:
-		pAct = new AddRotatingGearAction(this);
-		break;
-	case SET_ANTENNA:
-		pAct = new AddAntennaAction(this);
-		break;
-	case SET_FLAG_CELL:
-		pAct = new AddFlagAction(this);
-		break;
-	case SET_WATER:
-		pAct = new AddWaterPitAction(this);
-		break;
-	case SET_DANGER:
-		pAct = new AddDangerZoneAction(this);
-		break;
-	case SET_WORKSHOP:
-		pAct = new AddWorkshopAction(this);
-		break;
-	case SAVE:
-		pAct = new SaveGridAction(this);
-		break;
-	case LOAD:
-		pAct = new ReadGridAction(this);
-		break;
+		case SET_ROTATING_GEAR:
+			pAct = new AddRotatingGearAction(this);
+			break;
+		case SET_ANTENNA:
+			pAct = new AddAntennaAction(this);
+			break;
+		case SET_FLAG_CELL:
+			pAct = new AddFlagAction(this);
+			break;
+		case SET_WATER:
+			pAct = new AddWaterPitAction(this);
+			break;
+		case SET_DANGER:
+			pAct = new AddDangerZoneAction(this);
+			break;
+		case SET_WORKSHOP:
+			pAct = new AddWorkshopAction(this);
+			break;
+		case SAVE:
+			pAct = new SaveGridAction(this);
+			break;
+		case LOAD:
+			pAct = new ReadGridAction(this);
+			break;
 
-	case TO_PLAY_MODE:
-		pAct = new SwitchToPlayModeAction(this);
-		break;
+		case TO_PLAY_MODE:
+			pAct = new SwitchToPlayModeAction(this);
+			break;
 
-	case EXIT:
-		break;
-	case COPY:
-		pAct = new CopyAction(this);
-		break;
+		case EXIT:
+			break;
+		case COPY:
+			pAct = new CopyAction(this);
+			break;
 
-	case CUT:
-		pAct = new CutAction(this);
-		break;
+		case CUT:
+			pAct = new CutAction(this);
+			break;
 
-	case PASTE:
-		pAct = new PasteAction(this);
-		break;
+		case PASTE:
+			pAct = new PasteAction(this);
+			break;
 
-	case DELETE_:
-		pAct = new DeleteAction(this);
-		break;
+		case DELETE_:
+			pAct = new DeleteAction(this);
+			break;
 
-	///TODO: Add a case for EACH remaining Design Mode action type
+			///TODO: Add a case for EACH remaining Design Mode action type
 
-	case TO_DESIGN_MODE:
-		pAct = new SwitchToDesignModeAction(this);
-		break;
-	case NEW_GAME:
-		pAct = new NewGameAction(this);
-		break;
-	case SELECT_COMMAND:
-		pAct = new SelectCommandsAction(this);
-		break;
-	case EXECUTE_COMMANDS:
-		pAct = new ExecuteCommandsAction(this);
-		break;
-	case REBOOT:
-		pAct = new RebotAndRepairAction(this);
-		break;
-	///TODO: Add a case for EACH remaining Play Mode action type
-	case STATUS:	// a click on the status bar ==> no action
-		return;
+		case TO_DESIGN_MODE:
+			pAct = new SwitchToDesignModeAction(this);
+			break;
+		case NEW_GAME:
+			pAct = new NewGameAction(this);
+			break;
+		case SELECT_COMMAND:
+			pAct = new SelectCommandsAction(this);
+			break;
+		case EXECUTE_COMMANDS:
+			pAct = new ExecuteCommandsAction(this);
+			break;
+		case REBOOT:
+			pAct = new RebotAndRepairAction(this);
+			break;
+			///TODO: Add a case for EACH remaining Play Mode action type
+		case STATUS:	// a click on the status bar ==> no action
+			return;
+		}
+	}
+	else {
+		switch (ActType)
+		{
+		case TO_DESIGN_MODE:
+			pAct = new SwitchToDesignModeAction(this);
+			break;
+		case NEW_GAME:
+			pAct = new NewGameAction(this);
+			break;
+		case EXIT:
+			break;
+		}
 	}
 
 	// Execute the created action

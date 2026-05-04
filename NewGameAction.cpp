@@ -26,7 +26,7 @@ void NewGameAction::Execute()
 	GameState* pState = pManager->GetGameState();
 	
 	pState->ResetAllPlayers();
-	
+	pState->SetEndGame(false);
 	pOut->ClearStatusBar();
 	pGrid->UpdateInterface(pState);
 	

@@ -29,6 +29,7 @@ int playerNum = pPlayer->GetPlayerNumber();
     if (pPlayer->GetHealth() <= 0)
     {
         pGrid->PrintErrorMessage("Player " + to_string(playerNum) + " has died! Game over. Click to continue...");
+		pState->SetEndGame(true);
     if (playerNum == 0)
         winnerNum = 1;
     else

@@ -40,7 +40,7 @@ else
 }
         pGrid->PrintErrorMessage("Player " + to_string(playerNum) + " has died! Player " + 
                                   to_string(winnerNum) + " wins! Click to continue...");
-       // pState->EndG(winnerNum);
+		pState->SetEndGame(true);
     }
 
 

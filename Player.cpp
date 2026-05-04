@@ -281,7 +281,8 @@ void Player::Move(Grid* pGrid, GameState* pState)
     Input* pIn = pGrid->GetInput();
 
     for (int i = 0; i < savedCommandCount; i++) {
-        // 1. wait untill thje mouse clicked before executing the next command
+        if (pState->GetEndGame())
+            break;// 1. wait untill thje mouse clicked before executing the next command
         pOut->PrintMessage("Click to execute command " + to_string(i + 1) + "...");
         int x, y;
         pIn->GetPointClicked(x, y);
@@ -324,7 +325,7 @@ void Player::Move(Grid* pGrid, GameState* pState)
     {
         pFinalWS->Apply(pGrid, pState, this);
     }
-
+    if(!pState->GetEndGame())
     pOut->PrintMessage("movement round finished. Select the next action ");
        ClearSavedCommands(); // prepare for the next round by clearing the commands
    

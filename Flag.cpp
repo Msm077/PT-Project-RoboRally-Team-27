@@ -15,7 +15,7 @@ void Flag::Apply(Grid* pGrid, GameState* pState, Player* pPlayer)
 	///TODO: Implement this function as mentioned in the guideline steps (numbered below) below
 	 int playerNum = pPlayer->GetPlayerNumber();
     string msg = "Player " + to_string(playerNum) + " has reached the flag! Player " + 
-                 to_string(playerNum) + " wins! Click to continue ...";
+                 to_string(playerNum) + " wins! Click On either: New Game, To Design Mode, Exit ...";
     pGrid->PrintErrorMessage(msg);
 	pState->SetEndGame(true);
 

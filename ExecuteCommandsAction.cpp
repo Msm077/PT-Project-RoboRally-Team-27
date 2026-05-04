@@ -46,6 +46,7 @@ void ExecuteCommandsAction::Execute()
 	pOut->ClearCommandsBar();
 
 	// 6. Update UI
+	if (!pGameState->GetEndGame())
 	pOut->PrintMessage("Turn ended. Next player's turn.");
 }
 
