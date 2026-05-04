@@ -135,6 +135,7 @@ void SelectCommandsAction::Execute()
 			Consumable* pCon = pCurrentPlayer->GetInventoryItem(0);
 			if (pCurrentPlayer->UseConsumable(0)) {
 				pCon->UseEffect(pGrid, pState, pCurrentPlayer);
+				delete pCurrentPlayer->GetInventoryItem(0);
 			}
 		}
 	}
@@ -149,6 +150,7 @@ void SelectCommandsAction::Execute()
 				Consumable* pCon = pCurrentPlayer->GetInventoryItem(1);
 				if (pCurrentPlayer->UseConsumable(1)) {
 					pCon->UseEffect(pGrid, pState, pCurrentPlayer);
+					delete pCurrentPlayer->GetInventoryItem(1);
 				}
 
 			}
