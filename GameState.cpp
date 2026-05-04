@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Cell.h"
 #include "Output.h"
+#include "Antenna.h"
 
 GameState::GameState(Grid* pGrid)
 {
@@ -56,9 +57,10 @@ void GameState::ResetAllPlayers() {
 }
 // ========== Turn Management ==========
 
-void GameState::AdvanceCurrentPlayer()
+void GameState::AdvanceCurrentPlayer(Grid* pGrid)
 {
 	currPlayerNumber = (currPlayerNumber + 1) % MaxPlayerCount;
+	pGrid->GetAntennaCell()->GetAntenna()->Apply(pGrid, this, GetPlayer(currPlayerNumber));
 }
 
 void GameState::SetFirstPlayer(int playerNum)
