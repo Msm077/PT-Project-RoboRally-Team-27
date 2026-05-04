@@ -25,12 +25,17 @@ class Player
 	// Uncomment when adding the shooting phase (see DEFS.h PhaseType):
 	//   int laserDamage; // damage per shot (default = 1; double-laser consumable = 2)
 	//   bool isHacked;   // true = this player skips their turn this round
-
+	bool isHacked;   // true = this player skips their turn this round
 	// ---- [OPTIONAL BONUS] Workshop Consumables data members ----
 	// Uncomment when adding consumables (see Workshop.h):
 	//   Consumable* inventory[MaxConsumables];
 	//   int inventoryCount;
+	ConsumableType inventory[MaxConsumables]; // slots for consumables 
+	int inventoryCount; // num of consumables
 
+	DeviceType equippedDevice;
+
+	 
 public:
 
 	Player(Cell* pCell, int playerNum); // Initialises all data members
@@ -46,6 +51,7 @@ public:
 	Direction GetDirection() const;
 	void      SetDirection(Direction d);
 
+	
 	int GetPlayerNumber();
 
 	///TODO: Add more setters/getters here as needed
@@ -58,6 +64,19 @@ public:
 	Command GetSavedCommand(int index) const;
 	Command* GetSavedCommands();
 
+	// ====== Device & Consumables ======
+
+	int GetMaxCommands() const;
+	void SetDevice(DeviceType d);
+	DeviceType GetDevice() const;
+
+	void AddConsumable(ConsumableType c); // called by apply at workshop to add the consumable
+	bool UseConsumable(ConsumableType c); // consumes the consumable
+	bool HasConsumable(ConsumableType c) const;
+
+	void SetHacked(bool hacked);
+	bool IsHacked() const;
+
 	// ====== Drawing ======
 
 	void Draw(Output* pOut) const;         // Draws the player token on its current cell
@@ -66,6 +85,6 @@ public:
 	// ====== Game Logic ======
 
 	void Move(Grid* pGrid, GameState* pState);
-	void incrementHealth(int n);
+	void incrementHealth(int n); void DecrementHealth(int n);
 	void AppendPlayerInfo(string& playersInfo) const; // Appends "P0(direction, health)" to the string
 };

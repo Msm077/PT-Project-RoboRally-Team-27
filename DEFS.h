@@ -67,7 +67,7 @@ enum Direction // Directions of the game
 };
 
 ///TODO: Set the maximum number of commands a player can save per round
-const int MaxSavedCommands = 5;
+const int MaxSavedCommands = 6;
 
 
 enum Command
@@ -104,4 +104,16 @@ enum Type
 	Antennas,
 	RotatingGears
 };
+enum DeviceType {
+	NO_DEVICE,
+	EXTENDED_MEMORY   // allows 6 commands instead of 5
+};
+const int MaxConsumables = 2;
+// Consumable types
+enum ConsumableType {
+	NO_CONSUMABLE,
+	TOOLKIT,      // Repair without visiting workshop
+	HACK_DEVICE   // Opponent skips their turn this round
+};
+
 #endif
