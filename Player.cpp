@@ -10,7 +10,7 @@ Player::Player(Cell* pCell, int playerNum)
 	: playerNum(playerNum), health(10), currDirection(RIGHT), savedCommandCount(0),
 	equippedDevice(NO_DEVICE), inventoryCount(0), isHacked(false) {
 	this->pCell = pCell;
-
+    startCell = pCell;
 	// Initialise saved commands to NO_COMMAND
 	for (int i = 0; i < MaxSavedCommands; i++)
 		savedCommands[i] = NO_COMMAND;
@@ -329,4 +329,15 @@ void Player::incrementHealth(int n)
 {
 	int health = this->health + n;
 	SetHealth(health);
+}
+
+void Player::Reset(){
+    pCell = startCell;
+
+    // Initialise saved commands to NO_COMMAND
+    for (int i = 0; i < MaxSavedCommands; i++)
+        savedCommands[i] = NO_COMMAND;
+    for (int i = 0; i < MaxConsumables; i++)
+        inventory[i] = NO_CONSUMABLE;
+    health = 10; currDirection = RIGHT; savedCommandCount = 0; equippedDevice = NO_DEVICE; inventoryCount = 0; isHacked = false;
 }
