@@ -71,7 +71,7 @@ void SelectCommandsAction::ReadActionParameters()
 		int poolIndex = -1;
 
 		// wait until a valid index within the 10-slot pool is clicked and to overcome any unexpected inpputs
-		while (poolIndex < 0 || poolIndex >= poolSize)
+		while (poolIndex < 0 || poolIndex >= poolSize || pool[poolIndex] == NO_COMMAND)
 		{
 			// Input::GetSelectedCommandIndex() returns the 0-9 index of the clicked icon in the pool
 			poolIndex = pIn->GetSelectedCommandIndex();
@@ -79,12 +79,17 @@ void SelectCommandsAction::ReadActionParameters()
 			if (poolIndex == -1) {
 				pOut->PrintMessage("invalid input! Please select a command from the pool.");
 			}
+			else if (poolIndex >= 0 && poolIndex < poolSize && pool[poolIndex] == NO_COMMAND)
+				pOut->PrintMessage("That command was already chosen! Pick a different one.");
 		}
 		// mapping according to the enum command
 		Command selectedCmd = pool[poolIndex];
 
 		// updating the player object with t he selected commands
 		pCurrentPlayer->AddSavedCommand(selectedCmd);
+
+		//marks slots as used
+		pool[poolIndex] = NO_COMMAND;
 
 		string cmdName = GetCommandName(selectedCmd);
 		pOut->PrintMessage("Slot " + to_string(i + 1) + ": " + cmdName + " saved.");
