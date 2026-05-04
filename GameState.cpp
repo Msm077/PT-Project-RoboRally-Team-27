@@ -123,9 +123,7 @@ void GameState::SetEndGame(bool end)
 	endGame = end;
 }
 
-void GameState::EndGame() {
 
-}
 // ========== Drawing Helpers ==========
 
 void GameState::DrawAllPlayers(Output* pOut) const
