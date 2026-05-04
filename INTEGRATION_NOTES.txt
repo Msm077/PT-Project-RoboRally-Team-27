@@ -1,0 +1,70 @@
+// ============================================================
+// CHANGES NEEDED IN EXISTING FILES
+// ============================================================
+//
+// ── 1. GameState.cpp: AdvancePhase() ─────────────────────────
+//
+// Replace the existing AdvancePhase() body with:
+//
+//   void GameState::AdvancePhase()
+//   {
+//       if (currentPhase == PHASE_MOVEMENT)
+//           currentPhase = PHASE_SHOOTING;
+//       else
+//           currentPhase = PHASE_MOVEMENT;
+//   }
+//
+// ── 2. ExecuteCommandsAction.cpp: Execute() ──────────────────
+//
+// After Player::Move() finishes and both players have moved,
+// advance the phase so the main loop triggers the shooting phase.
+// Replace the end of Execute() with:
+//
+//   pCurrentPlayer->Move(pGrid, pGameState);
+//   pCurrentPlayer->SetHacked(false);
+//
+//   // After the second player moves, advance to shooting phase
+//   pGameState->AdvanceCurrentPlayer();
+//   pGameState->AdvancePhase();   // MOVEMENT -> SHOOTING
+//
+//   pOut->PrintMessage("Movement done. Shooting phase next.");
+//
+// ── 3. ApplicationManager.cpp: ExecuteAction() switch ────────
+//
+// Add a case for the shooting phase trigger.
+// The cleanest approach: call ShootingPhaseAction automatically
+// at the end of ExecuteCommandsAction when phase == PHASE_SHOOTING.
+// Alternatively, add it to the main loop in ApplicationManager:
+//
+//   // In GetUserAction() or a separate check after ExecuteAction():
+//   if (pGameState->GetCurrentPhase() == PHASE_SHOOTING)
+//   {
+//       Action* pShoot = new ShootingPhaseAction(this);
+//       pShoot->Execute();
+//       delete pShoot;
+//   }
+//
+// The simplest integration is to trigger it directly at the
+// bottom of ExecuteCommandsAction::Execute() after AdvancePhase():
+//
+//   if (pGameState->GetCurrentPhase() == PHASE_SHOOTING)
+//   {
+//       ShootingPhaseAction shootAction(pManager);
+//       shootAction.Execute();
+//   }
+//
+// ── 4. Add #include for new files ────────────────────────────
+//
+// In ApplicationManager.cpp (or wherever ShootingPhaseAction is used):
+//   #include "ShootingPhaseAction.h"
+//
+// In Workshop.cpp:
+//   #include "Toolkit.h"
+//   #include "HackDevice.h"
+//   #include "DoubleLaser.h"
+//   (already included in the new Workshop.cpp provided)
+//
+// In Player.cpp:
+//   #include "Consumable.h"
+//   (already included in the new Player.cpp provided)
+// ============================================================

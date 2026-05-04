@@ -178,15 +178,18 @@
     <ClCompile Include="CMUgraphicsLib\jpeg\jquant1.c" />
     <ClCompile Include="CMUgraphicsLib\jpeg\jquant2.c" />
     <ClCompile Include="CMUgraphicsLib\jpeg\jutils.c" />
+    <ClCompile Include="Consumable.cpp" />
     <ClCompile Include="CopyAction.cpp" />
     <ClCompile Include="CutAction.cpp" />
     <ClCompile Include="DangerZone.cpp" />
     <ClCompile Include="DeleteAction.cpp" />
+    <ClCompile Include="Doublelaser.cpp" />
     <ClCompile Include="ExecuteCommandsAction.cpp" />
     <ClCompile Include="Flag.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="Hackdevice.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="NewGameAction.cpp" />
     <ClCompile Include="Output.cpp" />
@@ -200,6 +203,7 @@
     <ClCompile Include="SelectCommandsAction.cpp" />
     <ClCompile Include="SwitchToDesignModeAction.cpp" />
     <ClCompile Include="SwitchToPlayModeAction.cpp" />
+    <ClCompile Include="Toolkit.cpp" />
     <ClCompile Include="WaterPit.cpp" />
     <ClCompile Include="Workshop.cpp" />
   </ItemGroup>
@@ -237,16 +241,19 @@
     <ClInclude Include="CMUgraphicsLib\jpeg\jpegint.h" />
     <ClInclude Include="CMUgraphicsLib\jpeg\jpeglib.h" />
     <ClInclude Include="CMUgraphicsLib\jpeg\jversion.h" />
+    <ClInclude Include="Consumable.h" />
     <ClInclude Include="CopyAction.h" />
     <ClInclude Include="CutAction.h" />
     <ClInclude Include="DangerZone.h" />
     <ClInclude Include="DEFS.h" />
     <ClInclude Include="DeleteAction.h" />
+    <ClInclude Include="Doublelaser.h" />
     <ClInclude Include="ExecuteCommandsAction.h" />
     <ClInclude Include="Flag.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="Hackdevice.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="NewGameAction.h" />
     <ClInclude Include="Output.h" />
@@ -259,6 +266,7 @@
     <ClInclude Include="SelectCommandsAction.h" />
     <ClInclude Include="SwitchToDesignModeAction.h" />
     <ClInclude Include="SwitchToPlayModeAction.h" />
+    <ClInclude Include="Toolkit.h" />
     <ClInclude Include="UI_Info.h" />
     <ClInclude Include="WaterPit.h" />
     <ClInclude Include="Workshop.h" />

@@ -1,4 +1,3 @@
-
 #ifndef DEFS_H
 #define DEFS_H
 
@@ -40,7 +39,6 @@ enum ActionType // The actions supported (add more as needed)
 	PASTE,
 	DELETE_,
 	
-	
 
 	//  [2] Actions of Play Mode
 
@@ -66,7 +64,18 @@ enum Direction // Directions of the game
 	LEFT
 };
 
-///TODO: Set the maximum number of commands a player can save per round
+
+// Maximum number of consumable items a player can carry at once
+const int MaxConsumables = 3; // Toolkit + HackDevice + DoubleLaser
+
+// Device types (permanent upgrades purchased at workshops)
+enum DeviceType {
+	NO_DEVICE,
+	EXTENDED_MEMORY   // allows 6 commands instead of 5
+};
+
+// Maximum number of commands a player can save per round
+// (5 by default; 6 with Extended Memory device)
 const int MaxSavedCommands = 6;
 
 
@@ -85,35 +94,14 @@ enum Command
 	COMMANDS_COUNT,
 };
 
+
 // PhaseType: the phases within a single Play Mode round.
-// [OPTIONAL BONUS] Add more phases as needed (e.g. a shooting phase).
+// MOVEMENT  -> players select and execute their saved commands
+// SHOOTING  -> each robot fires its laser at the opponent if facing them
 enum PhaseType
 {
-	PHASE_MOVEMENT,  // players execute their saved commands
-
-	///TODO: Add more phases here as needed
-};
-
-enum Type
-{
-	Flags,
-	WaterPits,
-	DangerZones,
-	Belts,
-	WorkShops,
-	Antennas,
-	RotatingGears
-};
-enum DeviceType {
-	NO_DEVICE,
-	EXTENDED_MEMORY   // allows 6 commands instead of 5
-};
-const int MaxConsumables = 2;
-// Consumable types
-enum ConsumableType {
-	NO_CONSUMABLE,
-	TOOLKIT,      // Repair without visiting workshop
-	HACK_DEVICE   // Opponent skips their turn this round
+	PHASE_MOVEMENT,  // players select & execute saved commands
+	PHASE_SHOOTING   // [BONUS] robots fire lasers after movement
 };
 
 #endif

@@ -2,43 +2,45 @@
 
 #include "Grid.h"
 #include "Cell.h"
+#include "DEFS.h"
 
-// Forward declaration: GameState is needed for Move() but we don't include it
-// here to avoid a circular dependency (GameState.h includes Player.h).
+// Forward declarations
 class GameState;
+class Consumable;  // abstract base -- Player owns Consumable* pointers
 
 class Player
 {
 	Cell* pCell;           // Pointer to the cell the player currently occupies
-	Cell* startCell;
 	const int playerNum;   // Player index 0..MaxPlayerCount-1 (constant after construction)
 
 	Direction currDirection; // The direction the player is currently facing
 	int health;              // Player's current health points
 
 	// ---- Saved Commands (the player's "program" for this round) ----
-	// Owned here because they are player-specific state.
-	// SelectCommandAction fills this array; Move() executes it; ClearSavedCommands() resets it.
 	Command savedCommands[MaxSavedCommands];
-	int savedCommandCount; // how many commands have been saved so far (0..MaxSavedCommands)
+	int savedCommandCount;
 	void ExecuteCommand(Command cmd, CellPosition& pos);
 
-	// ---- [OPTIONAL BONUS] Shooting Phase data members ----
-	// Uncomment when adding the shooting phase (see DEFS.h PhaseType):
-	//   int laserDamage; // damage per shot (default = 1; double-laser consumable = 2)
-	//   bool isHacked;   // true = this player skips their turn this round
-	bool isHacked;   // true = this player skips their turn this round
-	// ---- [OPTIONAL BONUS] Workshop Consumables data members ----
+	// ---- Hacked flag (Hack Device consumable) ----
+	bool isHacked; // true = this player skips their turn this round
+
+	// ---- Permanent device (Extended Memory) ----
 	DeviceType equippedDevice;
-	// Uncomment when adding consumables (see Workshop.h):
-	//   Consumable* inventory[MaxConsumables];
-	//   int inventoryCount;
-	ConsumableType inventory[MaxConsumables]; // slots for consumables 
-	int inventoryCount; // num of consumables
+
+	// ---- Laser (Shooting Phase) ----
+	// Default = 1 (basic laser); set to 2 when DoubleLaser consumable is used.
+	int laserDamage;
+
+	// ---- Consumable inventory ----
+	// Owns Consumable* pointers (polymorphic).
+	// Player is responsible for deleting them when used or on destruction.
+	Consumable* inventory[MaxConsumables];
+	int inventoryCount;
 
 public:
 
 	Player(Cell* pCell, int playerNum); // Initialises all data members
+	~Player();                          // Deletes remaining unused consumables
 
 	// ====== Setters and Getters ======
 
@@ -51,41 +53,60 @@ public:
 	Direction GetDirection() const;
 	void      SetDirection(Direction d);
 
-	
-	int GetPlayerNumber();
-
-	///TODO: Add more setters/getters here as needed
-
 	// ====== Saved Commands ======
 
-	void    AddSavedCommand(Command cmd);         // Appends cmd to savedCommands (called by SelectCommandAction)
-	void    ClearSavedCommands();                 // Resets the saved-command list (call at the start of each round)
+	void    AddSavedCommand(Command cmd);
+	void    ClearSavedCommands();
 	int     GetSavedCommandCount() const;
 	Command GetSavedCommand(int index) const;
 	Command* GetSavedCommands();
 
-	// ====== Device & Consumables ======
-
-	int GetMaxCommands() const;
-	void SetDevice(DeviceType d);
-	DeviceType GetDevice() const;
-
-	void AddConsumable(ConsumableType c); // called by apply at workshop to add the consumable
-	bool UseConsumable(ConsumableType c); // consumes the consumable
-	bool HasConsumable(ConsumableType c) const;
-
-	void SetHacked(bool hacked);
-	bool IsHacked() const;
-
 	// ====== Drawing ======
 
-	void Draw(Output* pOut) const;         // Draws the player token on its current cell
-	void ClearDrawing(Output* pOut) const; // Erases the player token (restores cell colour)
+	void Draw(Output* pOut) const;
+	void ClearDrawing(Output* pOut) const;
 
 	// ====== Game Logic ======
 
 	void Move(Grid* pGrid, GameState* pState);
-	void incrementHealth(int n);
-	void Reset();
-	void AppendPlayerInfo(string& playersInfo) const; // Appends "P0(direction, health)" to the string
+
+	void AppendPlayerInfo(string& playersInfo) const;
+
+	void incrementHealth(); // +1 health (used by Reboot & Repair action)
+
+	// ====== Device (Extended Memory) ======
+
+	int        GetMaxCommands() const; // returns 5 normally, 6 with Extended Memory
+	void       SetDevice(DeviceType d);
+	DeviceType GetDevice() const;
+
+	// ====== Consumable Inventory ======
+	// Player takes ownership of the Consumable* pointer passed to AddConsumable().
+
+	void AddConsumable(Consumable* pConsumable); // Add to inventory (takes ownership)
+
+	// Removes and RETURNS the first consumable of the given runtime type
+	// matching predicate T. Caller becomes owner and must delete it after use.
+	// Returns nullptr if not found.
+	// Usage: the action calls UseConsumableByName() which wraps this.
+	Consumable* RemoveConsumable(int index); // Remove by slot index, returns pointer
+
+	bool        HasConsumableNamed(const string& name) const;
+	int         FindConsumable(const string& name) const; // returns index or -1
+	int         GetInventoryCount() const;
+	Consumable* GetConsumable(int index) const;
+
+	// ====== Laser / Shooting Phase ======
+
+	int  GetLaserDamage() const;
+	void SetLaserDamage(int damage);
+
+	// Returns true if this robot is directly facing pOpponent
+	// in the same row or column with no grid boundary in between.
+	bool IsFacingPlayer(const Player* pOpponent) const;
+
+	// ====== Hacked flag ======
+
+	void SetHacked(bool hacked);
+	bool IsHacked() const;
 };

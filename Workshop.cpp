@@ -1,96 +1,113 @@
 #include "Workshop.h"
+#include "Player.h"
+#include "Toolkit.h"
+#include "HackDevice.h"
+#include "DoubleLaser.h"
 
+// ============================================================
+//  Constructor / Destructor
+// ============================================================
 
-
-Workshop::Workshop(const CellPosition & workshopPosition):GameObject( workshopPosition)
+Workshop::Workshop(const CellPosition& workshopPosition)
+    : GameObject(workshopPosition)
 {
-
 }
-
-
-void Workshop::Draw(Output * pOut) const
-{
-	pOut->DrawWorkshop(position);
-}
-
-void Workshop::Apply(Grid* pGrid, GameState* pState, Player* pPlayer)
-{
-	///TODO: Implement this function
-	// Apply the workshop's effect on the player
-	// [OPTIONAL BONUS] Consumables can be given to the player here
-	Output* pOut = pGrid->GetOutput();
-	pPlayer->SetHealth(10);
-	pOut->PrintMessage("workshop effect has been applies, the robot has been repaired");
-
-
-	if (pPlayer->GetDevice() == NO_DEVICE) {
-		pOut->PrintMessage("workshop: Buy Extended Memory (6 cmds)? Click YES area / NO area");
-	}
-	// contact with msm about that
-	Input* pIn = pGrid->GetInput();
-	int x, y;
-	pIn->GetPointClicked(x, y);
-	// Define YES zone as left half of screen, NO as right half (adjust to your UI)
-	if (x < UI.width / 2) {
-		pPlayer->SetDevice(EXTENDED_MEMORY);
-		pOut->PrintMessage("Extended Memory equipped!");
-	}
-
-	// --- 3. Consumables: offer Toolkit ---
-	if (!pPlayer->HasConsumable(TOOLKIT)) {
-		pOut->PrintMessage("Workshop: Buy Toolkit (repair anywhere)? Click YES / NO");
-		Input* pIn = pGrid->GetInput();
-		int x, y;
-		pIn->GetPointClicked(x, y);
-		if (x < UI.width / 2) {
-			pPlayer->AddConsumable(TOOLKIT);
-			pOut->PrintMessage("Toolkit added to inventory!");
-		}
-	}
-
-	// --- 4. Consumables: offer Hack Device ---
-	if (!pPlayer->HasConsumable(HACK_DEVICE)) {
-		pOut->PrintMessage("Workshop: Buy Hack Device (skip opponent)? Click YES / NO");
-		Input* pIn = pGrid->GetInput();
-		int x, y;
-		pIn->GetPointClicked(x, y);
-		if (x < UI.width / 2) {
-			pPlayer->AddConsumable(HACK_DEVICE);
-			pOut->PrintMessage("Hack Device added to inventory!");
-		}
-	}
-}
-void Workshop::Save(ofstream& OutFile, Type t) {
-	if (IsObject(t)) {
-		OutFile << position.GetCellNum() << endl;
-	}
-	else {
-		return;
-	}
-}
-
-void Workshop::Read(ifstream& Infile) {
-	int x1;
-	
-		Infile >> x1;
-		position = x1;
-	
-	
-}
-bool Workshop::IsObject(Type t) {
-	if (t == WorkShops) {
-		return 1;
-	}
-	return 0;
-}
-
-GameObject* Workshop::Photocopy(const CellPosition& newPos) const
-{
-	return new Workshop(newPos);
-}
-
-
 
 Workshop::~Workshop()
 {
+}
+
+// ============================================================
+//  Draw
+// ============================================================
+
+void Workshop::Draw(Output* pOut) const
+{
+    pOut->DrawWorkshop(position);
+}
+
+// ============================================================
+//  Private helper: AskYesNo
+//  Shows a message and waits for a click.
+//  Left half of window = YES / Right half = NO.
+// ============================================================
+
+bool Workshop::AskYesNo(Grid* pGrid, const string& question) const
+{
+    Output* pOut = pGrid->GetOutput();
+    Input*  pIn  = pGrid->GetInput();
+
+    pOut->PrintMessage(question + "   [Left click = YES | Right click = NO]");
+
+    int x, y;
+    pIn->GetPointClicked(x, y);
+    pOut->ClearStatusBar();
+
+    return (x < UI.width / 2); // left half = YES
+}
+
+// ============================================================
+//  Apply
+//  Called by Player::Move() only after ALL saved commands
+//  in the round have been executed.
+// ============================================================
+
+void Workshop::Apply(Grid* pGrid, GameState* /*pState*/, Player* pPlayer)
+{
+    Output* pOut = pGrid->GetOutput();
+
+    // ── Step 1: Repair the robot ──────────────────────────────
+    pPlayer->SetHealth(10);
+    pOut->PrintMessage("Workshop: Robot fully repaired! Click to continue...");
+    int x, y;
+    pGrid->GetInput()->GetPointClicked(x, y);
+    pOut->ClearStatusBar();
+
+    // ── Step 2: Offer Extended Memory device (permanent, one per player) ──
+    if (pPlayer->GetDevice() == NO_DEVICE)
+    {
+        if (AskYesNo(pGrid, "Workshop: Buy Extended Memory? (+1 command slot, permanent)"))
+        {
+            pPlayer->SetDevice(EXTENDED_MEMORY);
+            pOut->PrintMessage("Extended Memory equipped! You can now use 6 commands per round. Click...");
+            pGrid->GetInput()->GetPointClicked(x, y);
+            pOut->ClearStatusBar();
+        }
+    }
+
+    // ── Step 3: Offer Toolkit consumable (one per inventory) ──
+    if (!pPlayer->HasConsumableNamed("Toolkit"))
+    {
+        if (AskYesNo(pGrid, "Workshop: Buy Toolkit? (Repair robot anywhere, one-time use)"))
+        {
+            pPlayer->AddConsumable(new Toolkit());
+            pOut->PrintMessage("Toolkit added to inventory! Use it before assigning commands. Click...");
+            pGrid->GetInput()->GetPointClicked(x, y);
+            pOut->ClearStatusBar();
+        }
+    }
+
+    // ── Step 4: Offer Hack Device consumable ──────────────────
+    if (!pPlayer->HasConsumableNamed("Hack Device"))
+    {
+        if (AskYesNo(pGrid, "Workshop: Buy Hack Device? (Force opponent to skip next turn, one-time use)"))
+        {
+            pPlayer->AddConsumable(new HackDevice());
+            pOut->PrintMessage("Hack Device added to inventory! Use it before assigning commands. Click...");
+            pGrid->GetInput()->GetPointClicked(x, y);
+            pOut->ClearStatusBar();
+        }
+    }
+
+    // ── Step 5: Offer Double Laser weapon ─────────────────────
+    if (pPlayer->GetLaserDamage() < 2 && !pPlayer->HasConsumableNamed("Double Laser"))
+    {
+        if (AskYesNo(pGrid, "Workshop: Buy Double Laser? (Deal 2 damage in shooting phase, one-time upgrade)"))
+        {
+            pPlayer->AddConsumable(new DoubleLaser());
+            pOut->PrintMessage("Double Laser added! It will activate automatically in the shooting phase. Click...");
+            pGrid->GetInput()->GetPointClicked(x, y);
+            pOut->ClearStatusBar();
+        }
+    }
 }
