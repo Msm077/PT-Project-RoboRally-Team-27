@@ -34,7 +34,7 @@ public:
     virtual string GetName() const = 0;
 
     // Applies this consumable's one-time effect.
-    // The caller (SelectCommandsAction) invokes this, then deletes the object.
+    // The caller invokes this, then deletes the object.
     virtual void UseEffect(Grid* pGrid, GameState* pState, Player* pPlayer) = 0;
 };
 

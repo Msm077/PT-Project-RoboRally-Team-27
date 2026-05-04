@@ -201,8 +201,9 @@ void Player::AddConsumable(Consumable* c, int idx) // idx to identify the consum
 
 bool Player::UseConsumable(int idx)
 {
-    inventory[idx];
+    delete inventory[idx];
     inventory[idx] = nullptr;
+    inventoryCount--;
     return true;
 /*	for (int i = 0; i < inventoryCount; i++) {
 		if (inventory[i] == c) {
