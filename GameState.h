@@ -45,8 +45,8 @@ public:
 	void ResetAllPlayers();
 	// ========== Turn Management ==========
 
-	void AdvanceCurrentPlayer(Grid* pGrid); // Moves to the next player (cycles: 0 -> 1 -> ... -> 0)
-
+	void AdvanceCurrentPlayer(); // Moves to the next player (cycles: 0 -> 1 -> ... -> 0)
+	
 	// SetFirstPlayer: tells the GameState which player goes first this round.
 	// Called by Antenna::Apply() after it computes distances.
 	// The remaining players follow in ascending index order.

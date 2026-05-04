@@ -57,11 +57,11 @@ void GameState::ResetAllPlayers() {
 }
 // ========== Turn Management ==========
 
-void GameState::AdvanceCurrentPlayer(Grid* pGrid)
+void GameState::AdvanceCurrentPlayer()
 {
 	currPlayerNumber = (currPlayerNumber + 1) % MaxPlayerCount;
-	pGrid->GetAntennaCell()->GetAntenna()->Apply(pGrid, this, GetPlayer(currPlayerNumber));
 }
+
 
 void GameState::SetFirstPlayer(int playerNum)
 {		

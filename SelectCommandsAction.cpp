@@ -117,7 +117,7 @@ void SelectCommandsAction::Execute()
 		int x, y;
 		pIn->GetPointClicked(x, y);
 		pCurrentPlayer->SetHacked(false); // reset for next round
-		pState->AdvanceCurrentPlayer(pGrid);   // skip to next player
+		pState->AdvanceCurrentPlayer();   // skip to next player
 		pOut->ClearStatusBar();
 		return;
 	}
