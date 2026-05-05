@@ -3,7 +3,8 @@
 #include "Output.h"
 #include "Input.h"
 #include "GameObject.h"
-
+#include "Antenna.h"
+#include "Flag.h"
 CopyAction::CopyAction(ApplicationManager* pApp) : Action(pApp) {}
 
 void CopyAction::ReadActionParameters()
@@ -34,6 +35,14 @@ void CopyAction::Execute()
     if (pObj == NULL)
     {
         pGrid->PrintErrorMessage("Error: No object in this cell");
+        return;
+    }
+    if (dynamic_cast<Flag*>(pObj) != nullptr) {
+        pGrid->PrintErrorMessage("Error: Cannot Copy Flags");
+        return;
+    }
+    if (dynamic_cast<Antenna*>(pObj) != nullptr) {
+        pGrid->PrintErrorMessage("Error: Cannot Copy Antenna");
         return;
     }
 
